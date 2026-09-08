@@ -3,6 +3,7 @@ import type {
   CallToAction,
   Client,
   FaqItem,
+  LegalSection,
   NavLink,
   Photo,
   Pillar,
@@ -426,11 +427,125 @@ export const contact = {
     submit: "Enviar solicitud",
     submitting: "Enviando…",
     note: "Respondemos en un plazo máximo de 48 horas hábiles.",
+    /**
+     * Ley 29733 asks for consent that is prior, express and informed, so the
+     * box ships unticked and the form refuses to send without it.
+     */
+    consent: {
+      before: "He leído y acepto la ",
+      link: { label: "política de privacidad", href: "/privacidad" },
+      after: " y autorizo el tratamiento de mis datos para responder esta solicitud.",
+    },
   },
 };
 
+/**
+ * Privacy notice required by Ley 29733 and its regulation, since the contact
+ * form collects personal data. Pending from the client: the registered
+ * address, which belongs in the first clause.
+ */
+export const privacy = {
+  eyebrow: "Legal",
+  heading: ["Política", "de privacidad"],
+  lead: "Cómo trata PPMA SAC los datos personales que nos dejas en este sitio web, para qué los usamos y cómo puedes controlarlos en cualquier momento.",
+  sections: [
+    {
+      index: "01",
+      slug: "responsable",
+      title: "Quién trata tus datos",
+      body: [
+        "El responsable del tratamiento es Professional Project Manager Administration S.A.C. (PPMA SAC), con RUC 20601984564, empresa domiciliada en el Perú. Puedes escribirnos por cualquier asunto relacionado con tus datos personales a:",
+      ],
+      items: ["Correo: atencionalcliente@ppmasac.com", "Teléfono: +51 994 664 719"],
+    },
+    {
+      index: "02",
+      slug: "datos",
+      title: "Qué datos recogemos",
+      body: [
+        "Solo los que escribes en el formulario de contacto. No pedimos ni tratamos datos sensibles, y tampoco compramos bases de datos de terceros.",
+      ],
+      items: [
+        "Nombre y apellido.",
+        "Empresa, si decides indicarla.",
+        "Correo electrónico.",
+        "Teléfono, si decides indicarlo.",
+        "Servicio de interés y el contenido de tu mensaje.",
+      ],
+    },
+    {
+      index: "03",
+      slug: "finalidad",
+      title: "Para qué los usamos",
+      body: [
+        "Usamos tus datos únicamente para atender tu solicitud: entender el requerimiento, contactarte, preparar una propuesta de alcance, plazos y presupuesto, y hacer el seguimiento de esa conversación.",
+        "No los usamos para enviarte publicidad ni los cedemos con fines comerciales. Si en el futuro quisiéramos hacerlo, te pediríamos una autorización aparte.",
+      ],
+    },
+    {
+      index: "04",
+      slug: "consentimiento",
+      title: "Con qué autorización",
+      body: [
+        "La base del tratamiento es tu consentimiento, que otorgas al marcar la casilla del formulario antes de enviarlo. Es libre, previo, expreso e informado, como exige la Ley 29733 de Protección de Datos Personales y su reglamento.",
+        "Puedes retirarlo cuando quieras escribiéndonos al correo indicado, sin que ello afecte la validez del tratamiento realizado hasta ese momento.",
+      ],
+    },
+    {
+      index: "05",
+      slug: "conservacion",
+      title: "Cuánto tiempo los conservamos",
+      body: [
+        "Guardamos tu solicitud mientras dure la conversación comercial y hasta dos años después del último contacto, plazo en el que podría retomarse el proyecto. Cumplido ese periodo los eliminamos, salvo que una norma nos obligue a conservarlos por más tiempo, como ocurre con la documentación contractual y tributaria.",
+      ],
+    },
+    {
+      index: "06",
+      slug: "destinatarios",
+      title: "Quién más los ve",
+      body: [
+        "Tu solicitud llega al equipo comercial de PPMA SAC y a nadie más. Los proveedores que hacen posible el servicio —alojamiento del sitio y correo corporativo— actúan como encargados de tratamiento, solo procesan los datos por encargo nuestro y están sujetos a deberes de confidencialidad.",
+        "Estos proveedores pueden almacenar la información en servidores ubicados fuera del Perú, lo que constituye un flujo transfronterizo de datos amparado en tu consentimiento y sujeto a las garantías que exige la normativa.",
+      ],
+    },
+    {
+      index: "07",
+      slug: "seguridad",
+      title: "Cómo los protegemos",
+      body: [
+        "La información viaja cifrada mediante HTTPS y se almacena en el banco de datos de contactos comerciales de PPMA SAC, con acceso restringido al personal que necesita conocerla. Aplicamos las medidas técnicas, organizativas y legales que exige la normativa peruana de protección de datos personales.",
+      ],
+    },
+    {
+      index: "08",
+      slug: "derechos",
+      title: "Tus derechos",
+      body: [
+        "En cualquier momento puedes ejercer tus derechos de información, acceso, actualización, rectificación, inclusión, supresión, oposición y tratamiento objetivo de tus datos personales.",
+        "Para hacerlo, escríbenos a atencionalcliente@ppmasac.com indicando tu solicitud y adjuntando un documento que acredite tu identidad. Responderemos dentro de los plazos que fija la ley. Si consideras que no atendimos tu pedido, puedes reclamar ante la Autoridad Nacional de Protección de Datos Personales del Ministerio de Justicia y Derechos Humanos.",
+      ],
+    },
+    {
+      index: "09",
+      slug: "cookies",
+      title: "Cookies",
+      body: [
+        "Este sitio no utiliza cookies de analítica, publicidad ni seguimiento de terceros: solo las estrictamente necesarias para que las páginas funcionen. Si más adelante incorporamos herramientas de medición, lo anunciaremos aquí y solicitaremos tu consentimiento antes de activarlas.",
+      ],
+    },
+    {
+      index: "10",
+      slug: "cambios",
+      title: "Cambios en esta política",
+      body: [
+        "Podemos actualizar esta política si cambian nuestros servicios o la normativa aplicable. La versión vigente es siempre la publicada en esta página, así que te recomendamos revisarla cada cierto tiempo.",
+      ],
+    },
+  ] satisfies LegalSection[],
+};
+
 export const footer = {
-  /** Transparent wordmark; the footer paints it white with a filter. */
+  /** Transparent wordmark, shown in its original colours. */
   logo: {
     src: "/logos_v2/ppmasac-transparent@2x.png",
     alt: "PPMA SAC",
@@ -452,13 +567,10 @@ export const footer = {
   servicesTitle: "Servicios",
   contact: {
     title: "Contacto",
-    email: "atensionalcliente@ppmasac.com",
+    email: "atencionalcliente@ppmasac.com",
     phone: { label: "+51 994 664 719", href: "tel:+51994664719" },
   },
   legal: `© ${new Date().getFullYear()} PPMA SAC. Todos los derechos reservados.`,
-  links: [
-    { label: "Privacy", href: "#" },
-    { label: "Terms", href: "#" },
-    { label: "Careers", href: "#" },
-  ] satisfies NavLink[],
+  /** The only legal document the site publishes, required by the form. */
+  links: [{ label: "Política de privacidad", href: "/privacidad" }] satisfies NavLink[],
 };

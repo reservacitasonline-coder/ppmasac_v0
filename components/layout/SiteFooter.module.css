@@ -5,10 +5,11 @@
   color: #fff;
 }
 
-/* The brand column is wider than the three link columns beside it. */
+/* The brand column is the widest; the contact one gets a little extra so the
+   email address fits on a single line next to its icon. */
 .columns {
   display: grid;
-  grid-template-columns: 1.5fr repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1.5fr repeat(2, minmax(0, 1fr)) minmax(0, 1.25fr);
   gap: clamp(28px, 4vw, 56px);
   padding-block: clamp(40px, 5vw, 72px);
 }
@@ -71,6 +72,29 @@
 }
 
 .link:hover {
+  color: #fff;
+}
+
+/* The contact column pairs each line with its icon; the icon keeps its width
+   so a wrapped address stays aligned with the line above it. */
+.contactLink {
+  composes: link;
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  overflow-wrap: anywhere;
+}
+
+.contactIcon {
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  color: var(--mist);
+  transition: color 0.3s var(--ease);
+}
+
+.contactLink:hover .contactIcon {
   color: #fff;
 }
 

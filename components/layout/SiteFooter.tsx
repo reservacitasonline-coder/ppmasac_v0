@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Container } from "@/components/ui/Container";
+import { MailIcon, PhoneIcon } from "@/components/ui/icons";
 import { footer, services } from "@/content/site";
 
 import styles from "./SiteFooter.module.css";
@@ -57,12 +58,14 @@ export function SiteFooter() {
             <h2 className={styles.columnTitle}>{footer.contact.title}</h2>
             <ul className={styles.list}>
               <li>
-                <a className={styles.link} href={`mailto:${footer.contact.email}`}>
+                <a className={styles.contactLink} href={`mailto:${footer.contact.email}`}>
+                  <MailIcon className={styles.contactIcon} />
                   {footer.contact.email}
                 </a>
               </li>
               <li>
-                <a className={styles.link} href={footer.contact.phone.href}>
+                <a className={styles.contactLink} href={footer.contact.phone.href}>
+                  <PhoneIcon className={styles.contactIcon} />
                   {footer.contact.phone.label}
                 </a>
               </li>

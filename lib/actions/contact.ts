@@ -35,8 +35,14 @@ function read(formData: FormData, field: ContactFieldName) {
  * Hands the enquiry over to whoever answers it. No transactional mail provider
  * is wired up yet, so the enquiry currently reaches the server log and nowhere
  * else. This is the only place that needs to change to start delivering.
+ *
+ * `consentedAt` travels with the enquiry because Ley 29733 puts the burden of
+ * proving consent on us: whatever stores the enquiry has to store the moment
+ * the box was ticked alongside it.
  */
-async function deliver(enquiry: Record<ContactFieldName, string>) {
+async function deliver(
+  enquiry: Record<ContactFieldName, string> & { consentedAt: string },
+) {
   console.info("[contacto] nueva solicitud", enquiry);
 }
 
@@ -59,12 +65,19 @@ export async function submitEnquiry(
     return { status: "success", message: "", errors: {}, values: {} };
   }
 
+  // Consent has to be given actively, so an unticked box stops the send.
+  const consent = formData.get("consent") === "yes";
+
   const errors: ContactFormState["errors"] = {};
 
   for (const field of required) {
     if (!values[field]) {
       errors[field] = `Indícanos tu ${labels[field]}.`;
     }
+  }
+
+  if (!consent) {
+    errors.consent = "Necesitamos tu autorización para tratar estos datos.";
   }
 
   if (values.email && !emailPattern.test(values.email)) {
@@ -81,10 +94,11 @@ export async function submitEnquiry(
       message: "Revisa los campos marcados para poder enviar tu solicitud.",
       errors,
       values,
+      consent,
     };
   }
 
-  await deliver(values);
+  await deliver({ ...values, consentedAt: new Date().toISOString() });
 
   return {
     status: "success",

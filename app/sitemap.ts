@@ -18,5 +18,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${site.url}/privacidad`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
   ];
 }

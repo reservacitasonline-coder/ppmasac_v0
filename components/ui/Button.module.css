@@ -6,15 +6,17 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 13px 22px;
+  /* Sizing lives in fallbacks rather than declarations, so a parent can shrink
+     the pill by inheriting new values instead of outranking these rules. */
+  padding: var(--btn-pad, 13px 22px);
   border: 1px solid var(--btn-border);
   border-radius: 999px;
   background: var(--btn-bg);
   color: var(--btn-fg);
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: var(--btn-size, 12px);
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--btn-track, 0.14em);
   text-transform: uppercase;
   white-space: nowrap;
   transition:
@@ -29,7 +31,7 @@
 }
 
 .arrow {
-  display: inline-block;
+  display: var(--btn-arrow, inline-block);
   transition: transform 0.35s var(--ease);
 }
 

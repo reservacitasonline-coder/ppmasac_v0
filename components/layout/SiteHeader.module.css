@@ -128,6 +128,14 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  /* Sharing the row with the logo, the white pill was the loudest thing in the
+     bar. These are read by the button through its sizing fallbacks. */
+  .actions {
+    --btn-pad: 11px 17px;
+    --btn-size: 11.5px;
+    --btn-track: 0.1em;
+  }
 }
 
 @media (max-width: 560px) {
@@ -135,5 +143,13 @@
     padding: 8px 13px;
     font-size: 11px;
     letter-spacing: 0.08em;
+  }
+
+  .actions {
+    --btn-pad: 10px 15px;
+    --btn-size: 11px;
+    /* The arrow costs a whole character of width and says nothing the label
+       does not already say. */
+    --btn-arrow: none;
   }
 }

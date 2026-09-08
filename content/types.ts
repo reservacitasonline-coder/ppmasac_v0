@@ -29,13 +29,29 @@ export interface Pillar {
 export type ContactFieldName =
   "name" | "company" | "email" | "phone" | "service" | "message";
 
+/** The consent box is not a text field, but it can still fail validation. */
+export type ContactErrorName = ContactFieldName | "consent";
+
 /** Result of a contact form submission, returned by the server action. */
 export interface ContactFormState {
   status: "idle" | "success" | "error";
   message: string;
-  errors: Partial<Record<ContactFieldName, string>>;
+  errors: Partial<Record<ContactErrorName, string>>;
   /** Echoed back so a rejected form keeps whatever was already typed. */
   values: Partial<Record<ContactFieldName, string>>;
+  /** Echoed back so a rejected form keeps the consent box ticked. */
+  consent?: boolean;
+}
+
+/** One numbered clause of a legal document such as the privacy policy. */
+export interface LegalSection {
+  index: string;
+  /** Anchor id, so a clause can be linked to directly. */
+  slug: string;
+  title: string;
+  body: string[];
+  /** Rendered as a bulleted list under the paragraphs. */
+  items?: string[];
 }
 
 /** Client logo shown in the logo wall. */

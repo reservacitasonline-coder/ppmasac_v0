@@ -101,6 +101,55 @@
   color: #b4453c;
 }
 
+/* Consent notice: the box and its sentence share a row, the error sits below. */
+.consent {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 4px 10px;
+  margin-top: 4px;
+}
+
+.checkbox {
+  width: 17px;
+  height: 17px;
+  margin: 2px 0 0;
+  accent-color: var(--brand);
+  cursor: pointer;
+}
+
+.checkbox:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.consentLabel {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.consentLink {
+  color: var(--brand);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.consentLink:hover {
+  color: var(--brand-deep);
+}
+
+.checkbox[aria-invalid="true"] {
+  outline: 2px solid #b4453c;
+  outline-offset: 2px;
+}
+
+.consentError {
+  composes: error;
+  grid-column: 2;
+}
+
 /* Off-screen rather than `display: none`, which some bots skip. */
 .honeypot {
   position: absolute;

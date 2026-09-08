@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState } from "react";
 
 import { contact } from "@/content/site";
@@ -133,6 +134,32 @@ export function ContactForm() {
           {state.errors.message ? (
             <span className={styles.error} id="message-error">
               {state.errors.message}
+            </span>
+          ) : null}
+        </p>
+
+        {/* Ley 29733 wants consent given actively, so this never ships ticked. */}
+        <p className={styles.consent}>
+          <input
+            className={styles.checkbox}
+            id="consent"
+            name="consent"
+            type="checkbox"
+            value="yes"
+            defaultChecked={state.consent}
+            aria-invalid={Boolean(state.errors.consent)}
+            aria-describedby={state.errors.consent ? "consent-error" : undefined}
+          />
+          <label className={styles.consentLabel} htmlFor="consent">
+            {form.consent.before}
+            <Link className={styles.consentLink} href={form.consent.link.href}>
+              {form.consent.link.label}
+            </Link>
+            {form.consent.after}
+          </label>
+          {state.errors.consent ? (
+            <span className={styles.consentError} id="consent-error">
+              {state.errors.consent}
             </span>
           ) : null}
         </p>
