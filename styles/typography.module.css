@@ -1,0 +1,59 @@
+/* Shared type styles, pulled into component modules with `composes`. */
+
+.display {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.9vw, 54px);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.displayOnDark {
+  composes: display;
+  color: #fff;
+}
+
+.displayOnLight {
+  composes: display;
+  color: var(--ink);
+}
+
+/* Smaller display size used inside cards. */
+.displayCard {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* Uppercase condensed copy: statements, questions, quotes. */
+.condensed {
+  font-family: var(--font-cond);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Small caps index label ("01", "02", …). */
+.indexLabel {
+  font-family: var(--font-cond);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.bodyOnDark {
+  color: var(--muted-light);
+  font-size: 15px;
+}
+
+.bodyOnLight {
+  color: var(--muted);
+  font-size: 15px;
+}

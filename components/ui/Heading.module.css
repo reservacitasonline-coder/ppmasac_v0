@@ -1,0 +1,15 @@
+.onDark {
+  composes: displayOnDark from "../../styles/typography.module.css";
+}
+
+.onLight {
+  composes: displayOnLight from "../../styles/typography.module.css";
+}
+
+.center {
+  text-align: center;
+}
+
+.line {
+  display: block;
+}

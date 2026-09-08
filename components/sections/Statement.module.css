@@ -1,0 +1,15 @@
+.statement {
+  padding: clamp(46px, 6vw, 88px) 0 clamp(30px, 4vw, 52px);
+  background: var(--cream);
+}
+
+.text {
+  composes: condensed from "../../styles/typography.module.css";
+  max-width: 1050px;
+  margin-inline: auto;
+  font-size: clamp(17px, 2.15vw, 29px);
+  line-height: 1.42;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-wrap: balance;
+}

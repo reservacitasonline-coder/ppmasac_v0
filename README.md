@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Landmark
 
-## Getting Started
+Marketing site for Landmark, a commercial construction studio. Built with the Next.js
+App Router, TypeScript and CSS Modules. The whole page is statically prerendered and
+ships zero client-side JavaScript of its own — the FAQ accordion uses native
+`<details>` elements, so every component is a Server Component.
 
-First, run the development server:
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Script                 | Purpose                         |
+| ---------------------- | ------------------------------- |
+| `npm run dev`          | Development server              |
+| `npm run build`        | Production build                |
+| `npm run start`        | Serve the production build      |
+| `npm run lint`         | ESLint (`eslint-config-next`)   |
+| `npm run typecheck`    | `tsc --noEmit`                  |
+| `npm run format`       | Prettier write                  |
+| `npm run format:check` | Prettier check, suitable for CI |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project structure
 
-## Learn More
+```
+app/                  route segment: layout, page, globals.css, robots.ts, sitemap.ts
+components/
+  layout/             SiteHeader, SiteFooter
+  sections/           one component per page section (Hero, Stats, Services, …)
+  ui/                 Button, Container, Eyebrow, Heading, icons
+content/              typed page content — the only place copy and photos live
+lib/                  fonts, class-name helper, Unsplash URL builder
+styles/               shared type styles pulled in with CSS Modules `composes`
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Editing content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+All copy, statistics, services, FAQ entries and image references live in
+[`content/site.ts`](content/site.ts) and are typed by
+[`content/types.ts`](content/types.ts). Sections render whatever that file exports, so
+copy changes never require touching a component.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Headings are arrays of strings — one entry per rendered line — so the poster-style
+line breaks stay exactly where the design puts them:
 
-## Deploy on Vercel
+```ts
+heading: ["We build foundations for", "future businesses"],
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Styling
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Design tokens (palette, type stacks, spacing, easing) are CSS custom properties
+declared in [`app/globals.css`](app/globals.css). Everything else is a `*.module.css`
+file next to its component. Repeated type treatments live in
+`styles/typography.module.css` and are shared through `composes`.
+
+Fonts are self-hosted through `next/font` (Anton, Barlow Condensed, Inter) and exposed
+as the `--font-display`, `--font-cond` and `--font-body` stacks.
+
+## Images
+
+Photography is loaded from Unsplash through `next/image`. The host is allow-listed in
+[`next.config.ts`](next.config.ts); URLs are built by `lib/unsplash.ts`. To move to
+self-hosted assets, drop the files in `public/` and point `content/site.ts` at them.
+
+## Accessibility
+
+- Skip link to the main content.
+- Landmark elements and `aria-labelledby` on every section.
+- Keyboard-visible focus rings and a `prefers-reduced-motion` opt-out for all
+  animation and transitions.

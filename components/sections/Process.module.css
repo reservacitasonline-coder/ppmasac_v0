@@ -1,0 +1,80 @@
+.process {
+  position: relative;
+  padding: var(--section-y) 0;
+  background: var(--navy-deep);
+  color: #fff;
+  overflow: hidden;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+}
+
+.mediaImage {
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.7);
+}
+
+.media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(16, 31, 58, 0.9),
+    rgba(16, 31, 58, 0.62) 45%,
+    rgba(16, 31, 58, 0.94)
+  );
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 1.4vw, 18px);
+  max-width: 940px;
+  margin: clamp(34px, 5vw, 66px) auto 0;
+}
+
+.step {
+  padding: clamp(20px, 2.4vw, 30px);
+  border: 1px solid var(--line-light);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(14px);
+  transition:
+    background 0.4s var(--ease),
+    transform 0.4s var(--ease);
+}
+
+.step:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-4px);
+}
+
+.stepIndex {
+  composes: indexLabel from "../../styles/typography.module.css";
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.stepTitle {
+  composes: displayCard from "../../styles/typography.module.css";
+  margin: 10px 0 8px;
+  font-size: clamp(18px, 1.9vw, 23px);
+}
+
+.stepText {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

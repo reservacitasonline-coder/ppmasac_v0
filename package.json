@@ -1,12 +1,16 @@
 {
-  "name": "scaffold-tmp",
+  "name": "landmark",
   "version": "0.1.0",
   "private": true,
+  "description": "Marketing site for Landmark, a commercial construction studio.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"**/*.{ts,tsx,css,md,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,css,md,json}\""
   },
   "dependencies": {
     "next": "16.3.4",
@@ -19,6 +23,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
+    "prettier": "^3.4.2",
     "typescript": "^5"
   }
 }
