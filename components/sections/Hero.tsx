@@ -2,7 +2,8 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { hero, site } from "@/content/site";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { hero } from "@/content/site";
 
 import styles from "./Hero.module.css";
 
@@ -21,30 +22,32 @@ export function Hero() {
       </div>
 
       <Container className={styles.inner}>
+        <Eyebrow tone="onDark">{hero.overline}</Eyebrow>
+
         <h1 id="hero-title" className={styles.title}>
-          {site.name}
+          {hero.title.map((line) => (
+            <span key={line} className={styles.titleLine}>
+              {line}
+            </span>
+          ))}
         </h1>
 
         <div className={styles.bottom}>
           <div className={styles.intro}>
-            <p className={styles.tagline}>{site.tagline}</p>
-            <Button href={hero.discover.href} variant="light">
-              {hero.discover.label}
-            </Button>
-          </div>
-
-          <figure className={styles.card}>
-            <div className={styles.cardMedia}>
-              <Image
-                className={styles.cardImage}
-                src={hero.card.photo.src}
-                alt={hero.card.photo.alt}
-                fill
-                sizes="(max-width: 720px) 100vw, 260px"
-              />
+            <ul className={styles.disciplines} aria-label="Áreas de trabajo">
+              {hero.disciplines.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <div className={styles.actions}>
+              <Button href={hero.primary.href} variant="light">
+                {hero.primary.label}
+              </Button>
+              <Button href={hero.secondary.href} variant="outline">
+                {hero.secondary.label}
+              </Button>
             </div>
-            <figcaption className={styles.cardCaption}>{hero.card.caption}</figcaption>
-          </figure>
+          </div>
         </div>
       </Container>
     </section>

@@ -1,5 +1,5 @@
 .button {
-  --btn-bg: var(--navy);
+  --btn-bg: var(--brand);
   --btn-fg: #fff;
   --btn-border: transparent;
 
@@ -40,12 +40,12 @@
 /* --- variants --- */
 
 .solid {
-  --btn-bg: var(--navy);
+  --btn-bg: var(--brand);
   --btn-fg: #fff;
 }
 
 .solid:hover {
-  --btn-bg: var(--navy-soft);
+  --btn-bg: var(--brand-deep);
 }
 
 .light {

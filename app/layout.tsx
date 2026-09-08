@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { site } from "@/content/site";
 import { fontVariables } from "@/lib/fonts";
 
@@ -17,10 +18,11 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.name,
   keywords: [
-    "commercial construction",
-    "design-build",
-    "architecture studio",
-    "pre-construction",
+    "gestión de proyectos",
+    "consultoría de construcción",
+    "habilitaciones urbanas",
+    "expedientes técnicos",
+    "constructora Perú",
   ],
   openGraph: {
     type: "website",
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
-    locale: "en_US",
+    locale: "es_PE",
   },
   twitter: {
     card: "summary_large_image",
@@ -42,20 +44,21 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#172a4d",
+  themeColor: "#2f426b",
   colorScheme: "light",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={fontVariables}>
+    <html lang="es" className={fontVariables}>
       <body id="top">
         <a className="skipLink" href="#main">
-          Skip to content
+          Saltar al contenido
         </a>
         <SiteHeader />
         {children}
         <SiteFooter />
+        <WhatsAppButton />
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 .faq {
   padding: var(--section-y) 0;
-  background: var(--cream);
+  background: var(--mist);
 }
 
 .inner {
@@ -62,7 +62,7 @@
 }
 
 .question:hover {
-  color: var(--navy-soft);
+  color: var(--brand-deep);
 }
 
 .question::after {

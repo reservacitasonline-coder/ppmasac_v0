@@ -5,7 +5,7 @@ import styles from "./Stats.module.css";
 
 export function Stats() {
   return (
-    <section className={styles.stats} aria-label="Practice in numbers">
+    <section className={styles.stats} aria-label="PPMA SAC en cifras">
       <Container>
         <dl className={styles.grid}>
           {stats.map((stat) => (

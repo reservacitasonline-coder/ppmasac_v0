@@ -1,0 +1,42 @@
+.button {
+  position: fixed;
+  right: clamp(16px, 2.5vw, 32px);
+  bottom: max(clamp(16px, 2.5vw, 32px), env(safe-area-inset-bottom));
+  z-index: 30;
+
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 18px 36px -16px rgba(0, 0, 0, 0.6);
+  transition:
+    transform 0.35s var(--ease),
+    box-shadow 0.35s var(--ease),
+    background 0.35s var(--ease);
+}
+
+.button:hover {
+  background: #1fbb59;
+  transform: translateY(-3px);
+  box-shadow: 0 22px 44px -16px rgba(0, 0, 0, 0.65);
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
+@media (max-width: 720px) {
+  .button {
+    width: 54px;
+    height: 54px;
+  }
+
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
+}

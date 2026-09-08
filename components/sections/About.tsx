@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Heading } from "@/components/ui/Heading";
 import { about } from "@/content/site";
 
@@ -11,10 +12,13 @@ export function About() {
   const [wide, square] = about.gallery;
 
   return (
-    <section className={styles.about} id="about" aria-labelledby="about-title">
+    <section className={styles.about} id="nosotros" aria-labelledby="nosotros-title">
       <Container>
         <div className={styles.head}>
-          <Heading id="about-title" lines={about.heading} tone="onDark" />
+          <div>
+            <Eyebrow tone="onDark">{about.eyebrow}</Eyebrow>
+            <Heading id="nosotros-title" lines={about.heading} tone="onDark" />
+          </div>
           <div className={styles.lead}>
             <p>{about.lead}</p>
             <Button href={about.cta.href} variant="outline">
@@ -51,6 +55,26 @@ export function About() {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
+        </div>
+
+        <div className={styles.pillars}>
+          {about.pillars.map((pillar) => (
+            <article className={styles.pillar} key={pillar.title}>
+              <h3 className={styles.pillarTitle}>{pillar.title}</h3>
+              <p className={styles.pillarText}>{pillar.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className={styles.values}>
+          <h3 className={styles.subtitle}>{about.valuesTitle}</h3>
+          <ul className={styles.valueList}>
+            {about.values.map((value) => (
+              <li className={styles.value} key={value}>
+                {value}
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
     </section>

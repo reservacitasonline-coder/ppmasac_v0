@@ -1,67 +1,59 @@
 import Image from "next/image";
+import Link from "next/link";
 
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Heading } from "@/components/ui/Heading";
 import { services } from "@/content/site";
-import type { ServiceCard, ServicePhoto } from "@/content/types";
-import { cn } from "@/lib/cn";
 
 import styles from "./Services.module.css";
 
-const TILE_SIZES = "(max-width: 720px) 100vw, (max-width: 1080px) 50vw, 33vw";
-
-function PhotoTile({ tile }: { tile: ServicePhoto }) {
-  return (
-    <figure className={cn(styles.photo, tile.tall && styles.photoTall)}>
-      <Image
-        className={styles.photoImage}
-        src={tile.photo.src}
-        alt={tile.photo.alt}
-        fill
-        sizes={TILE_SIZES}
-      />
-      <figcaption className={styles.photoCaption}>
-        <span className={styles.photoTitle}>{tile.title}</span>
-        <span className={styles.photoText}>{tile.description}</span>
-      </figcaption>
-    </figure>
-  );
-}
-
-function CardTile({ card }: { card: ServiceCard }) {
-  return (
-    <article className={styles.card}>
-      <span className={styles.cardIndex}>{card.index}</span>
-      <h3 className={styles.cardTitle}>{card.title}</h3>
-      <p className={styles.cardText}>{card.description}</p>
-      <span className={styles.cardArrow} aria-hidden="true">
-        →
-      </span>
-    </article>
-  );
-}
-
+/** Summary of the six service lines. The detail lives on `/servicios`. */
 export function Services() {
-  const [tallPhoto, widePhoto] = services.photos;
-  const [engineering, excellence, preconstruction] = services.cards;
-
   return (
-    <section className={styles.services} id="services" aria-labelledby="services-title">
-      <Container>
-        <Eyebrow>{services.eyebrow}</Eyebrow>
+    <section className={styles.services} id="servicios" aria-labelledby="servicios-title">
+      <div className={styles.media}>
+        <Image
+          className={styles.mediaImage}
+          src={services.background.src}
+          alt={services.background.alt}
+          fill
+          sizes="100vw"
+        />
+      </div>
 
+      <Container className={styles.inner}>
         <div className={styles.head}>
-          <Heading id="services-title" lines={services.heading} />
+          <Eyebrow tone="onDark">{services.eyebrow}</Eyebrow>
+          <Heading
+            id="servicios-title"
+            lines={services.heading}
+            tone="onDark"
+            align="center"
+          />
           <p className={styles.lead}>{services.lead}</p>
         </div>
 
-        <div className={styles.grid}>
-          <PhotoTile tile={tallPhoto} />
-          <CardTile card={engineering} />
-          <CardTile card={excellence} />
-          <PhotoTile tile={widePhoto} />
-          <CardTile card={preconstruction} />
+        <ul className={styles.grid}>
+          {services.groups.map((group) => (
+            <li key={group.slug}>
+              <Link className={styles.card} href={`/servicios#${group.slug}`}>
+                <span className={styles.cardIndex}>{group.index}</span>
+                <h3 className={styles.cardTitle}>{group.title}</h3>
+                <p className={styles.cardText}>{group.summary}</p>
+                <span className={styles.cardArrow} aria-hidden="true">
+                  →
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <div className={styles.actions}>
+          <Button href={services.cta.href} variant="light">
+            {services.cta.label}
+          </Button>
         </div>
       </Container>
     </section>

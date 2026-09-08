@@ -10,6 +10,11 @@
   color: var(--muted);
 }
 
+.eyebrowOnDark {
+  composes: eyebrow;
+  color: rgba(255, 255, 255, 0.72);
+}
+
 .eyebrow::before {
   content: "";
   width: 22px;

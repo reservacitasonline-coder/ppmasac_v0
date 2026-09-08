@@ -1,135 +1,106 @@
 .services {
+  position: relative;
   padding: var(--section-y) 0;
-  background: var(--cream);
+  background: var(--brand-deep);
+  color: #fff;
+  overflow: hidden;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+}
+
+.mediaImage {
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.7);
+}
+
+/* Opaque at the very top so the section grows out of the flat blue above it,
+   then thinning out to let the photograph appear. */
+.media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    var(--brand-deep) 0%,
+    rgb(var(--brand-deep-rgb) / 0.92) 14%,
+    rgb(var(--brand-deep-rgb) / 0.58) 35%,
+    rgb(var(--brand-deep-rgb) / 0.94) 100%
+  );
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
 }
 
 .head {
-  display: grid;
-  grid-template-columns: 1.25fr 1fr;
-  gap: clamp(24px, 5vw, 80px);
-  align-items: end;
-  padding-bottom: clamp(30px, 4vw, 54px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .lead {
-  composes: bodyOnLight from "../../styles/typography.module.css";
+  composes: bodyOnDark from "../../styles/typography.module.css";
+  margin-top: 20px;
+  max-width: 60ch;
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(10px, 1.4vw, 18px);
+  margin-top: clamp(34px, 4.5vw, 62px);
 }
 
-/* --- photo tiles --- */
-
-.photo {
-  position: relative;
-  min-height: 260px;
-  border-radius: var(--radius-lg);
-  background: var(--navy);
-  overflow: hidden;
-}
-
-.photoTall {
-  grid-row: span 2;
-}
-
-.photoImage {
-  object-fit: cover;
-  filter: grayscale(0.9) brightness(0.8);
-  transition:
-    transform 0.8s var(--ease),
-    filter 0.6s var(--ease);
-}
-
-.photo:hover .photoImage {
-  transform: scale(1.05);
-  filter: grayscale(0.15) brightness(0.85);
-}
-
-.photoCaption {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 8px;
-  padding: clamp(20px, 2.4vw, 30px);
-  color: #fff;
-  background: linear-gradient(180deg, transparent 35%, rgba(16, 31, 58, 0.88));
-}
-
-.photoTitle {
-  composes: displayCard from "../../styles/typography.module.css";
-}
-
-.photoText {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.72);
-  max-width: 30ch;
-}
-
-/* --- text tiles --- */
-
+/* Frosted tile, matching the process section further down the page. */
 .card {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  min-height: 260px;
-  padding: clamp(20px, 2.4vw, 32px);
-  border-radius: var(--radius-lg);
-  background: var(--navy);
+  gap: 10px;
+  height: 100%;
+  min-height: 230px;
+  padding: clamp(20px, 2.4vw, 30px);
+  border: 1px solid var(--line-light);
+  border-radius: var(--radius);
+  background: rgb(var(--brand-rgb) / 0.4);
+  backdrop-filter: blur(14px);
   color: #fff;
-  overflow: hidden;
   transition:
     background 0.4s var(--ease),
     transform 0.4s var(--ease);
 }
 
-.card::after {
-  content: "";
-  position: absolute;
-  inset: auto -30% -60% auto;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.12), transparent 65%);
-  opacity: 0;
-  transition: opacity 0.5s var(--ease);
-}
-
 .card:hover {
-  background: var(--navy-soft);
+  background: rgb(var(--brand-rgb) / 0.62);
   transform: translateY(-4px);
-}
-
-.card:hover::after {
-  opacity: 1;
 }
 
 .cardIndex {
   composes: indexLabel from "../../styles/typography.module.css";
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .cardTitle {
   composes: displayCard from "../../styles/typography.module.css";
   margin-top: auto;
-  font-size: clamp(19px, 2.1vw, 26px);
+  font-size: clamp(18px, 1.9vw, 23px);
 }
 
 .cardText {
   font-size: 13.5px;
-  color: rgba(255, 255, 255, 0.7);
-  max-width: 42ch;
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .cardArrow {
   position: absolute;
-  top: clamp(18px, 2.2vw, 28px);
-  right: clamp(18px, 2.2vw, 28px);
+  top: clamp(18px, 2.2vw, 26px);
+  right: clamp(18px, 2.2vw, 26px);
   display: grid;
   place-items: center;
   width: 34px;
@@ -149,19 +120,15 @@
   transform: rotate(-45deg);
 }
 
-@media (max-width: 1080px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .photoTall {
-    grid-row: span 1;
-  }
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(28px, 3.5vw, 46px);
 }
 
-@media (max-width: 900px) {
-  .head {
-    grid-template-columns: 1fr;
+@media (max-width: 1080px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -170,8 +137,7 @@
     grid-template-columns: 1fr;
   }
 
-  .photo,
   .card {
-    min-height: 220px;
+    min-height: 200px;
   }
 }

@@ -9,7 +9,7 @@ export function Testimonial() {
   const { quote, author } = testimonial;
 
   return (
-    <section className={styles.testimonial} id="contact">
+    <section className={styles.testimonial}>
       <Container className={styles.inner}>
         <span className={styles.mark} aria-hidden="true">
           ”

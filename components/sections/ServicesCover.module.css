@@ -1,0 +1,114 @@
+.cover {
+  position: relative;
+  background: var(--brand-deep);
+  color: #fff;
+  overflow: hidden;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.mediaImage {
+  object-fit: cover;
+  filter: saturate(0.5) contrast(1.05);
+}
+
+.media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgb(var(--brand-deep-rgb) / 0.86) 0%,
+      rgb(var(--brand-deep-rgb) / 0.6) 45%,
+      rgb(var(--brand-deep-rgb) / 0.94) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgb(var(--brand-rgb) / 0.6) 0%,
+      rgb(var(--brand-rgb) / 0.1) 70%
+    );
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  /* Clears the fixed header, which floats over this band. */
+  padding-top: calc(var(--header-offset) + clamp(28px, 4vw, 64px));
+  padding-bottom: clamp(44px, 6vw, 84px);
+}
+
+.title {
+  composes: displayOnDark from "../../styles/typography.module.css";
+  max-width: 22ch;
+}
+
+.titleLine {
+  display: block;
+}
+
+.lead {
+  composes: bodyOnDark from "../../styles/typography.module.css";
+  margin-top: 22px;
+  max-width: 58ch;
+  /* Brighter than the usual muted body: this one sits on a photograph. */
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.index {
+  margin-top: clamp(34px, 4vw, 56px);
+  padding-top: clamp(22px, 2.6vw, 32px);
+  border-top: 1px solid var(--line-light);
+}
+
+.indexList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px clamp(16px, 2.4vw, 34px);
+}
+
+.indexLink {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 0;
+  font-family: var(--font-cond);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+  border-bottom: 1px solid transparent;
+  transition:
+    color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+
+.indexLink:hover {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+.indexNumber {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--mist);
+}
+
+@media (max-width: 900px) {
+  .indexList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .indexList {
+    grid-template-columns: 1fr;
+  }
+}

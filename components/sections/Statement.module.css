@@ -1,6 +1,6 @@
 .statement {
   padding: clamp(46px, 6vw, 88px) 0 clamp(30px, 4vw, 52px);
-  background: var(--cream);
+  background: var(--mist);
 }
 
 .text {

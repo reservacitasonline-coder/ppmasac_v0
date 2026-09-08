@@ -1,65 +1,83 @@
 import { unsplash } from "@/lib/unsplash";
 import type {
   CallToAction,
+  Client,
   FaqItem,
   NavLink,
   Photo,
+  Pillar,
   ProcessStep,
-  ServiceCard,
-  ServicePhoto,
+  ServiceGroup,
   Stat,
   Testimonial,
 } from "./types";
 
 export const site = {
-  name: "Landmark",
-  url: "https://landmark.example.com",
-  tagline: "Building partnerships through commercial construction",
-  description:
-    "Landmark is a commercial construction and architecture studio delivering thoughtful, high-quality spaces from concept to completion.",
-  phone: {
-    label: "+1 800 555 0199",
-    href: "tel:+18005550199",
+  name: "PPMA SAC",
+  url: "https://www.ppmasac.com",
+  /** Wordmark shown in the header. Served from `public/logos`. */
+  logo: {
+    src: "/logos_v2/ppmasac-transparent@2x.png",
+    alt: "PPMA SAC",
+    width: 1017,
+    height: 210,
   },
+  tagline: "Ingeniería, construcción y gestión de proyectos inmobiliarios",
+  /** Floating chat button, shown on every route. */
+  whatsapp: {
+    /** International format, digits only, as `wa.me` expects. */
+    number: "51994664719",
+    label: "+51 994 664 719",
+    message:
+      "Hola, escribo desde la web de PPMA SAC. Me gustaría conversar sobre un proyecto.",
+  },
+  description:
+    "Professional Project Manager Administration (PPMA SAC): asesorías, consultorías, construcción e inmobiliaria. Ocho años ejecutando proyectos en el mercado peruano.",
 } as const;
 
+/**
+ * The header and footer render these on every route, so the home-page
+ * anchors are absolute — a bare `#nosotros` would go nowhere from
+ * `/servicios`.
+ */
 export const navLinks: NavLink[] = [
-  { label: "Home", href: "#top" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#projects" },
+  { label: "Nosotros", href: "/#nosotros" },
+  { label: "Servicios", href: "/servicios" },
+  { label: "Clientes", href: "/#clientes" },
 ];
 
 export const hero = {
-  cta: { label: "Get a quote", href: "#contact" } satisfies CallToAction,
-  discover: { label: "Discover", href: "#about" } satisfies CallToAction,
+  overline: "Professional Project Manager Administration",
+  /** One line per rendered row of the `h1`. */
+  title: ["PPMA SAC"],
+  /** Rendered as a dot-separated list under the rule. */
+  disciplines: ["Asesorías", "Consultorías", "Construcción", "Inmobiliaria"],
+  primary: {
+    label: "Solicita una propuesta",
+    href: "#contacto",
+  } satisfies CallToAction,
+  secondary: { label: "Ver servicios", href: "/servicios" } satisfies CallToAction,
   background: {
     src: unsplash("photo-1503387762-592deb58ef4e", 2000),
     alt: "Construction site overlooking the city skyline",
   } satisfies Photo,
-  card: {
-    photo: {
-      src: unsplash("photo-1504307651254-35680f356dfd", 800),
-      alt: "Construction crew reviewing plans on site",
-    } satisfies Photo,
-    caption: "On site · 2026",
-  },
 };
 
 export const statement =
-  "Starting from the 1980s, as the intricacy of structures continued to evolve, architecture transformed into a multidisciplinary field with various specializations. We blend creativity, technical skill, and an unwavering attention to detail, to deliver thoughtful, high-quality spaces.";
+  "Integramos ingeniería, gestión y obra en un solo equipo: del análisis de factibilidad y el expediente técnico a la construcción, el equipamiento y la post venta. Cuidamos alcances, costos, plazos, calidad y seguridad, en armonía con el entorno y con cada grupo de interés.";
 
 export const stats: Stat[] = [
-  { value: "150", suffix: "+", label: "Completed projects" },
-  { value: "210", suffix: "+", label: "Satisfied clients" },
-  { value: "09", label: "Design awards" },
-  { value: "18", suffix: "+", label: "Years of practice" },
+  { value: "08", label: "Años en el mercado peruano" },
+  { value: "20", suffix: "+", label: "Años de experiencia del equipo" },
+  { value: "06", label: "Líneas de servicio" },
+  { value: "05", label: "Especialidades de ingeniería" },
 ];
 
 export const about = {
-  heading: ["We build foundations for", "future businesses"],
-  lead: "In 1986 four current directors of the studio started designing on a handful of small-scale projects. Our belief in thoughtful construction hasn't changed: a deliberate structure, an honest budget, and a team that answers the phone.",
-  cta: { label: "Contact", href: "#contact" } satisfies CallToAction,
+  eyebrow: "Nosotros",
+  heading: ["Nuestra", "empresa"],
+  lead: "Somos Professional Project Manager Administration (PPMA SAC), un sólido grupo empresarial con 8 años operando ininterrumpidamente en el mercado peruano. Contamos con un staff de profesionales con más de 20 años laborando en la industria de la construcción.",
+  cta: { label: "Contacto", href: "#contacto" } satisfies CallToAction,
   gallery: [
     {
       src: unsplash("photo-1493397212122-2b85dda8106b", 1400),
@@ -70,58 +88,227 @@ export const about = {
       alt: "Glass tower photographed from below",
     },
   ] satisfies Photo[],
-  subtitle: "Who we are",
+  subtitle: "Quiénes somos",
   columns: [
-    "We are a boutique, purpose-built practice working across ground-up commercial construction, tenant improvements, and adaptive reuse. Every project is led by a principal from the first sketch through the final walkthrough.",
-    "We keep our teams small and our standards inflexible. That means transparent pricing, schedules we defend, and details that hold up long after the ribbon is cut — the only kind of work worth signing our name to.",
+    "Nuestra experiencia prevalece en los alcances, costos, tiempo, calidad, seguridad y la preservación del medio ambiente en armonía con los stakeholders.",
+    "Brindamos el servicio de asesoría, consultoría, supervisión, construcción e ingeniería en el rubro inmobiliario, mantenimiento, servicio de post venta, servicio comercial y de marketing, compra de terrenos, habilitaciones urbanas, análisis de factibilidad de proyectos, desarrollo de expedientes, entre otros.",
+  ],
+  pillars: [
+    {
+      title: "Misión",
+      body: "Generar valor a nuestros grupos de interés de manera eficiente y contribuir con el desarrollo del país.",
+    },
+    {
+      title: "Visión",
+      body: "Posicionarnos como una empresa líder en el mercado nacional con proyección internacional en servicios de ingeniería, construcción, supervisión, mantenimiento y post venta; sustentada en el trabajo responsable, dedicado e innovador de sus directivos y colaboradores.",
+    },
+  ] satisfies Pillar[],
+  valuesTitle: "Valores",
+  values: [
+    "Honestidad",
+    "Compromiso",
+    "Liderazgo",
+    "Diferenciación",
+    "Orientación al cliente",
+    "Calidad",
+    "Responsabilidad social",
   ],
 };
 
 export const services = {
-  eyebrow: "What we do",
-  heading: ["Strategic excellence in", "every square foot."],
-  lead: "Whatever the scale, we bring a disciplined process to the drawing, the budget and the build. Below are the disciplines our clients lean on most, from early feasibility studies to the last punch-list item.",
-  /** Rendered in order; the grid interleaves photo and text tiles. */
-  photos: [
-    {
-      title: "Cost-driven value",
-      description:
-        "Budgets modelled early, tracked weekly and defended to the final invoice.",
-      tall: true,
-      photo: {
-        src: unsplash("photo-1471039497385-b6d6ba609f9c", 900),
-        alt: "Tower crane above a construction site",
-      },
+  eyebrow: "Servicios",
+  heading: ["Lo que", "hacemos"],
+  lead: "Seis líneas de servicio que cubren el ciclo completo de un proyecto: del diseño y las licencias a la obra, el equipamiento y la venta.",
+  cta: { label: "Ver todos los servicios", href: "/servicios" } satisfies CallToAction,
+  /** Backdrop of the summary section on the home page. */
+  background: {
+    src: unsplash("photo-1541888946425-d81bb19240f5", 2000),
+    alt: "Cuadrilla de obra sobre una losa con acero de refuerzo",
+  } satisfies Photo,
+  /** Cover band of the /servicios page. */
+  page: {
+    heading: ["Ingeniería, construcción", "y gestión integral"],
+    lead: "Acompañamos el proyecto de principio a fin, con un staff de profesionales con más de 20 años en la industria de la construcción.",
+    background: {
+      src: unsplash("photo-1493397212122-2b85dda8106b", 2000),
+      alt: "Fachada de concreto curva de un edificio moderno",
+    } satisfies Photo,
+    indexTitle: "Líneas de servicio",
+    closing: {
+      title: "¿Tienes un proyecto en mente?",
+      body: "Cuéntanos el alcance y te proponemos plazos y presupuesto.",
+      cta: { label: "Contacto", href: "/#contacto" } satisfies CallToAction,
     },
-    {
-      title: "Design-build schedule",
-      description: "One contract, one team, one accountable delivery date.",
-      photo: {
-        src: unsplash("photo-1449157291145-7efd050a4d0e", 900),
-        alt: "Steel and glass structure against the sky",
-      },
-    },
-  ] satisfies ServicePhoto[],
-  cards: [
+  },
+  /** Shared by the summary on the home page and the detail page. */
+  groups: [
     {
       index: "01",
-      title: "Engineering design",
-      description:
-        "Structural, mechanical and civil coordination resolved before a single trade mobilises.",
+      slug: "proyectos",
+      title: "Proyectos",
+      summary:
+        "Diseño y gestión de ingeniería en 2D y BIM, con todas las especialidades compatibilizadas y presupuesto a precios de mercado.",
+      photo: {
+        src: unsplash("photo-1487958449943-2429e8be8625", 1200),
+        alt: "Edificio contemporáneo de geometría angular",
+      },
+      items: [
+        "Diseño de viviendas unifamiliares, casas de playa y campo; viviendas multifamiliares, edificios de usos mixtos, multideportivos, colegios, habilitaciones urbanas, clínicas y hospitales.",
+        "Diseño vial y urbanístico.",
+        "Diseño y gestión de ingeniería, desarrollo y compatibilización integral del proyecto en 2D y BIM (Building Information Modeling), con análisis de precios unitarios según costos del mercado.",
+        "Especialidades: arquitectura, estructuras, instalaciones sanitarias (IISS), instalaciones eléctricas (IIEE) e instalaciones mecánicas.",
+      ],
     },
     {
       index: "02",
-      title: "Building excellence",
-      description:
-        "Self-performed concrete and framing, so quality never leaves our hands.",
+      slug: "implementaciones",
+      title: "Implementaciones",
+      summary:
+        "Acondicionamiento y equipamiento de agencias bancarias, oficinas, retail y salas de venta, con todos sus sistemas especializados.",
+      photo: {
+        src: unsplash("photo-1431576901776-e539bd916ba2", 1200),
+        alt: "Torres de oficinas de vidrio vistas desde la calle",
+      },
+      items: [
+        "Construcción, acondicionamiento, remodelación y equipamiento de agencias bancarias.",
+        "Construcción de salas de ventas y pilotos.",
+        "Implementación y remodelación de oficinas.",
+        "Implementación de centros comerciales y locatarios de retail.",
+        "Mantenimiento y servicios generales en centros comerciales.",
+        "Implementación de todo tipo de acabados para casas, departamentos, cocinas, baños, zonas de parrilla y jardines.",
+        "Sistemas de circuito cerrado de televisión (CCTV), agua contra incendio (ACI), cableado estructurado, voz y data, instalaciones eléctricas y sanitarias, aire acondicionado, bandejas eléctricas y subestaciones.",
+        "Sistema integral de iluminación de polideportivos, gimnasios y terrazas.",
+      ],
     },
     {
       index: "03",
-      title: "Pre-construction & feasibility",
-      description:
-        "Site studies, entitlement support and phasing plans that de-risk the decision to build.",
+      slug: "obras",
+      title: "Obras",
+      summary:
+        "Edificación, infraestructura hospitalaria y educativa, pavimentación, estructuras metálicas y acabados de principio a fin.",
+      photo: {
+        src: unsplash("photo-1541888946425-d81bb19240f5", 1200),
+        alt: "Cuadrilla de obra sobre una losa con acero de refuerzo",
+      },
+      items: [
+        "Construcción de infraestructura hospitalaria: clínicas, centros de salud, centros médicos y consultorios.",
+        "Pavimentación de vías urbanas y carreteras en pavimento asfáltico, de concreto y adoquinado.",
+        "Construcción de losas de concreto, losas polideportivas, estacionamientos, patios de maniobras, cercos perimétricos y centrales de lavado para camiones o autos.",
+        "Obras de arte en infraestructura vial: veredas, sardineles, calzadas, cunetas y pontones.",
+        "Obras de saneamiento de redes de agua, desagüe y alumbrado público.",
+        "Tendido de redes de media y baja tensión, y subestaciones eléctricas.",
+        "Demoliciones y movimiento de tierras.",
+        "Construcción integral de colegios, institutos, aulas, laboratorios y centros penitenciarios de menores.",
+        "Construcción integral de edificios multifamiliares, residenciales, institucionales y de oficinas.",
+        "Construcción de almacenes, naves industriales, hangares y grifos de líquidos y gas.",
+        "Fabricación y montaje de estructuras metálicas: sistema aporticado metálico, losas colaborantes, naves industriales, canopy, tijerales y letreros publicitarios.",
+        "Construcción de parques y jardines.",
+        "Construcción de cercos perimétricos de albañilería, concreto y metal.",
+        "Instalaciones de agua contra incendio (ACI), CCTV y aire acondicionado.",
+        "Implementación e iluminación de losas polideportivas de vóley, fútbol y básquet, con sistema de luces led, tableros electrónicos y control de mandos.",
+        "Construcción en drywall en general.",
+        "Acabados en general: mármol, cuarzo, granito, porcelanatos, cerámicos, piedra laja e instalación de vidrios.",
+        "Muebles de melamina según diseño del cliente.",
+      ],
     },
-  ] satisfies ServiceCard[],
+    {
+      index: "04",
+      slug: "habilitaciones-urbanas",
+      title: "Habilitaciones urbanas",
+      summary:
+        "Saneamiento legal, topografía, movimiento de tierras, factibilidades y diseño urbanístico de predios de gran extensión.",
+      photo: {
+        src: unsplash("photo-1471039497385-b6d6ba609f9c", 1200),
+        alt: "Vista de la ciudad al atardecer",
+      },
+      items: [
+        "Saneamiento físico y legal de la propiedad.",
+        "Localización de terrenos, levantamientos topográficos y geodésicos.",
+        "Búsqueda de terrenos.",
+        "Movimiento de tierras, cortes y nivelaciones.",
+        "Gestión de factibilidades de servicios: agua, luz, gas e internet.",
+        "Diseño urbanístico de predios de gran extensión, paisajismo, jardinería y piletas.",
+        "Gestión y saneamiento de licencias y permisos municipales distritales y metropolitanos.",
+        "Desarrollo de cabidas para la evaluación de terrenos.",
+        "Habilitaciones urbanas: pistas y veredas, jardines, pórticos de ingreso, pérgolas, piletas, zona de capillas, cercos perimétricos y estacionamientos.",
+        "Oficinas de trabajo en estructuras metálicas, cámaras de sarcófagos y estructuras para la zona de hornos crematorios.",
+      ],
+    },
+    {
+      index: "05",
+      slug: "asesoria-y-consultoria",
+      title: "Asesoría y consultoría constructiva",
+      summary:
+        "Licencias, expedientes técnicos, presupuestos, gerenciamiento de proyectos y supervisión de obra.",
+      photo: {
+        src: unsplash("photo-1504307651254-35680f356dfd", 1200),
+        alt: "Equipo de obra revisando el avance en campo",
+      },
+      items: [
+        "Gestión y seguimiento de licencias y trámites municipales distritales y provinciales para licencias de edificación, uso de vías y conformidad de obra.",
+        "Desarrollo y formulación de expedientes técnicos de aprobación municipal.",
+        "Desarrollo y elaboración de perfiles de inversión pública y privada.",
+        "Desarrollo de proyectos BIM (Building Information Modeling).",
+        "Desarrollo de cabidas para la compra de terrenos.",
+        "Desarrollo de presupuestos.",
+        "Gerenciamiento de proyectos.",
+        "Gerenciamiento integral de la optimización de ingenierías y la constructibilidad, para mejorar la rentabilidad del proyecto.",
+        "Gestión de post venta.",
+        "Supervisión de obras.",
+      ],
+    },
+    {
+      index: "06",
+      slug: "consultoria-comercial",
+      title: "Consultoría comercial",
+      summary:
+        "Estudios de mercado, viabilidad comercial, business plan inmobiliario y gestión de venta y post venta.",
+      photo: {
+        src: unsplash("photo-1449157291145-7efd050a4d0e", 1200),
+        alt: "Rascacielos vistos desde abajo",
+      },
+      items: [
+        "Elaboración y evaluación del estudio de mercado de cada proyecto según su ejecución.",
+        "Análisis y viabilidad comercial del proyecto, definición del producto o servicio y análisis comercial.",
+        "Elaboración del business plan inmobiliario.",
+        "Análisis del marketing global o por proyecto.",
+        "Análisis de los puntos críticos de la gestión de venta y post venta.",
+        "Organización y gestión de ferias y eventos del sector inmobiliario.",
+      ],
+    },
+  ] satisfies ServiceGroup[],
+};
+
+export const clients = {
+  eyebrow: "Clientes",
+  heading: ["Empresas que", "confían en nosotros"],
+  /** Logos live in `public/clients`; the name is used as alt text. */
+  items: [
+    { name: "Cencosud", logo: "/clients/Cencosud-2014.svg" },
+    { name: "Auna", logo: "/clients/logotipo_AUNA-01.svg" },
+    { name: "Ministerio del Ambiente del Perú", logo: "/clients/PCM-Ambiente.webp" },
+    { name: "Universidad San Ignacio de Loyola", logo: "/clients/Usil.jpg" },
+    {
+      name: "Universidad Nacional Agraria La Molina",
+      logo: "/clients/UNALM-Texto-1024x296.png",
+    },
+    { name: "Markham College", logo: "/clients/weblogo80sAsset-5@3x.png" },
+    {
+      name: "Plaza Norte",
+      logo: "/clients/plaza-norte-seeklogo.png",
+    },
+    {
+      name: "El Pardo DoubleTree by Hilton",
+      logo: "/clients/El_pardo.jpg",
+    },
+    { name: "Clínica Renacer", logo: "/clients/clinica-renacer-transparente.png" },
+    {
+      name: "Parque del Recuerdo",
+      logo: "/clients/parque-recuerdo-trim.png",
+      scale: 1.15,
+    },
+    { name: "Gerpal", logo: "/clients/gerpal_sac_logo.jpeg" },
+  ] satisfies Client[],
 };
 
 export const process = {
@@ -219,12 +406,56 @@ export const testimonial: Testimonial = {
   },
 };
 
+export const contact = {
+  /** Rendered as the header button, which exists on every route. */
+  cta: { label: "Contacto", href: "/#contacto" } satisfies CallToAction,
+  eyebrow: "Contacto",
+  heading: ["Conversemos", "de tu proyecto"],
+  lead: "Cuéntanos qué necesitas y un especialista revisará tu requerimiento para proponerte el alcance, los plazos y el presupuesto.",
+  form: {
+    title: "Solicita una propuesta",
+    /** Options for the "servicio de interés" select. */
+    services: [
+      "Construcción",
+      "Supervisión de obra",
+      "Consultoría y asesoría",
+      "Mantenimiento y post venta",
+      "Inmobiliario y habilitación urbana",
+      "Otro",
+    ],
+    submit: "Enviar solicitud",
+    submitting: "Enviando…",
+    note: "Respondemos en un plazo máximo de 48 horas hábiles.",
+  },
+};
+
 export const footer = {
-  background: {
-    src: unsplash("photo-1444723121867-7a241cacace9", 2000),
-    alt: "City skyline at dusk",
-  } satisfies Photo,
-  legal: `© ${new Date().getFullYear()} Landmark Construction Group. All rights reserved.`,
+  /** Transparent wordmark; the footer paints it white with a filter. */
+  logo: {
+    src: "/logos_v2/ppmasac-transparent@2x.png",
+    alt: "PPMA SAC",
+    width: 1017,
+    height: 210,
+  },
+  brandName: "Professional Project Manager Administration",
+  brandLine: "Ingeniería, construcción y gestión de proyectos inmobiliarios en el Perú.",
+  company: {
+    title: "Empresa",
+    links: [
+      { label: "Nosotros", href: "/#nosotros" },
+      { label: "Servicios", href: "/servicios" },
+      { label: "Clientes", href: "/#clientes" },
+      { label: "Contacto", href: "/#contacto" },
+    ] satisfies NavLink[],
+  },
+  /** The service links are derived from `services.groups`. */
+  servicesTitle: "Servicios",
+  contact: {
+    title: "Contacto",
+    email: "atensionalcliente@ppmasac.com",
+    phone: { label: "+51 994 664 719", href: "tel:+51994664719" },
+  },
+  legal: `© ${new Date().getFullYear()} PPMA SAC. Todos los derechos reservados.`,
   links: [
     { label: "Privacy", href: "#" },
     { label: "Terms", href: "#" },

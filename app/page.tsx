@@ -1,11 +1,10 @@
 import { About } from "@/components/sections/About";
-import { Faq } from "@/components/sections/Faq";
+import { Clients } from "@/components/sections/Clients";
+import { Contact } from "@/components/sections/Contact";
 import { Hero } from "@/components/sections/Hero";
-import { Process } from "@/components/sections/Process";
 import { Services } from "@/components/sections/Services";
 import { Statement } from "@/components/sections/Statement";
 import { Stats } from "@/components/sections/Stats";
-import { Testimonial } from "@/components/sections/Testimonial";
 
 export default function HomePage() {
   return (
@@ -16,9 +15,8 @@ export default function HomePage() {
         <Stats />
         <About />
         <Services />
-        <Process />
-        <Faq />
-        <Testimonial />
+        <Clients />
+        <Contact />
       </main>
     </>
   );

@@ -1,114 +1,77 @@
+/* Darker than the contact section above it, so the two blue blocks read as
+   separate bands rather than one. */
 .footer {
-  background: var(--navy);
+  background: var(--ink);
   color: #fff;
 }
 
-.bar {
-  border-top: 1px solid var(--line-light);
-  border-bottom: 1px solid var(--line-light);
+/* The brand column is wider than the three link columns beside it. */
+.columns {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 4vw, 56px);
+  padding-block: clamp(40px, 5vw, 72px);
 }
 
-.barInner {
+.brand {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 20px;
-  padding-block: 18px;
+  max-width: 320px;
 }
 
-.menu {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(16px, 3vw, 40px);
+.brandLogo {
+  width: auto;
+  height: 34px;
 }
 
-.menuLink {
+.brandText {
+  color: var(--muted-light);
+  font-size: 15px;
+}
+
+/* Spells out what the logo abbreviates, above the description. */
+.brandName {
+  display: block;
+  margin-bottom: 6px;
+  color: #fff;
   font-family: var(--font-cond);
   font-weight: 600;
-  font-size: 15px;
-  letter-spacing: 0.16em;
+  font-size: 14px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.82);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.columnTitle {
+  margin: 0;
+  font-family: var(--font-cond);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.link {
+  color: var(--muted-light);
+  font-size: 15px;
   transition: color 0.3s var(--ease);
 }
 
-.menuLink:hover {
+.link:hover {
   color: #fff;
-}
-
-.toTop {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 8px 8px 18px;
-  border: 1px solid var(--line-light);
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  transition: background 0.35s var(--ease);
-}
-
-.toTop:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.toTopIcon {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: #fff;
-  color: var(--ink);
-  transition: transform 0.35s var(--ease);
-}
-
-.toTopGlyph {
-  width: 14px;
-  height: 14px;
-}
-
-.toTop:hover .toTopIcon {
-  transform: translateY(-3px);
-}
-
-.wordmarkBlock {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  min-height: clamp(160px, 26vw, 380px);
-  overflow: hidden;
-}
-
-.media {
-  position: absolute;
-  inset: 0;
-}
-
-.mediaImage {
-  object-fit: cover;
-  filter: grayscale(1) brightness(0.55);
-}
-
-.media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(23, 42, 77, 0.85), rgba(16, 31, 58, 0.55));
-}
-
-.wordmark {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  padding-inline: var(--gutter);
-  font-family: var(--font-display);
-  font-size: clamp(60px, 19.4vw, 340px);
-  line-height: 0.78;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
 }
 
 .legal {
@@ -120,7 +83,7 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 12px 24px;
   padding-block: 18px;
   font-size: 12px;
   color: var(--muted-light);
@@ -129,6 +92,7 @@
 .legalLinks {
   display: flex;
   gap: 22px;
+  margin-inline-start: auto;
 }
 
 .legalLinks a {
@@ -139,10 +103,29 @@
   color: #fff;
 }
 
+@media (max-width: 980px) {
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .brand {
+    grid-column: 1 / -1;
+  }
+}
+
 @media (max-width: 720px) {
-  .barInner,
   .legalInner {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .legalLinks {
+    margin-inline-start: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .columns {
+    grid-template-columns: 1fr;
   }
 }

@@ -4,16 +4,24 @@
    ========================================================= */
 
 :root {
-  /* palette */
-  --navy: #172a4d;
-  --navy-deep: #101f3a;
-  --navy-soft: #24395f;
-  --cream: #f3f1ec;
-  --ink: #10182b;
-  --muted: #6f7688;
-  --muted-light: rgba(255, 255, 255, 0.62);
-  --line-light: rgba(255, 255, 255, 0.16);
-  --line-dark: rgba(16, 24, 43, 0.12);
+  /* Brand palette. `--brand` and `--mist` are the two brand colours; the deep
+     and soft variants are derived from them so text keeps enough contrast on
+     photography and on hover states. */
+  --brand: #4e6cab;
+  --brand-soft: #637eb5;
+  --brand-deep: #2f426b;
+  --mist: #b6c3dd;
+  --ink: #16203a;
+  --muted: #3a4a6b;
+
+  /* Channel lists, for building translucent overlays with rgb(… / alpha). */
+  --brand-rgb: 78 108 171;
+  --brand-deep-rgb: 47 66 107;
+  --ink-rgb: 22 32 58;
+
+  --muted-light: rgba(255, 255, 255, 0.66);
+  --line-light: rgba(255, 255, 255, 0.18);
+  --line-dark: rgb(var(--brand-rgb) / 0.45);
 
   /* type stacks — the first entry is injected by next/font */
   --font-display: var(--font-anton), "Arial Narrow", sans-serif;
@@ -25,6 +33,8 @@
   --radius-lg: 22px;
   --gutter: clamp(18px, 4vw, 56px);
   --content-max: 1280px;
+  /* Clearance for the fixed header when jumping to an anchor. */
+  --header-offset: 108px;
   --section-y: clamp(64px, 8vw, 132px);
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -37,12 +47,42 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keeps anchor targets from landing underneath the fixed header. */
+  scroll-padding-top: var(--header-offset);
   -webkit-text-size-adjust: 100%;
+}
+
+/* Belt and braces: `scroll-padding` covers fragment navigation, while
+   `scroll-margin` also applies when the router scrolls an element into view. */
+:where(main, h1, h2, h3)[id] {
+  scroll-margin-top: var(--header-offset);
+}
+
+/* Sections open with a tall band of padding, so stopping at their box top left
+   the heading far below the fold line. Cancelling that padding lands the eyebrow
+   itself under the header, with `--header-offset` as the breathing room. A
+   section whose padding differs from `--section-y` sets `--section-pad-top`. */
+:where(section)[id] {
+  scroll-margin-top: calc(-1 * var(--section-pad-top, var(--section-y)));
+}
+
+/* The header wraps onto two rows on narrow viewports, so it needs more room. */
+@media (max-width: 900px) {
+  :root {
+    --header-offset: 156px;
+  }
+}
+
+/* Only the very narrowest phones wrap the menu onto a second row. */
+@media (max-width: 340px) {
+  :root {
+    --header-offset: 196px;
+  }
 }
 
 body {
   margin: 0;
-  background: var(--cream);
+  background: var(--mist);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 16px;
@@ -82,7 +122,7 @@ blockquote {
 }
 
 ::selection {
-  background: var(--navy);
+  background: var(--brand);
   color: #fff;
 }
 
