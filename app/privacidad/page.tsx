@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 
 import { PrivacyPolicy } from "@/components/sections/PrivacyPolicy";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { privacy } from "@/content/site";
+import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Política de privacidad",
@@ -18,6 +20,11 @@ export const metadata: Metadata = {
 export default function PrivacidadPage() {
   return (
     <main id="main">
+      <JsonLd
+        graph={[
+          breadcrumbSchema([{ name: "Política de privacidad", path: "/privacidad" }]),
+        ]}
+      />
       <PrivacyPolicy />
     </main>
   );

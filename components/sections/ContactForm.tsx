@@ -1,11 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { useActionState, type FormEvent } from "react";
 
 import { contact } from "@/content/site";
 import type { ContactFormState } from "@/content/types";
 import { submitEnquiry } from "@/lib/actions/contact";
+import {
+  phonePattern,
+  stripPhone,
+  validationMessage,
+  type ValidationCopy,
+} from "@/lib/validation";
 
 import styles from "./Contact.module.css";
 
@@ -15,6 +21,31 @@ const empty: ContactFormState = {
   errors: {},
   values: {},
 };
+
+const copy = contact.form.errors;
+
+type Field = HTMLInputElement | HTMLTextAreaElement;
+
+/**
+ * Props that put our own wording in the browser's validation bubble.
+ *
+ * Browsers write those bubbles in the language they were installed in rather
+ * than the language of the page, so an English Chrome shows English errors on
+ * this form unless every field carries its own copy. `setCustomValidity` keeps
+ * the field invalid until it is cleared, hence the reset while typing.
+ */
+function inSpanish(messages: ValidationCopy) {
+  return {
+    onInvalid: (event: FormEvent<Field>) => {
+      event.currentTarget.setCustomValidity(
+        validationMessage(event.currentTarget, messages),
+      );
+    },
+    onInput: (event: FormEvent<Field>) => {
+      event.currentTarget.setCustomValidity("");
+    },
+  };
+}
 
 export function ContactForm() {
   const [state, action, pending] = useActionState(submitEnquiry, empty);
@@ -37,6 +68,7 @@ export function ContactForm() {
             type="text"
             autoComplete="name"
             required
+            {...inSpanish({ valueMissing: copy.name })}
             defaultValue={state.values.name}
             aria-invalid={Boolean(state.errors.name)}
             aria-describedby={state.errors.name ? "name-error" : undefined}
@@ -73,6 +105,10 @@ export function ContactForm() {
             type="email"
             autoComplete="email"
             required
+            {...inSpanish({
+              valueMissing: copy.email,
+              typeMismatch: copy.emailInvalid,
+            })}
             defaultValue={state.values.email}
             aria-invalid={Boolean(state.errors.email)}
             aria-describedby={state.errors.email ? "email-error" : undefined}
@@ -93,9 +129,38 @@ export function ContactForm() {
             id="phone"
             name="phone"
             type="tel"
+            inputMode="tel"
             autoComplete="tel"
+            pattern={phonePattern}
             defaultValue={state.values.phone}
+            aria-invalid={Boolean(state.errors.phone)}
+            aria-describedby={state.errors.phone ? "phone-error" : undefined}
+            onInvalid={(event) => {
+              event.currentTarget.setCustomValidity(
+                validationMessage(event.currentTarget, {
+                  patternMismatch: copy.phoneInvalid,
+                }),
+              );
+            }}
+            onInput={(event) => {
+              const input = event.currentTarget;
+              input.setCustomValidity("");
+
+              const cleaned = stripPhone(input.value);
+              if (cleaned === input.value) return;
+
+              // Assigning `value` drops the caret at the end of the field, so
+              // it goes back to where the rejected character was typed.
+              const caret = Math.max(0, (input.selectionStart ?? 0) - 1);
+              input.value = cleaned;
+              input.setSelectionRange(caret, caret);
+            }}
           />
+          {state.errors.phone ? (
+            <span className={styles.error} id="phone-error">
+              {state.errors.phone}
+            </span>
+          ) : null}
         </p>
 
         <p className={styles.fieldWide}>
@@ -127,6 +192,13 @@ export function ContactForm() {
             name="message"
             rows={5}
             required
+            // Matches the length the server action asks for, so the browser
+            // catches a two-word message before it makes the round trip.
+            minLength={15}
+            {...inSpanish({
+              valueMissing: copy.message,
+              tooShort: copy.messageShort,
+            })}
             defaultValue={state.values.message}
             aria-invalid={Boolean(state.errors.message)}
             aria-describedby={state.errors.message ? "message-error" : undefined}
