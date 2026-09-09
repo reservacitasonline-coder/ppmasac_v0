@@ -37,6 +37,50 @@ export const site = {
 } as const;
 
 /**
+ * Copy written for search engines and social cards rather than for the page.
+ *
+ * Titles stay under ~60 characters and descriptions under ~160 so Google shows
+ * them whole instead of truncating them, which is why they do not simply reuse
+ * the headings above.
+ */
+export const seo = {
+  /** Shown as the tab and result title of the home page. */
+  title: "PPMA SAC · Ingeniería, construcción y gestión de proyectos",
+  description:
+    "Ingeniería, construcción, supervisión y gestión de proyectos inmobiliarios en el Perú. Expedientes técnicos, obras, implementaciones y habilitaciones urbanas.",
+  keywords: [
+    "constructora en Perú",
+    "gerencia de proyectos de construcción",
+    "supervisión de obra",
+    "expedientes técnicos",
+    "habilitaciones urbanas",
+    "consultoría de construcción",
+    "implementación de oficinas",
+    "proyectos BIM",
+  ],
+  /** Registered details, used by the structured data in `lib/seo.ts`. */
+  legalName: "Professional Project Manager Administration S.A.C.",
+  ruc: "20601984564",
+  /** Eight uninterrupted years in the market, per the About section. */
+  foundedIn: "2018",
+  /** What the company is an authority on, in schema.org terms. */
+  expertise: [
+    "Gerencia de proyectos de construcción",
+    "Supervisión de obra",
+    "Expedientes técnicos",
+    "Habilitaciones urbanas",
+    "Building Information Modeling",
+    "Consultoría inmobiliaria",
+  ],
+  /** Pages the /servicios cover and its search result share. */
+  services: {
+    title: "Servicios de ingeniería y construcción",
+    description:
+      "Seis líneas de servicio: proyectos, implementaciones, obras, habilitaciones urbanas, asesoría constructiva y consultoría comercial inmobiliaria.",
+  },
+} as const;
+
+/**
  * The header and footer render these on every route, so the home-page
  * anchors are absolute — a bare `#nosotros` would go nowhere from
  * `/servicios`.
@@ -60,7 +104,7 @@ export const hero = {
   secondary: { label: "Ver servicios", href: "/servicios" } satisfies CallToAction,
   background: {
     src: unsplash("photo-1503387762-592deb58ef4e", 2000),
-    alt: "Construction site overlooking the city skyline",
+    alt: "Obra en construcción con la ciudad de fondo",
   } satisfies Photo,
 };
 
@@ -82,11 +126,11 @@ export const about = {
   gallery: [
     {
       src: unsplash("photo-1493397212122-2b85dda8106b", 1400),
-      alt: "Curved concrete facade of a modern building",
+      alt: "Fachada de concreto curva de un edificio moderno",
     },
     {
       src: unsplash("photo-1486406146926-c627a92ad1ab", 900),
-      alt: "Glass tower photographed from below",
+      alt: "Torre de vidrio fotografiada desde abajo",
     },
   ] satisfies Photo[],
   subtitle: "Quiénes somos",
@@ -427,6 +471,21 @@ export const contact = {
     submit: "Enviar solicitud",
     submitting: "Enviando…",
     note: "Respondemos en un plazo máximo de 48 horas hábiles.",
+    /**
+     * Read twice: the browser shows them in its own validation bubble while
+     * the visitor types, and the server action returns them under the field
+     * when the form is posted anyway. Both have to say the same thing.
+     */
+    errors: {
+      name: "Indícanos tu nombre.",
+      email: "Indícanos tu correo.",
+      emailInvalid: "Revisa el correo, no parece una dirección válida.",
+      phoneInvalid: "Usa solo números y los signos + ( ) -, con al menos 6 dígitos.",
+      message: "Indícanos tu mensaje.",
+      messageShort: "Cuéntanos un poco más sobre el proyecto.",
+      consent: "Necesitamos tu autorización para tratar estos datos.",
+      summary: "Revisa los campos marcados para poder enviar tu solicitud.",
+    },
     /**
      * Ley 29733 asks for consent that is prior, express and informed, so the
      * box ships unticked and the form refuses to send without it.

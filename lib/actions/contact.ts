@@ -1,9 +1,14 @@
 "use server";
 
+import { contact, footer } from "@/content/site";
 import type { ContactFieldName, ContactFormState } from "@/content/types";
+import { sendEnquiry } from "@/lib/mail";
+import { phoneRegExp } from "@/lib/validation";
+
+const copy = contact.form.errors;
 
 /** Fields the visitor has to fill in for the enquiry to be actionable. */
-const required: ContactFieldName[] = ["name", "email", "message"];
+const required = ["name", "email", "message"] as const;
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -17,24 +22,14 @@ const maxLength: Record<ContactFieldName, number> = {
   message: 4000,
 };
 
-const labels: Record<ContactFieldName, string> = {
-  name: "nombre",
-  company: "empresa",
-  email: "correo",
-  phone: "teléfono",
-  service: "servicio",
-  message: "mensaje",
-};
-
 function read(formData: FormData, field: ContactFieldName) {
   const value = formData.get(field);
   return typeof value === "string" ? value.trim().slice(0, maxLength[field]) : "";
 }
 
 /**
- * Hands the enquiry over to whoever answers it. No transactional mail provider
- * is wired up yet, so the enquiry currently reaches the server log and nowhere
- * else. This is the only place that needs to change to start delivering.
+ * Hands the enquiry over to whoever answers it: a Resend email to the customer
+ * care inbox. Returns whether it got through.
  *
  * `consentedAt` travels with the enquiry because Ley 29733 puts the burden of
  * proving consent on us: whatever stores the enquiry has to store the moment
@@ -43,7 +38,12 @@ function read(formData: FormData, field: ContactFieldName) {
 async function deliver(
   enquiry: Record<ContactFieldName, string> & { consentedAt: string },
 ) {
-  console.info("[contacto] nueva solicitud", enquiry);
+  try {
+    return await sendEnquiry(enquiry);
+  } catch (cause) {
+    console.error("[contacto] el envío falló", cause);
+    return false;
+  }
 }
 
 export async function submitEnquiry(
@@ -72,33 +72,53 @@ export async function submitEnquiry(
 
   for (const field of required) {
     if (!values[field]) {
-      errors[field] = `Indícanos tu ${labels[field]}.`;
+      errors[field] = copy[field];
     }
   }
 
   if (!consent) {
-    errors.consent = "Necesitamos tu autorización para tratar estos datos.";
+    errors.consent = copy.consent;
   }
 
   if (values.email && !emailPattern.test(values.email)) {
-    errors.email = "Revisa el correo, no parece una dirección válida.";
+    errors.email = copy.emailInvalid;
+  }
+
+  // The input only accepts digits and phone punctuation, but the browser is
+  // not the last word on what actually arrives here.
+  if (values.phone && !phoneRegExp.test(values.phone)) {
+    errors.phone = copy.phoneInvalid;
   }
 
   if (!errors.message && values.message.length < 15) {
-    errors.message = "Cuéntanos un poco más sobre el proyecto.";
+    errors.message = copy.messageShort;
   }
 
   if (Object.keys(errors).length > 0) {
     return {
       status: "error",
-      message: "Revisa los campos marcados para poder enviar tu solicitud.",
+      message: copy.summary,
       errors,
       values,
       consent,
     };
   }
 
-  await deliver({ ...values, consentedAt: new Date().toISOString() });
+  const delivered = await deliver({
+    ...values,
+    consentedAt: new Date().toISOString(),
+  });
+
+  // Keeping the typed values lets the visitor retry without writing it again.
+  if (!delivered) {
+    return {
+      status: "error",
+      message: `No pudimos enviar tu solicitud. Inténtalo de nuevo en unos minutos o escríbenos a ${footer.contact.email}.`,
+      errors: {},
+      values,
+      consent,
+    };
+  }
 
   return {
     status: "success",

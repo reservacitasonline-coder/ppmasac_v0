@@ -2,23 +2,32 @@ import type { Metadata } from "next";
 
 import { ServiceGroups } from "@/components/sections/ServiceGroups";
 import { ServicesCover } from "@/components/sections/ServicesCover";
-import { services } from "@/content/site";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { seo, services } from "@/content/site";
+import { breadcrumbSchema, servicesSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Servicios",
-  description: services.page.lead,
+  title: seo.services.title,
+  description: seo.services.description,
+  keywords: services.groups.map((group) => group.title),
   alternates: { canonical: "/servicios" },
   openGraph: {
     type: "website",
     url: "/servicios",
-    title: "Servicios",
-    description: services.page.lead,
+    title: seo.services.title,
+    description: seo.services.description,
   },
 };
 
 export default function ServiciosPage() {
   return (
     <>
+      <JsonLd
+        graph={[
+          servicesSchema(),
+          breadcrumbSchema([{ name: services.eyebrow, path: "/servicios" }]),
+        ]}
+      />
       <ServicesCover />
       <main id="main">
         <ServiceGroups />
