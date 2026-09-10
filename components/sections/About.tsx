@@ -2,8 +2,6 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Heading } from "@/components/ui/Heading";
 import { about } from "@/content/site";
 
 import styles from "./About.module.css";
@@ -14,10 +12,17 @@ export function About() {
   return (
     <section className={styles.about} id="nosotros" aria-labelledby="nosotros-title">
       <Container>
-        <div className={styles.head}>
-          <div>
-            <Eyebrow tone="onDark">{about.eyebrow}</Eyebrow>
-            <Heading id="nosotros-title" lines={about.heading} tone="onDark" />
+        <div className={styles.intro}>
+          <div className={styles.introCopy}>
+            <p className={styles.kicker}>{about.eyebrow}</p>
+            <h2 id="nosotros-title" className={styles.title}>
+              {about.heading.map((line) => (
+                <span className={styles.titleLine} key={line}>
+                  {line}
+                </span>
+              ))}
+            </h2>
+            <span className={styles.accent} aria-hidden="true" />
           </div>
           <div className={styles.lead}>
             <p>{about.lead}</p>
@@ -34,7 +39,7 @@ export function About() {
               src={wide.src}
               alt={wide.alt}
               fill
-              sizes="(max-width: 900px) 100vw, 60vw"
+              sizes="(max-width: 900px) 100vw, 62vw"
             />
           </figure>
           <figure className={styles.figure}>
@@ -43,13 +48,18 @@ export function About() {
               src={square.src}
               alt={square.alt}
               fill
-              sizes="(max-width: 900px) 100vw, 38vw"
+              sizes="(max-width: 900px) 100vw, 36vw"
             />
           </figure>
         </div>
 
-        <div className={styles.body}>
-          <h3 className={styles.subtitle}>{about.subtitle}</h3>
+        <div className={styles.who}>
+          <div className={styles.whoHead}>
+            <span className={styles.sectionIndex} aria-hidden="true">
+              01
+            </span>
+            <h3 className={styles.subtitle}>{about.subtitle}</h3>
+          </div>
           <div className={styles.columns}>
             {about.columns.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -58,8 +68,11 @@ export function About() {
         </div>
 
         <div className={styles.pillars}>
-          {about.pillars.map((pillar) => (
+          {about.pillars.map((pillar, index) => (
             <article className={styles.pillar} key={pillar.title}>
+              <span className={styles.pillarIndex} aria-hidden="true">
+                {String(index + 2).padStart(2, "0")}
+              </span>
               <h3 className={styles.pillarTitle}>{pillar.title}</h3>
               <p className={styles.pillarText}>{pillar.body}</p>
             </article>
@@ -67,7 +80,12 @@ export function About() {
         </div>
 
         <div className={styles.values}>
-          <h3 className={styles.subtitle}>{about.valuesTitle}</h3>
+          <div className={styles.whoHead}>
+            <span className={styles.sectionIndex} aria-hidden="true">
+              04
+            </span>
+            <h3 className={styles.subtitle}>{about.valuesTitle}</h3>
+          </div>
           <ul className={styles.valueList}>
             {about.values.map((value) => (
               <li className={styles.value} key={value}>

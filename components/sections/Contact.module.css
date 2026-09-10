@@ -4,35 +4,79 @@
   color: #fff;
 }
 
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+
 .intro {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  position: sticky;
+  top: calc(var(--header-offset) + 12px);
 }
 
-.lead {
-  composes: bodyOnDark from "../../styles/typography.module.css";
-  margin-top: 22px;
-  max-width: 52ch;
+.kicker {
+  composes: sectionKicker from "../../styles/typography.module.css";
   color: rgba(255, 255, 255, 0.82);
 }
 
-/* White card on the deep blue: the edge is the contrast, so it needs no border,
-   only a shadow deep enough to lift it off the background. */
+.title {
+  composes: sectionTitle from "../../styles/typography.module.css";
+  color: #fff;
+}
+
+.titleLine {
+  display: block;
+}
+
+.accent {
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin-top: 22px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--mist), var(--brand-soft));
+}
+
+.lead {
+  margin: 22px 0 0;
+  max-width: 36ch;
+  font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* White card on the deep blue. */
 .card {
-  max-width: 720px;
-  margin: clamp(32px, 4vw, 54px) auto 0;
-  padding: clamp(24px, 3vw, 40px);
+  position: relative;
+  max-width: none;
+  margin: 0;
+  padding: clamp(26px, 3.2vw, 40px);
   border-radius: var(--radius-lg);
   background: #fff;
   box-shadow: 0 34px 70px -34px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand), var(--mist));
 }
 
 .cardTitle {
-  composes: condensed from "../../styles/typography.module.css";
-  margin: 0 0 24px;
-  font-size: clamp(18px, 2vw, 22px);
+  margin: 0 0 26px;
+  font-family: var(--font-cond);
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--ink);
 }
 
@@ -65,8 +109,8 @@
 .select,
 .textarea {
   width: 100%;
-  padding: 12px 14px;
-  border: 1px solid var(--line-dark);
+  padding: 13px 14px;
+  border: 1px solid rgb(var(--brand-rgb) / 0.22);
   border-radius: var(--radius);
   background: #fff;
   color: var(--ink);
@@ -80,7 +124,7 @@
 
 .textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 132px;
 }
 
 .input:focus-visible,
@@ -101,7 +145,6 @@
   color: #b4453c;
 }
 
-/* Consent notice: the box and its sentence share a row, the error sits below. */
 .consent {
   grid-column: 1 / -1;
   display: grid;
@@ -150,7 +193,6 @@
   grid-column: 2;
 }
 
-/* Off-screen rather than `display: none`, which some bots skip. */
 .honeypot {
   position: absolute;
   width: 1px;
@@ -214,6 +256,17 @@
   border-radius: var(--radius);
   background: rgba(180, 69, 60, 0.1);
   color: #8f342d;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .intro {
+    position: static;
+  }
 }
 
 @media (max-width: 620px) {

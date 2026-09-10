@@ -9,7 +9,7 @@ import { breadcrumbSchema, servicesSchema } from "@/lib/seo";
 export const metadata: Metadata = {
   title: seo.services.title,
   description: seo.services.description,
-  keywords: services.groups.map((group) => group.title),
+  keywords: services.groups.map((group) => group.title.replace(/\n/g, " ")),
   alternates: { canonical: "/servicios" },
   openGraph: {
     type: "website",

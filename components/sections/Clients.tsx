@@ -2,18 +2,29 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Heading } from "@/components/ui/Heading";
 import { clients } from "@/content/site";
 
 import styles from "./Clients.module.css";
 
 export function Clients() {
   return (
-    <section className={styles.clients} id="clientes" aria-labelledby="clientes-title">
+    <section
+      className={styles.clients}
+      id="clientes"
+      aria-labelledby="clientes-title"
+    >
       <Container>
-        <Eyebrow>{clients.eyebrow}</Eyebrow>
-        <Heading id="clientes-title" lines={clients.heading} />
+        <div className={styles.head}>
+          <p className={styles.kicker}>{clients.eyebrow}</p>
+          <h2 id="clientes-title" className={styles.title}>
+            {clients.heading.map((line) => (
+              <span className={styles.titleLine} key={line}>
+                {line}
+              </span>
+            ))}
+          </h2>
+          <span className={styles.accent} aria-hidden="true" />
+        </div>
 
         <ul className={styles.grid}>
           {clients.items.map((client) => (
