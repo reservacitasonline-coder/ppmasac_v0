@@ -3,8 +3,6 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Heading } from "@/components/ui/Heading";
 import { services } from "@/content/site";
 
 import styles from "./Services.module.css";
@@ -12,7 +10,11 @@ import styles from "./Services.module.css";
 /** Summary of the six service lines. The detail lives on `/servicios`. */
 export function Services() {
   return (
-    <section className={styles.services} id="servicios" aria-labelledby="servicios-title">
+    <section
+      className={styles.services}
+      id="servicios"
+      aria-labelledby="servicios-title"
+    >
       <div className={styles.media}>
         <Image
           className={styles.mediaImage}
@@ -25,13 +27,15 @@ export function Services() {
 
       <Container className={styles.inner}>
         <div className={styles.head}>
-          <Eyebrow tone="onDark">{services.eyebrow}</Eyebrow>
-          <Heading
-            id="servicios-title"
-            lines={services.heading}
-            tone="onDark"
-            align="center"
-          />
+          <p className={styles.kicker}>{services.eyebrow}</p>
+          <h2 id="servicios-title" className={styles.title}>
+            {services.heading.map((line) => (
+              <span className={styles.titleLine} key={line}>
+                {line}
+              </span>
+            ))}
+          </h2>
+          <span className={styles.accent} aria-hidden="true" />
           <p className={styles.lead}>{services.lead}</p>
         </div>
 
@@ -39,12 +43,14 @@ export function Services() {
           {services.groups.map((group) => (
             <li key={group.slug}>
               <Link className={styles.card} href={`/servicios#${group.slug}`}>
-                <span className={styles.cardIndex}>{group.index}</span>
+                <div className={styles.cardTop}>
+                  <span className={styles.cardIndex}>{group.index}</span>
+                  <span className={styles.cardArrow} aria-hidden="true">
+                    →
+                  </span>
+                </div>
                 <h3 className={styles.cardTitle}>{group.title}</h3>
                 <p className={styles.cardText}>{group.summary}</p>
-                <span className={styles.cardArrow} aria-hidden="true">
-                  →
-                </span>
               </Link>
             </li>
           ))}

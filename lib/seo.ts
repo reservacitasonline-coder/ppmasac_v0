@@ -83,7 +83,7 @@ export function organisationSchema(): JsonLdGraph {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: group.title,
+          name: group.title.replace(/\n/g, " "),
           description: group.summary,
           url: absolute(`/servicios#${group.slug}`),
         },
@@ -134,16 +134,16 @@ export function servicesSchema(): JsonLdGraph {
       position: index + 1,
       item: {
         "@type": "Service",
-        name: group.title,
+        name: group.title.replace(/\n/g, " "),
         description: group.summary,
         url: absolute(`/servicios#${group.slug}`),
-        serviceType: group.title,
+        serviceType: group.title.replace(/\n/g, " "),
         provider: { "@id": ORGANISATION_ID },
         areaServed: { "@type": "Country", name: "Perú" },
         // The bullet list of each group, so the detail is machine readable.
         hasOfferCatalog: {
           "@type": "OfferCatalog",
-          name: group.title,
+          name: group.title.replace(/\n/g, " "),
           itemListElement: group.items.map((item) => ({
             "@type": "Offer",
             itemOffered: { "@type": "Service", name: item },

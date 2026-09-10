@@ -7,17 +7,17 @@
   /* Brand palette. `--brand` and `--mist` are the two brand colours; the deep
      and soft variants are derived from them so text keeps enough contrast on
      photography and on hover states. */
-  --brand: #4e6cab;
-  --brand-soft: #637eb5;
-  --brand-deep: #2f426b;
-  --mist: #b6c3dd;
-  --ink: #16203a;
-  --muted: #3a4a6b;
+  --brand: #1f4796;
+  --brand-soft: #60b3e7;
+  --brand-deep: #1f4796;
+  --mist: #60b3e7;
+  --ink: #112752;
+  --muted: #3a5f96;
 
   /* Channel lists, for building translucent overlays with rgb(… / alpha). */
-  --brand-rgb: 78 108 171;
-  --brand-deep-rgb: 47 66 107;
-  --ink-rgb: 22 32 58;
+  --brand-rgb: 31 71 150;
+  --brand-deep-rgb: 31 71 150;
+  --ink-rgb: 17 39 82;
 
   --muted-light: rgba(255, 255, 255, 0.66);
   --line-light: rgba(255, 255, 255, 0.18);

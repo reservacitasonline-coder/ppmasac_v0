@@ -23,7 +23,9 @@ export function SiteFooter() {
               />
             </Link>
             <p className={styles.brandText}>
-              <span className={styles.brandName}>{footer.brandName}</span>
+              <span className={styles.brandName}>
+                {footer.brandName.replace(/ SAC$/, "\u00A0SAC")}
+              </span>
               {footer.brandLine}
             </p>
           </div>

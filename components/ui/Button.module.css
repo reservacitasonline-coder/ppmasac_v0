@@ -47,7 +47,8 @@
 }
 
 .solid:hover {
-  --btn-bg: var(--brand-deep);
+  /* brand and brand-deep share the same hex, so the hover darkens instead. */
+  --btn-bg: color-mix(in srgb, var(--brand) 82%, #000);
 }
 
 .light {

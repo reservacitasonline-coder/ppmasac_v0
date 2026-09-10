@@ -10,13 +10,13 @@ import type { ContactFieldName } from "@/content/types";
  * The palette mirrors the design tokens in `app/globals.css`.
  */
 
-const INK = "#16203a";
-const BRAND = "#4e6cab";
-const BRAND_DEEP = "#2f426b";
-const MIST = "#b6c3dd";
-const MUTED = "#3a4a6b";
-const LINE = "#e4e9f4";
-const WASH = "#f6f8fc";
+const INK = "#112752";
+const BRAND = "#1f4796";
+const BRAND_DEEP = "#1f4796";
+const MIST = "#60b3e7";
+const MUTED = "#3a5f96";
+const LINE = "#d5ebf8";
+const WASH = "#eef7fc";
 
 const BODY_FONT =
   "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";

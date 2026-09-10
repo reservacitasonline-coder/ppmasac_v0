@@ -3,21 +3,21 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 22px;
-  font-size: 11px;
+  font-size: clamp(12px, 1.1vw, 14px);
   font-weight: 500;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink);
 }
 
 .eyebrowOnDark {
   composes: eyebrow;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .eyebrow::before {
   content: "";
-  width: 22px;
+  width: 26px;
   height: 1px;
   background: currentColor;
 }

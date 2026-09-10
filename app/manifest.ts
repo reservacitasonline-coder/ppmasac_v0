@@ -14,21 +14,21 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "es-PE",
     start_url: "/",
     display: "standalone",
-    background_color: "#b6c3dd",
-    theme_color: "#2f426b",
+    background_color: "#60b3e7",
+    theme_color: "#1f4796",
     icons: [
       {
-        src: "/logos_v2/favicon/favicon-192x192.png",
+        src: "/logos/favicon/favicon-192x192.png",
         sizes: "192x192",
         type: "image/png",
       },
       {
-        src: "/logos_v2/favicon/favicon-512x512.png",
+        src: "/logos/favicon/favicon-512x512.png",
         sizes: "512x512",
         type: "image/png",
       },
       {
-        src: "/logos_v2/favicon/apple-touch-icon.png",
+        src: "/logos/favicon/apple-touch-icon.png",
         sizes: "180x180",
         type: "image/png",
         purpose: "maskable",

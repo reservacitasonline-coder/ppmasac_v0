@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { services } from "@/content/site";
 
 import styles from "./ServicesCover.module.css";
@@ -25,7 +24,7 @@ export function ServicesCover() {
       </div>
 
       <Container className={styles.inner}>
-        <Eyebrow tone="onDark">{services.eyebrow}</Eyebrow>
+        <p className={styles.kicker}>{services.eyebrow}</p>
 
         <h1 className={styles.title}>
           {page.heading.map((line) => (

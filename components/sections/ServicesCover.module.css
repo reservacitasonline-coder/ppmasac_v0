@@ -23,14 +23,14 @@
   background:
     linear-gradient(
       180deg,
-      rgb(var(--brand-deep-rgb) / 0.86) 0%,
-      rgb(var(--brand-deep-rgb) / 0.6) 45%,
-      rgb(var(--brand-deep-rgb) / 0.94) 100%
+      rgb(var(--brand-deep-rgb) / 0.88) 0%,
+      rgb(var(--brand-deep-rgb) / 0.68) 45%,
+      rgb(var(--brand-deep-rgb) / 0.96) 100%
     ),
     linear-gradient(
       90deg,
-      rgb(var(--brand-rgb) / 0.6) 0%,
-      rgb(var(--brand-rgb) / 0.1) 70%
+      rgb(var(--brand-rgb) / 0.7) 0%,
+      rgb(var(--brand-rgb) / 0.12) 70%
     );
 }
 
@@ -39,12 +39,18 @@
   z-index: 1;
   /* Clears the fixed header, which floats over this band. */
   padding-top: calc(var(--header-offset) + clamp(28px, 4vw, 64px));
-  padding-bottom: clamp(44px, 6vw, 84px);
+  padding-bottom: clamp(48px, 6.5vw, 92px);
+}
+
+.kicker {
+  composes: sectionKicker from "../../styles/typography.module.css";
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .title {
-  composes: displayOnDark from "../../styles/typography.module.css";
-  max-width: 22ch;
+  composes: sectionTitle from "../../styles/typography.module.css";
+  max-width: 18ch;
+  color: #fff;
 }
 
 .titleLine {
@@ -52,36 +58,36 @@
 }
 
 .lead {
-  composes: bodyOnDark from "../../styles/typography.module.css";
   margin-top: 22px;
-  max-width: 58ch;
-  /* Brighter than the usual muted body: this one sits on a photograph. */
-  color: rgba(255, 255, 255, 0.88);
+  max-width: 52ch;
+  font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .index {
-  margin-top: clamp(34px, 4vw, 56px);
-  padding-top: clamp(22px, 2.6vw, 32px);
+  margin-top: clamp(36px, 4.4vw, 60px);
+  padding-top: clamp(24px, 2.8vw, 34px);
   border-top: 1px solid var(--line-light);
 }
 
 .indexList {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px clamp(16px, 2.4vw, 34px);
+  gap: 12px clamp(18px, 2.6vw, 36px);
 }
 
 .indexLink {
   display: flex;
   align-items: baseline;
-  gap: 10px;
-  padding: 8px 0;
+  gap: 12px;
+  padding: 10px 0;
   font-family: var(--font-cond);
-  font-size: 15px;
+  font-size: clamp(15px, 1.25vw, 18px);
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.92);
   border-bottom: 1px solid transparent;
   transition:
     color 0.3s var(--ease),
@@ -90,13 +96,14 @@
 
 .indexLink:hover {
   color: #fff;
-  border-bottom-color: rgba(255, 255, 255, 0.5);
+  border-bottom-color: rgba(255, 255, 255, 0.55);
 }
 
 .indexNumber {
+  flex: 0 0 auto;
   font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 0.14em;
   color: var(--mist);
 }

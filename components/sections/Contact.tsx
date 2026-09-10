@@ -1,6 +1,4 @@
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Heading } from "@/components/ui/Heading";
 import { contact } from "@/content/site";
 
 import { ContactForm } from "./ContactForm";
@@ -8,20 +6,28 @@ import styles from "./Contact.module.css";
 
 export function Contact() {
   return (
-    <section className={styles.contact} id="contacto" aria-labelledby="contacto-title">
+    <section
+      className={styles.contact}
+      id="contacto"
+      aria-labelledby="contacto-title"
+    >
       <Container>
-        <div className={styles.intro}>
-          <Eyebrow tone="onDark">{contact.eyebrow}</Eyebrow>
-          <Heading
-            id="contacto-title"
-            lines={contact.heading}
-            tone="onDark"
-            align="center"
-          />
-          <p className={styles.lead}>{contact.lead}</p>
-        </div>
+        <div className={styles.layout}>
+          <div className={styles.intro}>
+            <p className={styles.kicker}>{contact.eyebrow}</p>
+            <h2 id="contacto-title" className={styles.title}>
+              {contact.heading.map((line) => (
+                <span className={styles.titleLine} key={line}>
+                  {line}
+                </span>
+              ))}
+            </h2>
+            <span className={styles.accent} aria-hidden="true" />
+            <p className={styles.lead}>{contact.lead}</p>
+          </div>
 
-        <ContactForm />
+          <ContactForm />
+        </div>
       </Container>
     </section>
   );

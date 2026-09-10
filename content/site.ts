@@ -18,7 +18,7 @@ export const site = {
   url: "https://www.ppmasac.com",
   /** Wordmark shown in the header. Served from `public/logos`. */
   logo: {
-    src: "/logos_v2/ppmasac-transparent@2x.png",
+    src: "/logos/ppmasac-transparent@2x.png",
     alt: "PPMA SAC",
     width: 1017,
     height: 210,
@@ -27,8 +27,8 @@ export const site = {
   /** Floating chat button, shown on every route. */
   whatsapp: {
     /** International format, digits only, as `wa.me` expects. */
-    number: "51994664719",
-    label: "+51 994 664 719",
+    number: "51981554660",
+    label: "+51 981 554 660",
     message:
       "Hola, escribo desde la web de PPMA SAC. Me gustaría conversar sobre un proyecto.",
   },
@@ -92,7 +92,7 @@ export const navLinks: NavLink[] = [
 ];
 
 export const hero = {
-  overline: "Professional Project Manager Administration",
+  overline: "Professional Project Manager Administration SAC",
   /** One line per rendered row of the `h1`. */
   title: ["PPMA SAC"],
   /** Rendered as a dot-separated list under the rule. */
@@ -109,7 +109,7 @@ export const hero = {
 };
 
 export const statement =
-  "Integramos ingeniería, gestión y obra en un solo equipo: del análisis de factibilidad y el expediente técnico a la construcción, el equipamiento y la post venta. Cuidamos alcances, costos, plazos, calidad y seguridad, en armonía con el entorno y con cada grupo de interés.";
+  "Integramos ingeniería, gestión y obra en un solo equipo: del análisis de factibilidad y el expediente técnico a la construcción, el equipamiento y la posventa. Cuidamos alcances, costos, plazos, calidad y seguridad, en armonía con el entorno y con cada grupo de interés.";
 
 export const stats: Stat[] = [
   { value: "08", label: "Años en el mercado peruano" },
@@ -121,7 +121,7 @@ export const stats: Stat[] = [
 export const about = {
   eyebrow: "Nosotros",
   heading: ["Nuestra", "empresa"],
-  lead: "Somos Professional Project Manager Administration (PPMA SAC), un sólido grupo empresarial con 8 años operando ininterrumpidamente en el mercado peruano. Contamos con un staff de profesionales con más de 20 años laborando en la industria de la construcción.",
+  lead: "Somos Professional Project Manager Administration (PPMA SAC), un sólido grupo empresarial con 8 años operando ininterrumpidamente en el mercado peruano. Contamos con un staff de profesionales con mas de 20 años laborando en la industria de la construcción, del negocio inmobiliario y servicios generales.",
   cta: { label: "Contacto", href: "#contacto" } satisfies CallToAction,
   gallery: [
     {
@@ -136,7 +136,7 @@ export const about = {
   subtitle: "Quiénes somos",
   columns: [
     "Nuestra experiencia prevalece en los alcances, costos, tiempo, calidad, seguridad y la preservación del medio ambiente en armonía con los stakeholders.",
-    "Brindamos el servicio de asesoría, consultoría, supervisión, construcción e ingeniería en el rubro inmobiliario, mantenimiento, servicio de post venta, servicio comercial y de marketing, compra de terrenos, habilitaciones urbanas, análisis de factibilidad de proyectos, desarrollo de expedientes, entre otros.",
+    "Brindamos el servicio de asesoría, consultoría, supervisión, construcción e ingeniería en el rubro inmobiliario, mantenimiento, servicio de posventa, servicio comercial y de marketing, compra de terrenos, habilitaciones urbanas, análisis de factibilidad de proyectos, desarrollo de expedientes, entre otros.",
   ],
   pillars: [
     {
@@ -145,7 +145,7 @@ export const about = {
     },
     {
       title: "Visión",
-      body: "Posicionarnos como una empresa líder en el mercado nacional con proyección internacional en servicios de ingeniería, construcción, supervisión, mantenimiento y post venta; sustentada en el trabajo responsable, dedicado e innovador de sus directivos y colaboradores.",
+      body: "Posicionarnos como una empresa líder en el mercado nacional con proyección internacional en servicios de ingeniería, construcción, supervisión, mantenimiento y posventa; sustentada en el trabajo responsable, dedicado e innovador de sus directivos y colaboradores.",
     },
   ] satisfies Pillar[],
   valuesTitle: "Valores",
@@ -192,7 +192,7 @@ export const services = {
       slug: "proyectos",
       title: "Proyectos",
       summary:
-        "Diseño y gestión de ingeniería en 2D y BIM, con todas las especialidades compatibilizadas y presupuesto a precios de mercado.",
+        "Diseño y gestión de ingeniería en 2D, 3D, Revit (Builiding Information Modeling - BIM) con todas las especializaciones debidamente compatibilizadas. Obteniendo la mejor optimización de tu proyecto considerando los mejores precios del mercado.",
       photo: {
         src: unsplash("photo-1487958449943-2429e8be8625", 1200),
         alt: "Edificio contemporáneo de geometría angular",
@@ -200,8 +200,8 @@ export const services = {
       items: [
         "Diseño de viviendas unifamiliares, casas de playa y campo; viviendas multifamiliares, edificios de usos mixtos, multideportivos, colegios, habilitaciones urbanas, clínicas y hospitales.",
         "Diseño vial y urbanístico.",
-        "Diseño y gestión de ingeniería, desarrollo y compatibilización integral del proyecto en 2D y BIM (Building Information Modeling), con análisis de precios unitarios según costos del mercado.",
-        "Especialidades: arquitectura, estructuras, instalaciones sanitarias (IISS), instalaciones eléctricas (IIEE) e instalaciones mecánicas.",
+        "Gerenciamiento integral, diseño y gestión de ingeniería, desarrollo y compatibilización integral del proyecto en 2D, 3D y Revit (BIM), con análisis de precios unitarios según costos del mercado.",
+        "Especialidades: Diseño en arquitectura, Indeci, Estructuras, Instalaciones Sanitarias (IISS), Instalaciones Eléctricas (IIEE) e Instalaciones Mecánicas.",
       ],
     },
     {
@@ -221,7 +221,7 @@ export const services = {
         "Implementación de centros comerciales y locatarios de retail.",
         "Mantenimiento y servicios generales en centros comerciales.",
         "Implementación de todo tipo de acabados para casas, departamentos, cocinas, baños, zonas de parrilla y jardines.",
-        "Sistemas de circuito cerrado de televisión (CCTV), agua contra incendio (ACI), cableado estructurado, voz y data, instalaciones eléctricas y sanitarias, aire acondicionado, bandejas eléctricas y subestaciones.",
+        "Sistema de Circuito Cerrado de Televisión (CCTV), Agua Contra Incendio (ACI), cableado estructurado, voz y data, instalaciones eléctricas y sanitarias, aire acondicionado, bandejas eléctricas y subestaciones.",
         "Sistema integral de iluminación de polideportivos, gimnasios y terrazas.",
       ],
     },
@@ -230,7 +230,7 @@ export const services = {
       slug: "obras",
       title: "Obras",
       summary:
-        "Edificación, infraestructura hospitalaria y educativa, pavimentación, estructuras metálicas y acabados de principio a fin.",
+        "Edificación, infraestructura hospitalaria y educativa,\npavimentación, estructuras metálicas y acabados de principio a\u00a0fin.",
       photo: {
         src: unsplash("photo-1541888946425-d81bb19240f5", 1200),
         alt: "Cuadrilla de obra sobre una losa con acero de refuerzo",
@@ -248,8 +248,8 @@ export const services = {
         "Construcción de almacenes, naves industriales, hangares y grifos de líquidos y gas.",
         "Fabricación y montaje de estructuras metálicas: sistema aporticado metálico, losas colaborantes, naves industriales, canopy, tijerales y letreros publicitarios.",
         "Construcción de parques y jardines.",
-        "Construcción de cercos perimétricos de albañilería, concreto y metal.",
-        "Instalaciones de agua contra incendio (ACI), CCTV y aire acondicionado.",
+        "Construcción de cercos perimétricos de albañilería tradicional, concreto, metálico y prefabricado de concreto.",
+        "Instalaciones de Agua Contra Incendio (ACI), Circuito Cerrado de Televisión (CCTV), cámaras de seguridad y aire acondicionado.",
         "Implementación e iluminación de losas polideportivas de vóley, fútbol y básquet, con sistema de luces led, tableros electrónicos y control de mandos.",
         "Construcción en drywall en general.",
         "Acabados en general: mármol, cuarzo, granito, porcelanatos, cerámicos, piedra laja e instalación de vidrios.",
@@ -271,7 +271,7 @@ export const services = {
         "Localización de terrenos, levantamientos topográficos y geodésicos.",
         "Búsqueda de terrenos.",
         "Movimiento de tierras, cortes y nivelaciones.",
-        "Gestión de factibilidades de servicios: agua, luz, gas e internet.",
+        "Gestión de factibilidades de servicios: Agua y desagua, energía eléctrica, gas e internet.",
         "Diseño urbanístico de predios de gran extensión, paisajismo, jardinería y piletas.",
         "Gestión y saneamiento de licencias y permisos municipales distritales y metropolitanos.",
         "Desarrollo de cabidas para la evaluación de terrenos.",
@@ -282,7 +282,7 @@ export const services = {
     {
       index: "05",
       slug: "asesoria-y-consultoria",
-      title: "Asesoría y consultoría constructiva",
+      title: "Asesoría y consultoría\nconstructiva",
       summary:
         "Licencias, expedientes técnicos, presupuestos, gerenciamiento de proyectos y supervisión de obra.",
       photo: {
@@ -298,7 +298,7 @@ export const services = {
         "Desarrollo de presupuestos.",
         "Gerenciamiento de proyectos.",
         "Gerenciamiento integral de la optimización de ingenierías y la constructibilidad, para mejorar la rentabilidad del proyecto.",
-        "Gestión de post venta.",
+        "Gestión de posventa.",
         "Supervisión de obras.",
       ],
     },
@@ -307,7 +307,7 @@ export const services = {
       slug: "consultoria-comercial",
       title: "Consultoría comercial",
       summary:
-        "Estudios de mercado, viabilidad comercial, business plan inmobiliario y gestión de venta y post venta.",
+        "Estudios de mercado, viabilidad comercial, business plan inmobiliario y gestión de venta y posventa.",
       photo: {
         src: unsplash("photo-1449157291145-7efd050a4d0e", 1200),
         alt: "Rascacielos vistos desde abajo",
@@ -315,10 +315,11 @@ export const services = {
       items: [
         "Elaboración y evaluación del estudio de mercado de cada proyecto según su ejecución.",
         "Análisis y viabilidad comercial del proyecto, definición del producto o servicio y análisis comercial.",
-        "Elaboración del business plan inmobiliario.",
-        "Análisis del marketing global o por proyecto.",
-        "Análisis de los puntos críticos de la gestión de venta y post venta.",
+        "Elaboración de Business Plan Inmobiliario",
+        "Análisis de marketing global o por proyecto",
+        "Análisis de los puntos críticos de la gestión de venta y posventa.",
         "Organización y gestión de ferias y eventos del sector inmobiliario.",
+        "Análisis de los Key Performance Indicators (KPI) del sector inmobiliario.",
       ],
     },
   ] satisfies ServiceGroup[],
@@ -464,7 +465,7 @@ export const contact = {
       "Construcción",
       "Supervisión de obra",
       "Consultoría y asesoría",
-      "Mantenimiento y post venta",
+      "Mantenimiento y posventa",
       "Inmobiliario y habilitación urbana",
       "Otro",
     ],
@@ -515,7 +516,7 @@ export const privacy = {
       body: [
         "El responsable del tratamiento es Professional Project Manager Administration S.A.C. (PPMA SAC), con RUC 20601984564, empresa domiciliada en el Perú. Puedes escribirnos por cualquier asunto relacionado con tus datos personales a:",
       ],
-      items: ["Correo: atencionalcliente@ppmasac.com", "Teléfono: +51 994 664 719"],
+      items: ["Correo: atencionalcliente@ppmasac.com", "Teléfono: +51 981 554 660"],
     },
     {
       index: "02",
@@ -604,14 +605,14 @@ export const privacy = {
 };
 
 export const footer = {
-  /** Transparent wordmark, shown in its original colours. */
+  /** Wordmark for the dark footer band. Served from `public/logos`. */
   logo: {
-    src: "/logos_v2/ppmasac-transparent@2x.png",
+    src: "/logos/ppmasac-white@2x.png",
     alt: "PPMA SAC",
     width: 1017,
     height: 210,
   },
-  brandName: "Professional Project Manager Administration",
+  brandName: "Professional Project Manager Administration SAC",
   brandLine: "Ingeniería, construcción y gestión de proyectos inmobiliarios en el Perú.",
   company: {
     title: "Empresa",
@@ -627,7 +628,7 @@ export const footer = {
   contact: {
     title: "Contacto",
     email: "atencionalcliente@ppmasac.com",
-    phone: { label: "+51 994 664 719", href: "tel:+51994664719" },
+    phone: { label: "+51 981 554 660", href: "tel:+51981554660" },
   },
   legal: `© ${new Date().getFullYear()} PPMA SAC. Todos los derechos reservados.`,
   /** The only legal document the site publishes, required by the form. */
