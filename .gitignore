@@ -12,6 +12,8 @@
 
 # testing
 /coverage
+/feedback/*
+!feedback/informe_observaciones.md
 
 # next.js
 /.next/

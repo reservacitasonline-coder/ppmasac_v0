@@ -27,8 +27,8 @@ export const site = {
   /** Floating chat button, shown on every route. */
   whatsapp: {
     /** International format, digits only, as `wa.me` expects. */
-    number: "51981554660",
-    label: "+51 981 554 660",
+    number: "51981248447",
+    label: "+51 981 248 447",
     message:
       "Hola, escribo desde la web de PPMA SAC. Me gustaría conversar sobre un proyecto.",
   },
@@ -516,7 +516,7 @@ export const privacy = {
       body: [
         "El responsable del tratamiento es Professional Project Manager Administration S.A.C. (PPMA SAC), con RUC 20601984564, empresa domiciliada en el Perú. Puedes escribirnos por cualquier asunto relacionado con tus datos personales a:",
       ],
-      items: ["Correo: atencionalcliente@ppmasac.com", "Teléfono: +51 981 554 660"],
+      items: ["Correo: atencionalcliente@ppmasac.com", "Teléfono: +51 981 248 447"],
     },
     {
       index: "02",
@@ -628,7 +628,7 @@ export const footer = {
   contact: {
     title: "Contacto",
     email: "atencionalcliente@ppmasac.com",
-    phone: { label: "+51 981 554 660", href: "tel:+51981554660" },
+    phone: { label: "+51 981 248 447", href: "tel:+51981248447" },
   },
   legal: `© ${new Date().getFullYear()} PPMA SAC. Todos los derechos reservados.`,
   /** The only legal document the site publishes, required by the form. */
