@@ -1,8 +1,11 @@
 "use server";
 
+import { headers } from "next/headers";
+
 import { contact, footer } from "@/content/site";
 import type { ContactFieldName, ContactFormState } from "@/content/types";
 import { sendEnquiry } from "@/lib/mail";
+import { verifyTurnstileToken } from "@/lib/turnstile";
 import { phoneRegExp } from "@/lib/validation";
 
 const copy = contact.form.errors;
@@ -78,6 +81,19 @@ export async function submitEnquiry(
 
   if (!consent) {
     errors.consent = copy.consent;
+  }
+
+  const turnstileToken = formData.get("cf-turnstile-response");
+  const token = typeof turnstileToken === "string" ? turnstileToken : "";
+  const requestHeaders = await headers();
+  const remoteip =
+    requestHeaders.get("cf-connecting-ip") ??
+    requestHeaders.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    undefined;
+
+  const turnstileOk = await verifyTurnstileToken(token, remoteip);
+  if (!turnstileOk) {
+    errors.turnstile = copy.turnstile;
   }
 
   if (values.email && !emailPattern.test(values.email)) {

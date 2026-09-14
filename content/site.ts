@@ -485,6 +485,8 @@ export const contact = {
       message: "Indícanos tu mensaje.",
       messageShort: "Cuéntanos un poco más sobre el proyecto.",
       consent: "Necesitamos tu autorización para tratar estos datos.",
+      turnstile:
+        "No pudimos verificar que no eres un robot. Recarga la casilla e inténtalo de nuevo.",
       summary: "Revisa los campos marcados para poder enviar tu solicitud.",
     },
     /**
@@ -564,7 +566,7 @@ export const privacy = {
       slug: "destinatarios",
       title: "Quién más los ve",
       body: [
-        "Tu solicitud llega al equipo comercial de PPMA SAC y a nadie más. Los proveedores que hacen posible el servicio —alojamiento del sitio y correo corporativo— actúan como encargados de tratamiento, solo procesan los datos por encargo nuestro y están sujetos a deberes de confidencialidad.",
+        "Tu solicitud llega al equipo comercial de PPMA SAC y a nadie más. Los proveedores que hacen posible el servicio —alojamiento del sitio, correo corporativo y la verificación antispam de Cloudflare Turnstile— actúan como encargados de tratamiento, solo procesan los datos por encargo nuestro y están sujetos a deberes de confidencialidad.",
         "Estos proveedores pueden almacenar la información en servidores ubicados fuera del Perú, lo que constituye un flujo transfronterizo de datos amparado en tu consentimiento y sujeto a las garantías que exige la normativa.",
       ],
     },

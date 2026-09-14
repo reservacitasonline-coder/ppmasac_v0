@@ -29,8 +29,8 @@ export interface Pillar {
 export type ContactFieldName =
   "name" | "company" | "email" | "phone" | "service" | "message";
 
-/** The consent box is not a text field, but it can still fail validation. */
-export type ContactErrorName = ContactFieldName | "consent";
+/** Consent and Turnstile are not text fields, but they can still fail validation. */
+export type ContactErrorName = ContactFieldName | "consent" | "turnstile";
 
 /** Result of a contact form submission, returned by the server action. */
 export interface ContactFormState {
