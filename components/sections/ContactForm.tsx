@@ -5,6 +5,7 @@ import { useActionState, type FormEvent } from "react";
 
 import { contact } from "@/content/site";
 import type { ContactFormState } from "@/content/types";
+import { TurnstileField } from "@/components/ui/TurnstileField";
 import { submitEnquiry } from "@/lib/actions/contact";
 import {
   phonePattern,
@@ -23,6 +24,7 @@ const empty: ContactFormState = {
 };
 
 const copy = contact.form.errors;
+const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
 type Field = HTMLInputElement | HTMLTextAreaElement;
 
@@ -235,6 +237,29 @@ export function ContactForm() {
             </span>
           ) : null}
         </p>
+
+        <div className={styles.turnstile}>
+          {turnstileSiteKey ? (
+            <TurnstileField
+              siteKey={turnstileSiteKey}
+              resetSignal={
+                state.status === "error"
+                  ? `${state.message}:${state.errors.turnstile ?? ""}`
+                  : "ok"
+              }
+              className={styles.turnstileWidget}
+            />
+          ) : (
+            <span className={styles.error} role="alert">
+              Falta configurar la verificación antispam.
+            </span>
+          )}
+          {state.errors.turnstile ? (
+            <span className={styles.error} id="turnstile-error">
+              {state.errors.turnstile}
+            </span>
+          ) : null}
+        </div>
 
         {/* Spam trap: hidden from people, tempting for bots. */}
         <input

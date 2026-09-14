@@ -14,15 +14,24 @@ npm run dev      # http://localhost:3000
 
 ## Environment
 
-The contact form emails each enquiry through [Resend](https://resend.com), so a
-`.env.local` is needed for it to deliver:
+The contact form emails each enquiry through [Resend](https://resend.com) and
+guards submissions with [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/),
+so a `.env.local` is needed for both:
 
 ```bash
 RESEND_API_KEY=re_...
 # Optional overrides; the defaults are in lib/mail.ts.
 CONTACT_TO_EMAIL="atencionalcliente@ppmasac.com"
 CONTACT_FROM_EMAIL="PPMA SAC <formulario@send.ppmasac.com>"
+
+# Turnstile widget keys from the Cloudflare dashboard.
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=...
+TURNSTILE_SECRET_KEY=...
 ```
+
+For local development you can use Cloudflare’s always-pass test keys
+(`1x00000000000000000000AA` / `1x0000000000000000000000000000000AA`).
+Production must use a widget scoped to `ppmasac.com` (and `www`).
 
 `CONTACT_FROM_EMAIL` has to sit on a domain verified in the Resend account —
 while nothing is verified there, the send falls back to Resend's own
