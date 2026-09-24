@@ -290,7 +290,7 @@ export const services = {
         alt: "Equipo de obra revisando el avance en campo",
       },
       items: [
-        "Gestión y seguimiento de licencias y trámites municipales distritales y provinciales para licencias de edificación, uso de vías y conformidad de obra.",
+        "Gestión y seguimiento de licencias y trámites municipales, distritales y provinciales para licencias de edificación, uso de vías y conformidad de obra.",
         "Desarrollo y formulación de expedientes técnicos de aprobación municipal.",
         "Desarrollo y elaboración de perfiles de inversión pública y privada.",
         "Desarrollo de proyectos BIM (Building Information Modeling).",
