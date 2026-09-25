@@ -39,7 +39,7 @@ export function Hero() {
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <div className={styles.actions}>
+          <div className={styles.actions} data-whatsapp-avoid>
             <Button href={hero.primary.href} variant="light">
               {hero.primary.label}
             </Button>

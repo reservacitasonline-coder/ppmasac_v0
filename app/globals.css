@@ -19,6 +19,18 @@
   --brand-deep-rgb: 31 71 150;
   --ink-rgb: 17 39 82;
 
+  /* Copy on the brand blue: laptop panels wash out translucent white, so body
+     text stays close to solid. */
+  --on-dark: rgba(255, 255, 255, 0.95);
+  --on-dark-soft: rgba(255, 255, 255, 0.9);
+
+  /* Fluid copy sizes. The floors are the phone sizes; the slope only kicks in
+     past ~900px so laptops get larger text without touching mobile. */
+  --text-statement: clamp(19px, 1vw + 10px, 26px);
+  --text-lead: clamp(16px, 0.9vw + 8px, 20px);
+  --text-body: clamp(15.5px, 0.7vw + 8px, 18.5px);
+  --text-small: clamp(14.5px, 0.6vw + 8.5px, 17px);
+
   --muted-light: rgba(255, 255, 255, 0.66);
   --line-light: rgba(255, 255, 255, 0.18);
   --line-dark: rgb(var(--brand-rgb) / 0.45);
@@ -87,7 +99,7 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.65;
-  font-weight: 300;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -126,6 +138,16 @@ blockquote {
   color: #fff;
 }
 
+/* Read by assistive technology, invisible on screen. */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 /* Keyboard-only shortcut past the navigation. */
 .skipLink {
   position: absolute;
@@ -146,6 +168,21 @@ blockquote {
 
 .skipLink:focus-visible {
   transform: translate(-50%, 0);
+}
+
+/* Scroll entrances, driven by <ScrollReveal>. Nothing is hidden until that
+   component has marked <html> as ready. */
+.reveal-ready [data-reveal]:not(.is-revealed),
+.reveal-ready [data-reveal-group] > :not(.is-revealed) {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.reveal-ready .is-revealing {
+  transition:
+    opacity 0.7s var(--ease),
+    transform 0.7s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
 @media (prefers-reduced-motion: reduce) {

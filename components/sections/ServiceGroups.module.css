@@ -102,7 +102,7 @@
 
 .summary {
   margin: 0;
-  font-size: clamp(17px, 1.55vw, 20px);
+  font-size: clamp(17px, 0.9vw + 9px, 22px);
   line-height: 1.55;
   font-weight: 400;
   color: var(--ink);
@@ -120,7 +120,7 @@
   position: relative;
   padding: 14px 0 14px 22px;
   border-bottom: 1px solid rgb(var(--brand-rgb) / 0.18);
-  font-size: clamp(15.5px, 1.15vw, 17px);
+  font-size: var(--text-body);
   line-height: 1.65;
   color: var(--ink);
 }
@@ -145,7 +145,7 @@
   border-left: 3px solid var(--brand);
   border-radius: 0 12px 12px 0;
   background: rgb(var(--brand-rgb) / 0.06);
-  font-size: clamp(15.5px, 1.15vw, 17px);
+  font-size: var(--text-body);
   line-height: 1.65;
   color: var(--ink);
 }
@@ -252,7 +252,7 @@
 .tileTitle {
   margin: 0 0 6px;
   font-family: var(--font-body);
-  font-size: clamp(15.5px, 1.2vw, 17px);
+  font-size: clamp(15.5px, 0.6vw + 9.5px, 19px);
   font-weight: 600;
   line-height: 1.35;
   color: var(--brand-deep);
@@ -260,7 +260,7 @@
 
 .tileText {
   margin: 0;
-  font-size: clamp(14.5px, 1.05vw, 15.5px);
+  font-size: var(--text-small);
   line-height: 1.6;
   color: var(--ink);
 }
@@ -326,7 +326,7 @@
 
 .panelPlain {
   margin: 0;
-  font-size: clamp(15.5px, 1.15vw, 17px);
+  font-size: var(--text-body);
   line-height: 1.6;
   color: var(--ink);
 }
@@ -397,7 +397,7 @@
 .stepTitle {
   margin: 0 0 4px;
   font-family: var(--font-body);
-  font-size: clamp(16px, 1.25vw, 18px);
+  font-size: clamp(16px, 0.6vw + 10px, 19.5px);
   font-weight: 600;
   line-height: 1.4;
   color: var(--brand-deep);
@@ -405,7 +405,7 @@
 
 .stepText {
   margin: 0;
-  font-size: clamp(14.5px, 1.05vw, 15.5px);
+  font-size: var(--text-small);
   line-height: 1.6;
   color: var(--ink);
 }
@@ -443,7 +443,7 @@
 
 .dense .item {
   padding: 12px 0 12px 20px;
-  font-size: clamp(14.5px, 1.05vw, 15.5px);
+  font-size: var(--text-small);
   line-height: 1.55;
 }
 
@@ -481,8 +481,8 @@
 .closingText {
   margin-top: 18px;
   max-width: 42ch;
-  color: rgba(255, 255, 255, 0.88);
-  font-size: clamp(16px, 1.3vw, 18px);
+  color: var(--on-dark);
+  font-size: var(--text-lead);
   line-height: 1.55;
 }
 

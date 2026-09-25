@@ -26,7 +26,7 @@ export function Services() {
       </div>
 
       <Container className={styles.inner}>
-        <div className={styles.head}>
+        <div className={styles.head} data-reveal>
           <p className={styles.kicker}>{services.eyebrow}</p>
           <h2 id="servicios-title" className={styles.title}>
             {services.heading.map((line) => (
@@ -39,7 +39,7 @@ export function Services() {
           <p className={styles.lead}>{services.lead}</p>
         </div>
 
-        <ul className={styles.grid}>
+        <ul className={styles.grid} data-reveal-group>
           {services.groups.map((group) => (
             <li key={group.slug}>
               <Link className={styles.card} href={`/servicios#${group.slug}`}>

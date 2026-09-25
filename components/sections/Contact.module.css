@@ -21,7 +21,7 @@
 
 .kicker {
   composes: sectionKicker from "../../styles/typography.module.css";
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--on-dark-soft);
 }
 
 .title {
@@ -45,9 +45,9 @@
 .lead {
   margin: 22px 0 0;
   max-width: 36ch;
-  font-size: clamp(16px, 1.3vw, 18px);
+  font-size: var(--text-lead);
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--on-dark);
 }
 
 /* White card on the deep blue. */

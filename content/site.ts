@@ -377,6 +377,8 @@ export const services = {
 export const clients = {
   eyebrow: "Clientes",
   heading: ["Empresas que", "confían en nosotros"],
+  countLabel: "empresas e instituciones",
+  lead: "Organizaciones de retail, salud, educación, hotelería y el sector público han confiado en nosotros para sus proyectos.",
   /** Logos live in `public/clients`; the name is used as alt text. */
   items: [
     { name: "Cencosud", logo: "/clients/Cencosud-2014.svg" },
@@ -509,13 +511,9 @@ export const contact = {
   lead: "Cuéntanos qué necesitas y un especialista revisará tu requerimiento para proponerte el alcance, los plazos y el presupuesto.",
   form: {
     title: "Solicita una propuesta",
-    /** Options for the "servicio de interés" select. */
+    /** Options for the "servicio de interés" select: the six service lines. */
     services: [
-      "Construcción",
-      "Supervisión de obra",
-      "Consultoría y asesoría",
-      "Mantenimiento y posventa",
-      "Inmobiliario y habilitación urbana",
+      ...services.groups.map((group) => group.title.replace(/\n/g, " ")),
       "Otro",
     ],
     submit: "Enviar solicitud",

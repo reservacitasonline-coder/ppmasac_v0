@@ -22,7 +22,7 @@
 
 .kicker {
   composes: sectionKicker from "../../styles/typography.module.css";
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--on-dark-soft);
 }
 
 .title {
@@ -48,9 +48,9 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 26px;
-  font-size: clamp(16px, 1.3vw, 18px);
+  font-size: var(--text-lead);
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--on-dark);
 }
 
 /* --- gallery --- */
@@ -133,9 +133,9 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(22px, 4vw, 56px);
   align-items: start;
-  font-size: clamp(16px, 1.25vw, 18px);
+  font-size: var(--text-lead);
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--on-dark);
 }
 
 .columns p {
@@ -146,7 +146,7 @@
 .columns p:first-child {
   padding-left: clamp(16px, 1.6vw, 22px);
   border-left: 3px solid var(--mist);
-  font-size: clamp(19px, 1.7vw, 23px);
+  font-size: var(--text-statement);
   font-weight: 500;
   line-height: 1.5;
   color: #fff;
@@ -214,15 +214,34 @@
 
 .pillarText {
   margin: 0;
-  color: rgba(255, 255, 255, 0.88);
-  font-size: clamp(15.5px, 1.2vw, 17px);
+  color: var(--on-dark);
+  font-size: var(--text-body);
   line-height: 1.65;
 }
 
 /* --- valores --- */
 
-.values {
-  margin-top: clamp(40px, 5vw, 64px);
+/* A light band of its own: Nosotros and Servicios are both brand blue, and
+   run together they read as one long wall on a laptop. */
+.valuesBand {
+  padding: var(--section-y) 0;
+  background: color-mix(in srgb, var(--mist) 16%, #fff);
+  color: var(--ink);
+}
+
+.valuesHead {
+  composes: whoHead;
+  border-bottom-color: rgb(var(--brand-rgb) / 0.18);
+}
+
+.valuesIndex {
+  composes: sectionIndex;
+  color: var(--brand);
+}
+
+.valuesTitle {
+  composes: subtitle;
+  color: var(--ink);
 }
 
 /* Four across; the odd seventh card leaves a centred row of three rather
@@ -243,61 +262,61 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: clamp(22px, 2.2vw, 28px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: clamp(22px, 2.2vw, 30px);
+  border: 1px solid rgb(var(--brand-rgb) / 0.08);
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.06);
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(var(--brand-rgb) / 0.06), 0 14px 34px -20px rgb(var(--brand-rgb) / 0.3);
   transition:
-    background 0.3s var(--ease),
+    box-shadow 0.3s var(--ease),
     border-color 0.3s var(--ease),
     transform 0.3s var(--ease);
 }
 
 .value:hover {
-  background: rgb(var(--brand-rgb) / 0.45);
-  border-color: rgb(96 179 231 / 0.6);
-  transform: translateY(-3px);
+  border-color: rgb(var(--brand-rgb) / 0.22);
+  box-shadow: 0 2px 4px rgb(var(--brand-rgb) / 0.08), 0 24px 44px -20px rgb(var(--brand-rgb) / 0.42);
+  transform: translateY(-4px);
 }
 
 .valueIcon {
   display: grid;
   place-items: center;
-  width: 52px;
-  height: 52px;
+  width: 54px;
+  height: 54px;
   margin-bottom: 18px;
-  border: 1px solid rgb(96 179 231 / 0.4);
   border-radius: 50%;
-  background: rgb(96 179 231 / 0.14);
-  color: var(--mist);
+  background: rgb(var(--brand-rgb) / 0.08);
+  color: var(--brand);
   transition:
     background 0.3s var(--ease),
     color 0.3s var(--ease);
 }
 
 .valueIcon svg {
-  width: 26px;
-  height: 26px;
+  width: 27px;
+  height: 27px;
 }
 
 .value:hover .valueIcon {
-  background: var(--mist);
-  color: var(--brand-deep);
+  background: var(--brand);
+  color: #fff;
 }
 
 .valueTitle {
   margin: 0 0 8px;
   font-family: var(--font-body);
-  font-size: clamp(17px, 1.35vw, 19px);
+  font-size: clamp(17px, 0.6vw + 11px, 21px);
   font-weight: 600;
   line-height: 1.3;
-  color: #fff;
+  color: var(--ink);
 }
 
 .valueText {
   margin: 0;
-  font-size: clamp(14.5px, 1.1vw, 16px);
+  font-size: var(--text-small);
   line-height: 1.55;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--muted);
 }
 
 @media (max-width: 900px) {

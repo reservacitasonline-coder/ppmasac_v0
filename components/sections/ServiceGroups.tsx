@@ -72,7 +72,7 @@ export function ServiceGroups() {
               aria-labelledby={`${group.slug}-title`}
             >
               <Container>
-                <div className={styles.head}>
+                <div className={styles.head} data-reveal>
                   <span className={styles.index}>{group.index}</span>
                   <h2 className={styles.title} id={`${group.slug}-title`}>
                     {titleLines.map((line) => (
@@ -92,7 +92,7 @@ export function ServiceGroups() {
                   ) : null}
                 </div>
 
-                <div className={styles.body}>
+                <div className={styles.body} data-reveal-group>
                   <figure className={styles.figure}>
                     <Image
                       className={styles.image}
@@ -144,7 +144,7 @@ export function ServiceGroups() {
                 </div>
 
                 {tiled ? (
-                  <ul className={styles.tiles}>
+                  <ul className={styles.tiles} data-reveal-group>
                     {items.map((item) => {
                       const { lead, detail } = splitLead(item);
                       return (
@@ -167,6 +167,7 @@ export function ServiceGroups() {
                       styles.panel,
                       !group.itemsLabel && styles.panelBare,
                     )}
+                    data-reveal
                   >
                     {group.itemsLabel ? (
                       <p className={styles.panelLabel}>{group.itemsLabel}</p>
@@ -196,7 +197,7 @@ export function ServiceGroups() {
                 ) : null}
 
                 {group.categories ? (
-                  <div className={styles.categories}>
+                  <div className={styles.categories} data-reveal-group>
                     {group.categories.map((category, index) => (
                       <div className={styles.category} key={category.title}>
                         <h3 className={styles.categoryTitle}>

@@ -11,7 +11,7 @@ export function Statement() {
   return (
     <section className={styles.statement}>
       <Container>
-        <div className={styles.panel}>
+        <div className={styles.panel} data-reveal>
           <span className={styles.rule} aria-hidden="true" />
           <p className={styles.lead}>{lead}</p>
           {support ? <p className={styles.support}>{support}</p> : null}

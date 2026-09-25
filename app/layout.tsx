@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
+import { ScrollReveal } from "@/components/layout/ScrollReveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -74,6 +75,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {children}
         <SiteFooter />
         <WhatsAppButton />
+        <ScrollReveal />
       </body>
     </html>
   );
