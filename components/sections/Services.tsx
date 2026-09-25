@@ -50,7 +50,7 @@ export function Services() {
                   </span>
                 </div>
                 <h3 className={styles.cardTitle}>{group.title}</h3>
-                <p className={styles.cardText}>{group.summary}</p>
+                <p className={styles.cardText}>{group.teaser ?? group.summary}</p>
               </Link>
             </li>
           ))}

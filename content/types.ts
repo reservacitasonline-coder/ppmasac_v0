@@ -26,6 +26,21 @@ export interface Pillar {
   body: string;
 }
 
+export type ValueIconName =
+  | "handshake"
+  | "clipboard"
+  | "compass"
+  | "lightbulb"
+  | "user"
+  | "award"
+  | "sprout";
+
+export interface CompanyValue {
+  title: string;
+  description: string;
+  icon: ValueIconName;
+}
+
 export type ContactFieldName =
   "name" | "company" | "email" | "phone" | "service" | "message";
 
@@ -83,7 +98,29 @@ export interface ServiceGroup {
   slug: string;
   title: string;
   summary: string;
+  /** Shorter copy for the home-page card when `summary` runs past its five lines. */
+  teaser?: string;
   photo: Photo;
+  /** Flat bullet list; lines with `categories` leave it out. */
+  items?: string[];
+  /**
+   * How "Lead: detail" `items` are set: `tiles` as a two-column grid below the
+   * photo, `timeline` as a connected bullet sequence beside it, `panel` as a
+   * two-column list in a titled panel below it. `*text*` in the detail is set
+   * in italics.
+   */
+  layout?: "tiles" | "timeline" | "panel";
+  /** Heading of the `panel` layout. */
+  itemsLabel?: string;
+  /** Bullets grouped under sub-headings, for lines too broad for one list. */
+  categories?: ServiceCategory[];
+  /** Closing paragraph set apart from the summary. */
+  note?: string;
+}
+
+export interface ServiceCategory {
+  title: string;
+  /** "Lead: detail" — the text before the first colon is set in bold. */
   items: string[];
 }
 

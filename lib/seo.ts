@@ -144,9 +144,11 @@ export function servicesSchema(): JsonLdGraph {
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: group.title.replace(/\n/g, " "),
-          itemListElement: group.items.map((item) => ({
+          itemListElement: (
+            group.categories?.flatMap((category) => category.items) ?? group.items ?? []
+          ).map((item) => ({
             "@type": "Offer",
-            itemOffered: { "@type": "Service", name: item },
+            itemOffered: { "@type": "Service", name: item.replace(/\*/g, "") },
           })),
         },
       },

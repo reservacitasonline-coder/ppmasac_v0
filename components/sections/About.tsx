@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { ValueIcon } from "@/components/ui/icons";
 import { about } from "@/content/site";
 
 import styles from "./About.module.css";
@@ -88,8 +89,12 @@ export function About() {
           </div>
           <ul className={styles.valueList}>
             {about.values.map((value) => (
-              <li className={styles.value} key={value}>
-                {value}
+              <li className={styles.value} key={value.title}>
+                <span className={styles.valueIcon}>
+                  <ValueIcon name={value.icon} />
+                </span>
+                <h4 className={styles.valueTitle}>{value.title}</h4>
+                <p className={styles.valueText}>{value.description}</p>
               </li>
             ))}
           </ul>

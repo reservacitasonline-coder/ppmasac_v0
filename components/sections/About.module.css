@@ -132,6 +132,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(22px, 4vw, 56px);
+  align-items: start;
   font-size: clamp(16px, 1.25vw, 18px);
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.9);
@@ -139,6 +140,16 @@
 
 .columns p {
   margin: 0;
+}
+
+/* The first paragraph is the statement; the rest reads as its support. */
+.columns p:first-child {
+  padding-left: clamp(16px, 1.6vw, 22px);
+  border-left: 3px solid var(--mist);
+  font-size: clamp(19px, 1.7vw, 23px);
+  font-weight: 500;
+  line-height: 1.5;
+  color: #fff;
 }
 
 /* --- misión / visión --- */
@@ -214,34 +225,28 @@
   margin-top: clamp(40px, 5vw, 64px);
 }
 
+/* Four across; the odd seventh card leaves a centred row of three rather
+   than a lone card at the start of the line. */
 .valueList {
+  --gap: clamp(12px, 1.6vw, 20px);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: var(--gap);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .value {
-  flex: 1 1 160px;
-  max-width: 220px;
+  flex: 0 1 calc((100% - 3 * var(--gap)) / 4);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 64px;
-  padding: 16px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: var(--radius);
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(22px, 2.2vw, 28px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.06);
-  font-family: var(--font-body);
-  font-size: clamp(15.5px, 1.2vw, 17px);
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  text-align: center;
-  line-height: 1.35;
-  color: rgba(255, 255, 255, 0.92);
   transition:
     background 0.3s var(--ease),
     border-color 0.3s var(--ease),
@@ -249,9 +254,50 @@
 }
 
 .value:hover {
-  background: rgb(var(--brand-rgb) / 0.55);
-  border-color: var(--mist);
-  transform: translateY(-2px);
+  background: rgb(var(--brand-rgb) / 0.45);
+  border-color: rgb(96 179 231 / 0.6);
+  transform: translateY(-3px);
+}
+
+.valueIcon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 18px;
+  border: 1px solid rgb(96 179 231 / 0.4);
+  border-radius: 50%;
+  background: rgb(96 179 231 / 0.14);
+  color: var(--mist);
+  transition:
+    background 0.3s var(--ease),
+    color 0.3s var(--ease);
+}
+
+.valueIcon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.value:hover .valueIcon {
+  background: var(--mist);
+  color: var(--brand-deep);
+}
+
+.valueTitle {
+  margin: 0 0 8px;
+  font-family: var(--font-body);
+  font-size: clamp(17px, 1.35vw, 19px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.valueText {
+  margin: 0;
+  font-size: clamp(14.5px, 1.1vw, 16px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 @media (max-width: 900px) {
@@ -267,8 +313,7 @@
   }
 
   .value {
-    max-width: none;
-    flex: 1 1 42%;
+    flex-basis: calc((100% - var(--gap)) / 2);
   }
 }
 
@@ -278,6 +323,6 @@
   }
 
   .value {
-    flex: 1 1 100%;
+    flex-basis: 100%;
   }
 }
