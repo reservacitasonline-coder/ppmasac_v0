@@ -15,7 +15,20 @@
   transition:
     transform 0.35s var(--ease),
     box-shadow 0.35s var(--ease),
-    background 0.35s var(--ease);
+    background 0.35s var(--ease),
+    opacity 0.35s var(--ease),
+    visibility 0s;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(16px) scale(0.9);
+  transition:
+    transform 0.35s var(--ease),
+    opacity 0.35s var(--ease),
+    visibility 0s 0.35s;
 }
 
 .button:hover {

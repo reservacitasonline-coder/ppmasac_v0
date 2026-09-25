@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 
 import { Container } from "@/components/ui/Container";
+import { CountUp } from "@/components/ui/CountUp";
 import { clients } from "@/content/site";
 
 import styles from "./Clients.module.css";
@@ -14,19 +15,31 @@ export function Clients() {
       aria-labelledby="clientes-title"
     >
       <Container>
-        <div className={styles.head}>
-          <p className={styles.kicker}>{clients.eyebrow}</p>
-          <h2 id="clientes-title" className={styles.title}>
-            {clients.heading.map((line) => (
-              <span className={styles.titleLine} key={line}>
-                {line}
+        <div className={styles.head} data-reveal>
+          <div className={styles.headMain}>
+            <p className={styles.kicker}>{clients.eyebrow}</p>
+            <h2 id="clientes-title" className={styles.title}>
+              {clients.heading.map((line) => (
+                <span className={styles.titleLine} key={line}>
+                  {line}
+                </span>
+              ))}
+            </h2>
+            <span className={styles.accent} aria-hidden="true" />
+          </div>
+
+          <div className={styles.summary}>
+            <p className={styles.count}>
+              <span className={styles.countValue}>
+                <CountUp value={String(clients.items.length)} />
               </span>
-            ))}
-          </h2>
-          <span className={styles.accent} aria-hidden="true" />
+              <span className={styles.countLabel}>{clients.countLabel}</span>
+            </p>
+            <p className={styles.lead}>{clients.lead}</p>
+          </div>
         </div>
 
-        <ul className={styles.grid}>
+        <ul className={styles.grid} data-reveal-group>
           {clients.items.map((client) => (
             <li className={styles.item} key={client.name}>
               {/* Fixed-height frame so logos of very different proportions

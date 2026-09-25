@@ -6,9 +6,57 @@
 
 .head {
   display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(28px, 5vw, 80px);
+}
+
+.headMain {
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   max-width: 28rem;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2.4vw, 32px);
+  max-width: 34rem;
+  padding-left: clamp(20px, 2.4vw, 32px);
+  border-left: 3px solid var(--mist);
+}
+
+.count {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.countValue {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 4.6vw, 72px);
+  line-height: 0.95;
+  color: var(--brand);
+}
+
+.countLabel {
+  margin-top: 6px;
+  max-width: 9rem;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.lead {
+  margin: 0;
+  font-size: var(--text-lead);
+  line-height: 1.6;
+  color: var(--muted);
 }
 
 .kicker {
@@ -75,26 +123,27 @@
 
 .logo {
   object-fit: contain;
-  filter: grayscale(1) contrast(1.08) brightness(0.94);
-  opacity: 0.82;
-  transition:
-    filter 0.4s var(--ease),
-    opacity 0.4s var(--ease);
+  transition: transform 0.4s var(--ease);
 }
 
 .item:hover .logo {
-  filter: none;
-  opacity: 1;
+  transform: scale(1.04);
 }
 
-@media (hover: none) {
-  .logo {
-    filter: none;
-    opacity: 1;
+@media (max-width: 900px) {
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
 @media (max-width: 560px) {
+  .summary {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
   .item {
     flex: 0 1 46%;
   }

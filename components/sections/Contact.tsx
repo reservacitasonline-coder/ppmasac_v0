@@ -12,7 +12,7 @@ export function Contact() {
       aria-labelledby="contacto-title"
     >
       <Container>
-        <div className={styles.layout}>
+        <div className={styles.layout} data-reveal-group>
           <div className={styles.intro}>
             <p className={styles.kicker}>{contact.eyebrow}</p>
             <h2 id="contacto-title" className={styles.title}>

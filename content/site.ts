@@ -2,6 +2,7 @@ import { unsplash } from "@/lib/unsplash";
 import type {
   CallToAction,
   Client,
+  CompanyValue,
   FaqItem,
   LegalSection,
   NavLink,
@@ -76,7 +77,7 @@ export const seo = {
   services: {
     title: "Servicios de ingeniería y construcción",
     description:
-      "Seis líneas de servicio: proyectos, implementaciones, obras, habilitaciones urbanas, asesoría constructiva y consultoría comercial inmobiliaria.",
+      "Seis líneas de servicio: proyectos y gerenciamiento, implementaciones, obras, habilitaciones urbanas, asesoría constructiva y consultoría comercial inmobiliaria.",
   },
 } as const;
 
@@ -135,29 +136,57 @@ export const about = {
   ] satisfies Photo[],
   subtitle: "Quiénes somos",
   columns: [
-    "Nuestra experiencia prevalece en los alcances, costos, tiempo, calidad, seguridad y la preservación del medio ambiente en armonía con los stakeholders.",
-    "Brindamos el servicio de asesoría, consultoría, supervisión, construcción e ingeniería en el rubro inmobiliario, mantenimiento, servicio de posventa, servicio comercial y de marketing, compra de terrenos, habilitaciones urbanas, análisis de factibilidad de proyectos, desarrollo de expedientes, entre otros.",
+    "Garantizamos el éxito de cada proyecto optimizando costos, plazos y calidad, bajo un firme compromiso con la seguridad y la sostenibilidad ambiental.",
+    "Ofrecemos soluciones inmobiliarias integrales que abarcan desde el análisis de factibilidad, compra de terrenos y habilitaciones urbanas, hasta la ingeniería, construcción, gestión comercial y soporte posventa.",
   ],
   pillars: [
     {
       title: "Misión",
-      body: "Generar valor a nuestros grupos de interés de manera eficiente y contribuir con el desarrollo del país.",
+      body: "Brindar soluciones eficientes en ingeniería y construcción que generen valor para nuestros aliados, contribuyendo activamente al progreso y desarrollo sostenible del país.",
     },
     {
       title: "Visión",
-      body: "Posicionarnos como una empresa líder en el mercado nacional con proyección internacional en servicios de ingeniería, construcción, supervisión, mantenimiento y posventa; sustentada en el trabajo responsable, dedicado e innovador de sus directivos y colaboradores.",
+      body: "Consolidar nuestro liderazgo en el mercado nacional y expandir nuestra presencia internacional en servicios integrales de infraestructura, respaldados por la innovación, dedicación y excelencia de nuestro equipo.",
     },
   ] satisfies Pillar[],
   valuesTitle: "Valores",
   values: [
-    "Honestidad",
-    "Compromiso",
-    "Liderazgo",
-    "Diferenciación",
-    "Orientación al cliente",
-    "Calidad",
-    "Responsabilidad social",
-  ],
+    {
+      title: "Honestidad",
+      description: "Transparencia e integridad ética.",
+      icon: "handshake",
+    },
+    {
+      title: "Compromiso",
+      description: "Entregas en tiempo, costo y calidad pactados.",
+      icon: "clipboard",
+    },
+    {
+      title: "Liderazgo",
+      description: "Visión constructiva y determinación técnica.",
+      icon: "compass",
+    },
+    {
+      title: "Diferenciación",
+      description: "Valor único a través de la innovación.",
+      icon: "lightbulb",
+    },
+    {
+      title: "Orientación al cliente",
+      description: "Superar expectativas y necesidades.",
+      icon: "user",
+    },
+    {
+      title: "Calidad",
+      description: "Excelencia técnica y rigor constructivo.",
+      icon: "award",
+    },
+    {
+      title: "Responsabilidad social",
+      description: "Construcción sostenible para la comunidad.",
+      icon: "sprout",
+    },
+  ] satisfies CompanyValue[],
 };
 
 export const services = {
@@ -190,18 +219,21 @@ export const services = {
     {
       index: "01",
       slug: "proyectos",
-      title: "Proyectos",
+      title: "Proyectos y\nGerenciamiento",
       summary:
-        "Diseño y gestión de ingeniería en 2D, 3D, Revit (Builiding Information Modeling - BIM) con todas las especializaciones debidamente compatibilizadas. Obteniendo la mejor optimización de tu proyecto considerando los mejores precios del mercado.",
+        "Transformamos sus ideas en proyectos viables, eficientes y listos para construir. Nuestro servicio abarca desde el diseño de infraestructura urbana, comercial y de salud, hasta la gestión técnica avanzada y el análisis de costos reales del mercado para asegurar el éxito de su inversión.",
+      teaser:
+        "Transformamos sus ideas en proyectos viables, eficientes y listos para construir.",
       photo: {
         src: unsplash("photo-1487958449943-2429e8be8625", 1200),
         alt: "Edificio contemporáneo de geometría angular",
       },
+      layout: "tiles",
       items: [
-        "Diseño de viviendas unifamiliares, casas de playa y campo; viviendas multifamiliares, edificios de usos mixtos, multideportivos, colegios, habilitaciones urbanas, clínicas y hospitales.",
-        "Diseño vial y urbanístico.",
-        "Gerenciamiento integral, diseño y gestión de ingeniería, desarrollo y compatibilización integral del proyecto en 2D, 3D y Revit (BIM), con análisis de precios unitarios según costos del mercado.",
-        "Especialidades: Diseño en arquitectura, Indeci, Estructuras, Instalaciones Sanitarias (IISS), Instalaciones Eléctricas (IIEE) e Instalaciones Mecánicas.",
+        "Diseño Arquitectónico Integral: Desarrollamos proyectos residenciales (unifamiliares, multifamiliares, campo y playa), así como complejos comerciales, de usos mixtos, educativos, deportivos y de salud (clínicas y hospitales).",
+        "Planificación Vial y Urbanística: Diseñamos entornos urbanos e infraestructura vial eficientes, optimizando el uso del suelo y la conectividad.",
+        "Gerenciamiento y Optimización Técnica: Dirección integral del proyecto mediante modelado y compatibilización avanzada en 2D, 3D y tecnología Revit (Building Information Modeling - BIM), respaldada por un riguroso análisis de precios unitarios según los costos reales del mercado.",
+        "Ingenierías y Especialidades: Cobertura total en diseño de Arquitectura, Estructuras, Instalaciones Sanitarias (IISS), Eléctricas (IIEE), Mecánicas y asesoría especializada en seguridad para normativas INDECI.",
       ],
     },
     {
@@ -209,20 +241,23 @@ export const services = {
       slug: "implementaciones",
       title: "Implementaciones",
       summary:
-        "Acondicionamiento y equipamiento de agencias bancarias, oficinas, retail y salas de venta, con todos sus sistemas especializados.",
+        "Desarrollamos proyectos integrales de construcción, remodelación e ingeniería, desde el acondicionamiento comercial y corporativo hasta acabados residenciales. Ofrecemos soluciones a medida que incluyen equipamiento, mantenimiento y sistemas especializados para cada espacio.",
+      teaser:
+        "Desarrollamos proyectos integrales de construcción, remodelación e ingeniería, desde el acondicionamiento comercial y corporativo hasta acabados residenciales.",
       photo: {
         src: unsplash("photo-1431576901776-e539bd916ba2", 1200),
         alt: "Torres de oficinas de vidrio vistas desde la calle",
       },
+      layout: "panel",
       items: [
-        "Construcción, acondicionamiento, remodelación y equipamiento de agencias bancarias.",
-        "Construcción de salas de ventas y pilotos.",
-        "Implementación y remodelación de oficinas.",
-        "Implementación de centros comerciales y locatarios de retail.",
-        "Mantenimiento y servicios generales en centros comerciales.",
-        "Implementación de todo tipo de acabados para casas, departamentos, cocinas, baños, zonas de parrilla y jardines.",
-        "Sistema de Circuito Cerrado de Televisión (CCTV), Agua Contra Incendio (ACI), cableado estructurado, voz y data, instalaciones eléctricas y sanitarias, aire acondicionado, bandejas eléctricas y subestaciones.",
-        "Sistema integral de iluminación de polideportivos, gimnasios y terrazas.",
+        "Construcción, acondicionamiento y equipamiento integral de agencias bancarias.",
+        "Construcción y habilitación de salas de ventas y departamentos piloto.",
+        "Diseño, implementación y remodelación de oficinas corporativas.",
+        "Implementación comercial para centros comerciales y locatarios de retail.",
+        "Mantenimiento integral y servicios generales para centros comerciales.",
+        "Instalación de acabados de alta calidad para residencias, departamentos y áreas comunes (cocinas, baños, terrazas, parrillas y jardines).",
+        "Ingeniería e instalaciones especializadas: Circuito Cerrado de Televisión (CCTV), agua contra incendio (ACI), cableado estructurado, voz y datos, sistemas eléctricos, sanitarios, aire acondicionado y subestaciones.",
+        "Sistemas de iluminación integral para polideportivos, gimnasios y terrazas.",
       ],
     },
     {
@@ -230,53 +265,65 @@ export const services = {
       slug: "obras",
       title: "Obras",
       summary:
-        "Edificación, infraestructura hospitalaria y educativa,\npavimentación, estructuras metálicas y acabados de principio a\u00a0fin.",
+        "Transformamos grandes ideas en infraestructuras sólidas, modernas y de alta eficiencia. Abarcamos todas las especialidades de la construcción, desde edificaciones comerciales, corporativas y residenciales, hasta centros educativos, hospitalarios e industriales. Garantizamos un control riguroso de calidad de principio a fin, protegiendo y potenciando el valor de su inversión.",
+      teaser:
+        "Transformamos grandes ideas en infraestructuras sólidas, modernas y de alta eficiencia.",
       photo: {
         src: unsplash("photo-1541888946425-d81bb19240f5", 1200),
         alt: "Cuadrilla de obra sobre una losa con acero de refuerzo",
       },
-      items: [
-        "Construcción de infraestructura hospitalaria: clínicas, centros de salud, centros médicos y consultorios.",
-        "Pavimentación de vías urbanas y carreteras en pavimento asfáltico, de concreto y adoquinado.",
-        "Construcción de losas de concreto, losas polideportivas, estacionamientos, patios de maniobras, cercos perimétricos y centrales de lavado para camiones o autos.",
-        "Obras de arte en infraestructura vial: veredas, sardineles, calzadas, cunetas y pontones.",
-        "Obras de saneamiento de redes de agua, desagüe y alumbrado público.",
-        "Tendido de redes de media y baja tensión, y subestaciones eléctricas.",
-        "Demoliciones y movimiento de tierras.",
-        "Construcción integral de colegios, institutos, aulas, laboratorios y centros penitenciarios de menores.",
-        "Construcción integral de edificios multifamiliares, residenciales, institucionales y de oficinas.",
-        "Construcción de almacenes, naves industriales, hangares y grifos de líquidos y gas.",
-        "Fabricación y montaje de estructuras metálicas: sistema aporticado metálico, losas colaborantes, naves industriales, canopy, tijerales y letreros publicitarios.",
-        "Construcción de parques y jardines.",
-        "Construcción de cercos perimétricos de albañilería tradicional, concreto, metálico y prefabricado de concreto.",
-        "Instalaciones de Agua Contra Incendio (ACI), Circuito Cerrado de Televisión (CCTV), cámaras de seguridad y aire acondicionado.",
-        "Implementación e iluminación de losas polideportivas de vóley, fútbol y básquet, con sistema de luces led, tableros electrónicos y control de mandos.",
-        "Construcción en drywall en general.",
-        "Acabados en general: mármol, cuarzo, granito, porcelanatos, cerámicos, piedra laja e instalación de vidrios.",
-        "Muebles de melamina según diseño del cliente.",
+      categories: [
+        {
+          title: "Construcción y Edificación",
+          items: [
+            "Edificaciones integrales: Viviendas, oficinas, hospitales, colegios y almacenes industriales.",
+            "Obras viales y urbanismo: Pavimentación de carreteras, veredas, parques y jardines.",
+            "Movimiento de tierras y saneamiento: Demoliciones, excavaciones y redes de agua o desagüe.",
+          ],
+        },
+        {
+          title: "Ingeniería y Estructuras",
+          items: [
+            "Estructuras metálicas y de concreto: Naves industriales, losas de cimentación y cercos perimétricos.",
+            "Instalaciones eléctricas: Redes de media o baja tensión y subestaciones.",
+            "Sistemas de seguridad y climatización: Redes contra incendio, aire acondicionado y cámaras CCTV.",
+          ],
+        },
+        {
+          title: "Acabados y Equipamiento",
+          items: [
+            "Acabados arquitectónicos: Revestimientos en mármol, porcelanato, cristalería y drywall general.",
+            "Mobiliario a medida: Diseño y fabricación de muebles en melamina.",
+            "Infraestructura deportiva: Losas polideportivas equipadas con iluminación LED inteligente.",
+          ],
+        },
       ],
+      note: "Desarrollamos sus proyectos desde el origen. Nos encargamos de la búsqueda de terrenos, saneamiento legal, licencias y habilitación urbana, garantizando la construcción de infraestructura especializada y obras civiles de alta calidad.",
     },
     {
       index: "04",
       slug: "habilitaciones-urbanas",
       title: "Habilitaciones urbanas",
       summary:
-        "Saneamiento legal, topografía, movimiento de tierras, factibilidades y diseño urbanístico de predios de gran extensión.",
+        "Acompañamos el desarrollo de sus proyectos desde la identificación del terreno hasta la ejecución de infraestructura especializada. Nos encargamos de la búsqueda, saneamiento legal, topografía y gestión de licencias, asegurando la habilitación urbana integral y la construcción de obras civiles con altos estándares de calidad.",
+      teaser:
+        "Acompañamos el desarrollo de sus proyectos desde la identificación del terreno hasta la ejecución de infraestructura especializada.",
       photo: {
         src: unsplash("photo-1471039497385-b6d6ba609f9c", 1200),
         alt: "Vista de la ciudad al atardecer",
       },
+      layout: "tiles",
       items: [
-        "Saneamiento físico y legal de la propiedad.",
-        "Localización de terrenos, levantamientos topográficos y geodésicos.",
-        "Búsqueda de terrenos.",
-        "Movimiento de tierras, cortes y nivelaciones.",
-        "Gestión de factibilidades de servicios: Agua y desagua, energía eléctrica, gas e internet.",
-        "Diseño urbanístico de predios de gran extensión, paisajismo, jardinería y piletas.",
-        "Gestión y saneamiento de licencias y permisos municipales distritales y metropolitanos.",
-        "Desarrollo de cabidas para la evaluación de terrenos.",
-        "Habilitaciones urbanas: pistas y veredas, jardines, pórticos de ingreso, pérgolas, piletas, zona de capillas, cercos perimétricos y estacionamientos.",
-        "Oficinas de trabajo en estructuras metálicas, cámaras de sarcófagos y estructuras para la zona de hornos crematorios.",
+        "Saneamiento físico y legal: Regularización legal e inscripción formal de la propiedad.",
+        "Localización y topografía: Búsqueda estratégica de terrenos mediante levantamientos topográficos y geodésicos.",
+        "Estudios de cabida: Evaluación técnica y arquitectónica para determinar el máximo potencial de los terrenos.",
+        "Gestión de licencias y permisos: Tramitación y saneamiento de autorizaciones ante municipalidades distritales y metropolitanas.",
+        "Movimiento de tierras: Ejecución de cortes, nivelaciones y acondicionamiento del terreno.",
+        "Factibilidad de servicios: Gestión de accesos a redes de agua, desagüe, energía eléctrica, gas e internet.",
+        "Diseño urbanístico y paisajismo: Planificación de predios de gran extensión, áreas verdes, jardinería y piletas.",
+        "Habilitaciones urbanas: Construcción de pistas, veredas, pórticos de ingreso, pérgolas, cercos perimétricos y estacionamientos.",
+        "Estructuras metálicas: Fabricación y montaje de módulos y oficinas de trabajo de alta resistencia.",
+        "Infraestructura especializada: Construcción de capillas, cámaras de sarcófagos y zonas para hornos crematorios.",
       ],
     },
     {
@@ -284,22 +331,20 @@ export const services = {
       slug: "asesoria-y-consultoria",
       title: "Asesoría y consultoría\nconstructiva",
       summary:
-        "Licencias, expedientes técnicos, presupuestos, gerenciamiento de proyectos y supervisión de obra.",
+        "Ofrecemos un servicio integral en licencias, expedientes técnicos, presupuestos, gerenciamiento de proyectos y supervisión de obra, estructurado en las siguientes especialidades:",
+      teaser:
+        "Ofrecemos un servicio integral en licencias, expedientes técnicos, presupuestos, gerenciamiento de proyectos y supervisión de obra.",
       photo: {
         src: unsplash("photo-1504307651254-35680f356dfd", 1200),
         alt: "Equipo de obra revisando el avance en campo",
       },
+      layout: "timeline",
       items: [
-        "Gestión y seguimiento de licencias y trámites municipales, distritales y provinciales para licencias de edificación, uso de vías y conformidad de obra.",
-        "Desarrollo y formulación de expedientes técnicos de aprobación municipal.",
-        "Desarrollo y elaboración de perfiles de inversión pública y privada.",
-        "Desarrollo de proyectos BIM (Building Information Modeling).",
-        "Desarrollo de cabidas para la compra de terrenos.",
-        "Desarrollo de presupuestos.",
-        "Gerenciamiento de proyectos.",
-        "Gerenciamiento integral de la optimización de ingenierías y la constructibilidad, para mejorar la rentabilidad del proyecto.",
-        "Gestión de posventa.",
-        "Supervisión de obras.",
+        "Gestión normativa: Tramitación y seguimiento de licencias municipales (distritales y provinciales), conformidad de obra y uso de vías.",
+        "Ingeniería y diseño: Desarrollo de expedientes técnicos para aprobación municipal, modelado de proyectos BIM y perfiles de inversión pública o privada.",
+        "Evaluación comercial: Estudios de cabida para la compra de terrenos y elaboración de presupuestos detallados.",
+        "Dirección y control: Gerenciamiento integral orientado a la optimización de ingenierías y constructibilidad para maximizar la rentabilidad.",
+        "Acompañamiento final: Supervisión rigurosa de las obras y gestión de posventa.",
       ],
     },
     {
@@ -307,19 +352,23 @@ export const services = {
       slug: "consultoria-comercial",
       title: "Consultoría comercial",
       summary:
-        "Estudios de mercado, viabilidad comercial, business plan inmobiliario y gestión de venta y posventa.",
+        "Ofrecemos un servicio integral de consultoría comercial diseñado para maximizar la rentabilidad y asegurar el éxito de cada proyecto inmobiliario. Acompañamos a nuestros clientes en todo el ciclo comercial, desde el análisis estratégico de mercado y la viabilidad financiera, hasta la ejecución de estrategias de marketing, la gestión de eventos sectoriales, el control de ventas y el servicio posventa.",
+      teaser:
+        "Ofrecemos un servicio integral de consultoría comercial diseñado para maximizar la rentabilidad y asegurar el éxito de cada proyecto inmobiliario.",
       photo: {
         src: unsplash("photo-1449157291145-7efd050a4d0e", 1200),
         alt: "Rascacielos vistos desde abajo",
       },
+      layout: "panel",
+      itemsLabel: "Nuestras soluciones especializadas incluyen:",
       items: [
-        "Elaboración y evaluación del estudio de mercado de cada proyecto según su ejecución.",
-        "Análisis y viabilidad comercial del proyecto, definición del producto o servicio y análisis comercial.",
-        "Elaboración de Business Plan Inmobiliario",
-        "Análisis de marketing global o por proyecto",
-        "Análisis de los puntos críticos de la gestión de venta y posventa.",
-        "Organización y gestión de ferias y eventos del sector inmobiliario.",
-        "Análisis de los Key Performance Indicators (KPI) del sector inmobiliario.",
+        "Estudios de mercado: Evaluación situacional de cada proyecto según su fase de ejecución.",
+        "Viabilidad y producto: Diagnóstico comercial y definición estratégica del producto o servicio final.",
+        "Planificación financiera: Estructuración del Business Plan integral adaptado al sector inmobiliario.",
+        "Estrategia de marketing: Planes globales o focalizados por proyecto.",
+        "Optimización comercial: Auditoría de puntos críticos en ventas y posventa para elevar la conversión y satisfacción.",
+        "Promoción sectorial: Gestión de ferias y eventos comerciales dentro del sector inmobiliario.",
+        "Control de gestión: Monitoreo continuo de los Indicadores Clave de Rendimiento (*KPIs*) del negocio.",
       ],
     },
   ] satisfies ServiceGroup[],
@@ -328,6 +377,8 @@ export const services = {
 export const clients = {
   eyebrow: "Clientes",
   heading: ["Empresas que", "confían en nosotros"],
+  countLabel: "empresas e instituciones",
+  lead: "Organizaciones de retail, salud, educación, hotelería y el sector público han confiado en nosotros para sus proyectos.",
   /** Logos live in `public/clients`; the name is used as alt text. */
   items: [
     { name: "Cencosud", logo: "/clients/Cencosud-2014.svg" },
@@ -460,13 +511,9 @@ export const contact = {
   lead: "Cuéntanos qué necesitas y un especialista revisará tu requerimiento para proponerte el alcance, los plazos y el presupuesto.",
   form: {
     title: "Solicita una propuesta",
-    /** Options for the "servicio de interés" select. */
+    /** Options for the "servicio de interés" select: the six service lines. */
     services: [
-      "Construcción",
-      "Supervisión de obra",
-      "Consultoría y asesoría",
-      "Mantenimiento y posventa",
-      "Inmobiliario y habilitación urbana",
+      ...services.groups.map((group) => group.title.replace(/\n/g, " ")),
       "Otro",
     ],
     submit: "Enviar solicitud",

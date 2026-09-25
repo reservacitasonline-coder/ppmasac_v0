@@ -123,7 +123,7 @@
   gap: 10px 18px;
   font-family: var(--font-cond);
   font-weight: 600;
-  font-size: clamp(15px, 1.35vw, 19px);
+  font-size: clamp(15px, 0.8vw + 8px, 20px);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.92);
