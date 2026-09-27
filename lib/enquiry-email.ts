@@ -159,7 +159,7 @@ function html(enquiry: Enquiry) {
             <tr>
               <td style="padding:0 32px">
                 <p style="margin:0 0 8px;border-top:1px solid ${LINE};padding-top:14px;font-family:${BODY_FONT};font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:${BRAND}">${labels.message}</p>
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${WASH};border-left:3px solid ${BRAND};border-radius:0 8px 8px 0">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${WASH};border:1px solid ${LINE};border-radius:8px">
                   <tr>
                     <td style="padding:16px 18px;font-family:${BODY_FONT};font-size:15px;line-height:1.65;color:${INK}">${paragraph(enquiry.message)}</td>
                   </tr>
@@ -171,7 +171,7 @@ function html(enquiry: Enquiry) {
                 <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                   <tr>
                     <td bgcolor="${BRAND}" style="border-radius:8px">
-                      <a href="mailto:${encodeURIComponent(enquiry.email)}?subject=${encodeURIComponent(`Re: tu solicitud a PPMA SAC`)}" style="display:inline-block;padding:13px 26px;font-family:${BODY_FONT};font-size:14px;font-weight:600;color:#ffffff;text-decoration:none">Responder a ${firstName} &rarr;</a>
+                      <a href="mailto:${encodeURIComponent(enquiry.email)}?subject=${encodeURIComponent(`Re: su solicitud a PPMA SAC`)}" style="display:inline-block;padding:13px 26px;font-family:${BODY_FONT};font-size:14px;font-weight:600;color:#ffffff;text-decoration:none">Responder a ${firstName} &rarr;</a>
                     </td>
                   </tr>
                 </table>

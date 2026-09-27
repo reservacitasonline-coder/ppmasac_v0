@@ -20,7 +20,7 @@ export interface CallToAction {
   href: string;
 }
 
-/** Mission / vision statement rendered as a card in the about section. */
+/** Mission / vision statement rendered in the about section. */
 export interface Pillar {
   title: string;
   body: string;
@@ -39,6 +39,14 @@ export interface CompanyValue {
   title: string;
   description: string;
   icon: ValueIconName;
+}
+
+/** Home-page summary of a service line. */
+export interface LifecycleStep {
+  /** Matches `ServiceGroup.slug`. */
+  slug: string;
+  /** Two concrete outputs, taken from the line's own item list. */
+  deliverables: [string, string];
 }
 
 export type ContactFieldName =

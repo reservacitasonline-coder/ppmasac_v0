@@ -19,11 +19,6 @@
   top: calc(var(--header-offset) + 12px);
 }
 
-.kicker {
-  composes: sectionKicker from "../../styles/typography.module.css";
-  color: var(--on-dark-soft);
-}
-
 .title {
   composes: sectionTitle from "../../styles/typography.module.css";
   color: #fff;
@@ -33,21 +28,89 @@
   display: block;
 }
 
-.accent {
-  display: block;
-  width: 56px;
-  height: 3px;
-  margin-top: 22px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, var(--mist), var(--brand-soft));
-}
-
 .lead {
   margin: 22px 0 0;
-  max-width: 36ch;
+  max-width: 40ch;
   font-size: var(--text-lead);
   line-height: 1.7;
   color: var(--on-dark);
+}
+
+.introTitle {
+  margin: clamp(30px, 3.4vw, 40px) 0 14px;
+  font-family: var(--font-cond);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+/* Same numbered dots as the project lifecycle above. */
+.steps {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stepItem {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 12px;
+  font-size: var(--text-body);
+  line-height: 1.5;
+  color: var(--on-dark);
+}
+
+.stepNumber {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--mist);
+  border-radius: 50%;
+  font-family: var(--font-cond);
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.direct {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.directLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  font-size: var(--text-body);
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-color: rgb(96 179 231 / 0.6);
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+  transition: text-decoration-color 0.3s var(--ease);
+}
+
+.directLink:hover {
+  text-decoration-color: #fff;
+}
+
+.directIcon {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  color: var(--mist);
 }
 
 /* White card on the deep blue. */
@@ -59,25 +122,22 @@
   border-radius: var(--radius-lg);
   background: #fff;
   box-shadow: 0 34px 70px -34px rgba(0, 0, 0, 0.75);
-  overflow: hidden;
-}
-
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--brand), var(--mist));
 }
 
 .cardTitle {
-  margin: 0 0 26px;
+  margin: 0 0 6px;
   font-family: var(--font-cond);
   font-size: clamp(20px, 2.2vw, 26px);
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--ink);
+}
+
+.requiredNote {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: var(--muted);
 }
 
 .form {
@@ -98,11 +158,10 @@
 }
 
 .label {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
+  line-height: 1.4;
+  color: var(--ink);
 }
 
 .input,
@@ -114,8 +173,10 @@
   border-radius: var(--radius);
   background: #fff;
   color: var(--ink);
+  caret-color: var(--brand);
   font-family: var(--font-body);
-  font-size: 15px;
+  /* 16px or more keeps iOS from zooming the page when a field takes focus. */
+  font-size: 16px;
   line-height: 1.5;
   transition:
     border-color 0.3s var(--ease),
@@ -141,8 +202,9 @@
 }
 
 .error {
-  font-size: 12.5px;
-  color: #b4453c;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #a33a32;
 }
 
 .consent {
@@ -154,9 +216,9 @@
 }
 
 .checkbox {
-  width: 17px;
-  height: 17px;
-  margin: 2px 0 0;
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
   accent-color: var(--brand);
   cursor: pointer;
 }
@@ -167,7 +229,7 @@
 }
 
 .consentLabel {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   color: var(--muted);
   cursor: pointer;
@@ -239,11 +301,6 @@
   composes: arrow from "../ui/Button.module.css";
 }
 
-.note {
-  font-size: 12.5px;
-  color: var(--muted);
-}
-
 .status {
   grid-column: 1 / -1;
   min-height: 0;
@@ -252,6 +309,10 @@
 
 .status:not(:empty) {
   margin-top: 4px;
+}
+
+.status:focus {
+  outline: none;
 }
 
 .success {

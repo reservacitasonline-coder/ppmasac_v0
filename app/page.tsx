@@ -6,8 +6,6 @@ import { Contact } from "@/components/sections/Contact";
 import { Hero } from "@/components/sections/Hero";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Services } from "@/components/sections/Services";
-import { Statement } from "@/components/sections/Statement";
-import { Stats } from "@/components/sections/Stats";
 import { aboutSchema, homePageSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -20,11 +18,9 @@ export default function HomePage() {
       <JsonLd graph={[homePageSchema(), aboutSchema()]} />
       <Hero />
       <main id="main">
-        <Statement />
-        <Stats />
-        <About />
-        <Services />
         <Clients />
+        <Services />
+        <About />
         <Contact />
       </main>
     </>

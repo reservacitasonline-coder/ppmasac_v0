@@ -6,11 +6,9 @@ import { useEffect, useState } from "react";
 import { WhatsAppIcon } from "@/components/ui/icons";
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
+import { whatsappHref } from "@/lib/whatsapp";
 
 import styles from "./WhatsAppButton.module.css";
-
-const { number, message } = site.whatsapp;
-const href = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 
 /**
  * Floating shortcut to a WhatsApp chat, rendered on every route. It steps
@@ -46,10 +44,10 @@ export function WhatsAppButton() {
   return (
     <a
       className={cn(styles.button, hidden && styles.hidden)}
-      href={href}
+      href={whatsappHref}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`Escríbenos por WhatsApp al ${site.whatsapp.label}`}
+      aria-label={`Escríbanos por WhatsApp al ${site.whatsapp.label}`}
       aria-hidden={hidden || undefined}
       tabIndex={hidden ? -1 : undefined}
     >

@@ -11,11 +11,14 @@
   gap: clamp(28px, 5vw, 80px);
 }
 
-.headMain {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.title {
+  composes: sectionTitle from "../../styles/typography.module.css";
   max-width: 28rem;
+  color: var(--ink);
+}
+
+.titleLine {
+  display: block;
 }
 
 .summary {
@@ -23,8 +26,6 @@
   align-items: center;
   gap: clamp(20px, 2.4vw, 32px);
   max-width: 34rem;
-  padding-left: clamp(20px, 2.4vw, 32px);
-  border-left: 3px solid var(--mist);
 }
 
 .count {
@@ -38,17 +39,16 @@
   font-family: var(--font-display);
   font-size: clamp(48px, 4.6vw, 72px);
   line-height: 0.95;
+  font-variant-numeric: tabular-nums;
   color: var(--brand);
 }
 
 .countLabel {
   margin-top: 6px;
-  max-width: 9rem;
-  font-size: 12px;
-  font-weight: 600;
+  max-width: 10rem;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 1.35;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--ink);
 }
 
@@ -57,29 +57,6 @@
   font-size: var(--text-lead);
   line-height: 1.6;
   color: var(--muted);
-}
-
-.kicker {
-  composes: sectionKicker from "../../styles/typography.module.css";
-  color: var(--brand);
-}
-
-.title {
-  composes: sectionTitle from "../../styles/typography.module.css";
-  color: var(--ink);
-}
-
-.titleLine {
-  display: block;
-}
-
-.accent {
-  display: block;
-  width: 56px;
-  height: 3px;
-  margin-top: 22px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, var(--brand), var(--mist));
 }
 
 /* Flex instead of grid: with 11 logos the last row stays centred. */
@@ -93,6 +70,7 @@
   list-style: none;
 }
 
+/* Logos are not links, so the tiles stay still under the pointer. */
 .item {
   flex: 0 1 240px;
   display: grid;
@@ -101,17 +79,6 @@
   border: 1px solid rgb(var(--brand-rgb) / 0.16);
   border-radius: var(--radius-lg);
   background: #fff;
-  box-shadow: 0 12px 36px -28px rgb(var(--ink-rgb) / 0.35);
-  transition:
-    transform 0.35s var(--ease),
-    border-color 0.35s var(--ease),
-    box-shadow 0.35s var(--ease);
-}
-
-.item:hover {
-  transform: translateY(-4px);
-  border-color: rgb(var(--brand-rgb) / 0.55);
-  box-shadow: 0 18px 40px -24px rgb(var(--ink-rgb) / 0.4);
 }
 
 .frame {
@@ -123,11 +90,6 @@
 
 .logo {
   object-fit: contain;
-  transition: transform 0.4s var(--ease);
-}
-
-.item:hover .logo {
-  transform: scale(1.04);
 }
 
 @media (max-width: 900px) {

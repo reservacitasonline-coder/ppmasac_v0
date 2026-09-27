@@ -5,6 +5,7 @@ import type {
   CompanyValue,
   FaqItem,
   LegalSection,
+  LifecycleStep,
   NavLink,
   Photo,
   Pillar,
@@ -92,53 +93,41 @@ export const navLinks: NavLink[] = [
   { label: "Clientes", href: "/#clientes" },
 ];
 
+/** Label shared by every button that leads to the proposal form. */
+const proposalLabel = "Solicitar propuesta";
+
 export const hero = {
-  overline: "Professional Project Manager Administration SAC",
-  /** One line per rendered row of the `h1`. */
-  title: ["PPMA SAC"],
-  /** Rendered as a dot-separated list under the rule. */
-  disciplines: ["Asesorías", "Consultorías", "Construcción", "Inmobiliaria"],
-  primary: {
-    label: "Solicita una propuesta",
-    href: "#contacto",
-  } satisfies CallToAction,
-  secondary: { label: "Ver servicios", href: "/servicios" } satisfies CallToAction,
+  /** One line per rendered row of the `h1`, which wraps further on phones. */
+  title: ["Ingeniería, construcción", "y gestión integral"],
+  /** The registered name, kept prominent at the client's request. */
+  legalName: "Professional Project Manager Administration SAC",
+  lead: "Transformamos sus proyectos desde el análisis de factibilidad y expediente técnico hasta la ejecución y posventa, garantizando cumplimiento en costos, plazos, calidad y seguridad.",
+  /** Verifiable facts only. Leading zeros are kept, also while counting up. */
+  proof: [
+    { value: "08", label: "Años en el mercado peruano" },
+    { value: "20", suffix: "+", label: "Años de experiencia del equipo" },
+    { value: "06", label: "Líneas de servicio" },
+    { value: "05", label: "Especialidades de ingeniería" },
+  ] satisfies Stat[],
+  primary: { label: proposalLabel, href: "#contacto" } satisfies CallToAction,
+  secondary: { label: "Ver servicios", href: "#servicios" } satisfies CallToAction,
   background: {
-    src: unsplash("photo-1503387762-592deb58ef4e", 2000),
-    alt: "Obra en construcción con la ciudad de fondo",
+    src: unsplash("photo-1541888946425-d81bb19240f5", 2000),
+    alt: "Equipo de obra con cascos y chalecos sobre una losa, junto a una zona con acero de refuerzo",
   } satisfies Photo,
 };
 
-export const statement =
-  "Integramos ingeniería, gestión y obra en un solo equipo: del análisis de factibilidad y el expediente técnico a la construcción, el equipamiento y la posventa. Cuidamos alcances, costos, plazos, calidad y seguridad, en armonía con el entorno y con cada grupo de interés.";
-
-export const stats: Stat[] = [
-  { value: "08", label: "Años en el mercado peruano" },
-  { value: "20", suffix: "+", label: "Años de experiencia del equipo" },
-  { value: "06", label: "Líneas de servicio" },
-  { value: "05", label: "Especialidades de ingeniería" },
-];
-
 export const about = {
-  eyebrow: "Nosotros",
   heading: ["Nuestra", "empresa"],
-  lead: "Somos Professional Project Manager Administration (PPMA SAC), un sólido grupo empresarial con 8 años operando ininterrumpidamente en el mercado peruano. Contamos con un staff de profesionales con mas de 20 años laborando en la industria de la construcción, del negocio inmobiliario y servicios generales.",
-  cta: { label: "Contacto", href: "#contacto" } satisfies CallToAction,
-  gallery: [
-    {
-      src: unsplash("photo-1493397212122-2b85dda8106b", 1400),
-      alt: "Fachada de concreto curva de un edificio moderno",
-    },
-    {
-      src: unsplash("photo-1486406146926-c627a92ad1ab", 900),
-      alt: "Torre de vidrio fotografiada desde abajo",
-    },
-  ] satisfies Photo[],
+  lead: "Somos Professional Project Manager Administration (PPMA SAC), un sólido grupo empresarial con 8 años operando ininterrumpidamente en el mercado peruano. Contamos con un staff de profesionales con más de 20 años laborando en la industria de la construcción, del negocio inmobiliario y servicios generales.",
+  /** Not shown on the page; names the "about" node in the structured data. */
   subtitle: "Quiénes somos",
-  columns: [
+  commitment:
     "Garantizamos el éxito de cada proyecto optimizando costos, plazos y calidad, bajo un firme compromiso con la seguridad y la sostenibilidad ambiental.",
+  scope:
     "Ofrecemos soluciones inmobiliarias integrales que abarcan desde el análisis de factibilidad, compra de terrenos y habilitaciones urbanas, hasta la ingeniería, construcción, gestión comercial y soporte posventa.",
-  ],
+  /** Set in brand blue inside `lead`; skipped if it no longer appears verbatim. */
+  leadName: "Professional Project Manager Administration (PPMA SAC)",
   pillars: [
     {
       title: "Misión",
@@ -149,7 +138,7 @@ export const about = {
       body: "Consolidar nuestro liderazgo en el mercado nacional y expandir nuestra presencia internacional en servicios integrales de infraestructura, respaldados por la innovación, dedicación y excelencia de nuestro equipo.",
     },
   ] satisfies Pillar[],
-  valuesTitle: "Valores",
+  valuesTitle: "Valores corporativos",
   values: [
     {
       title: "Honestidad",
@@ -191,17 +180,54 @@ export const about = {
 
 export const services = {
   eyebrow: "Servicios",
-  heading: ["Lo que", "hacemos"],
-  lead: "Seis líneas de servicio que cubren el ciclo completo de un proyecto: del diseño y las licencias a la obra, el equipamiento y la venta.",
-  cta: { label: "Ver todos los servicios", href: "/servicios" } satisfies CallToAction,
-  /** Backdrop of the summary section on the home page. */
-  background: {
-    src: unsplash("photo-1541888946425-d81bb19240f5", 2000),
-    alt: "Cuadrilla de obra sobre una losa con acero de refuerzo",
-  } satisfies Photo,
+  heading: ["Gestión Integral", "en Cada Etapa de su Proyecto"],
+  lead: "Seis líneas de servicio que cubren el ciclo completo de un proyecto: del terreno y las licencias a la obra, el equipamiento y la venta.",
+  cta: { label: "Ver el detalle de cada servicio", href: "/servicios" } satisfies CallToAction,
+  /**
+   * Two deliverables per line for the home page. Keyed by `groups[].slug`;
+   * the order comes from `groups`.
+   */
+  lifecycle: [
+    {
+      slug: "habilitaciones-urbanas",
+      deliverables: ["Saneamiento físico y legal", "Topografía y estudios de cabida"],
+    },
+    {
+      slug: "asesoria-y-consultoria",
+      deliverables: [
+        "Expedientes técnicos para aprobación municipal",
+        "Licencias y conformidad de obra",
+      ],
+    },
+    {
+      slug: "proyectos",
+      deliverables: [
+        "Especialidades compatibilizadas en BIM (Revit)",
+        "Presupuesto con precios reales de mercado",
+      ],
+    },
+    {
+      slug: "obras",
+      deliverables: [
+        "Edificaciones, obras viales y estructuras",
+        "Control de calidad de principio a fin",
+      ],
+    },
+    {
+      slug: "implementaciones",
+      deliverables: [
+        "Agencias bancarias, oficinas y locales comerciales",
+        "ACI, CCTV, instalaciones eléctricas y climatización",
+      ],
+    },
+    {
+      slug: "consultoria-comercial",
+      deliverables: ["Estudios de mercado y business plan", "Gestión de ventas y posventa"],
+    },
+  ] satisfies LifecycleStep[],
   /** Cover band of the /servicios page. */
   page: {
-    heading: ["Ingeniería, construcción", "y gestión integral"],
+    heading: ["Ingeniería, gestión y construcción", "integradas en un solo equipo"],
     lead: "Acompañamos el proyecto de principio a fin, con un staff de profesionales con más de 20 años en la industria de la construcción.",
     background: {
       src: unsplash("photo-1493397212122-2b85dda8106b", 2000),
@@ -209,9 +235,9 @@ export const services = {
     } satisfies Photo,
     indexTitle: "Líneas de servicio",
     closing: {
-      title: "¿Tienes un proyecto en mente?",
-      body: "Cuéntanos el alcance y te proponemos plazos y presupuesto.",
-      cta: { label: "Contacto", href: "/#contacto" } satisfies CallToAction,
+      title: "¿Tiene un proyecto en mente?",
+      body: "Cuéntenos el alcance y le proponemos plazos y presupuesto.",
+      cta: { label: proposalLabel, href: "/#contacto" } satisfies CallToAction,
     },
   },
   /** Shared by the summary on the home page and the detail page. */
@@ -375,15 +401,18 @@ export const services = {
 };
 
 export const clients = {
-  eyebrow: "Clientes",
   heading: ["Empresas que", "confían en nosotros"],
-  countLabel: "empresas e instituciones",
+  countLabel: "Empresas e Instituciones",
   lead: "Organizaciones de retail, salud, educación, hotelería y el sector público han confiado en nosotros para sus proyectos.",
   /** Logos live in `public/clients`; the name is used as alt text. */
   items: [
     { name: "Cencosud", logo: "/clients/Cencosud-2014.svg" },
     { name: "Auna", logo: "/clients/logotipo_AUNA-01.svg" },
-    { name: "Ministerio del Ambiente del Perú", logo: "/clients/PCM-Ambiente.webp" },
+    {
+      name: "Ministerio del Ambiente del Perú",
+      logo: "/clients/PCM-Ambiente.webp",
+      scale: 1.2,
+    },
     { name: "Universidad San Ignacio de Loyola", logo: "/clients/Usil.jpg" },
     {
       name: "Universidad Nacional Agraria La Molina",
@@ -398,7 +427,11 @@ export const clients = {
       name: "El Pardo DoubleTree by Hilton",
       logo: "/clients/El_pardo.jpg",
     },
-    { name: "Clínica Renacer", logo: "/clients/clinica-renacer-transparente.png" },
+    {
+      name: "Clínica Renacer",
+      logo: "/clients/clinica-renacer-transparente.png",
+      scale: 1.3,
+    },
     {
       name: "Parque del Recuerdo",
       logo: "/clients/parque-recuerdo-trim.png",
@@ -505,36 +538,51 @@ export const testimonial: Testimonial = {
 
 export const contact = {
   /** Rendered as the header button, which exists on every route. */
-  cta: { label: "Contacto", href: "/#contacto" } satisfies CallToAction,
-  eyebrow: "Contacto",
-  heading: ["Conversemos", "de tu proyecto"],
-  lead: "Cuéntanos qué necesitas y un especialista revisará tu requerimiento para proponerte el alcance, los plazos y el presupuesto.",
+  cta: { label: proposalLabel, href: "/#contacto" } satisfies CallToAction,
+  heading: ["Conversemos", "de su proyecto"],
+  lead: "Cuéntenos qué necesita y un especialista revisará su requerimiento para proponerle el alcance, los plazos y el presupuesto.",
+  /** What happens after sending, in order. */
+  nextSteps: [
+    "Un especialista revisa su requerimiento.",
+    "Le respondemos en un plazo máximo de 48 horas hábiles.",
+    "Le proponemos el alcance, los plazos y el presupuesto.",
+  ],
+  nextStepsTitle: "Qué pasa después",
+  directTitle: "¿Prefiere escribirnos directamente?",
   form: {
-    title: "Solicita una propuesta",
+    title: "Solicitud de propuesta",
+    requiredNote: "Los campos marcados con * son obligatorios.",
+    labels: {
+      name: "Nombre y apellido *",
+      company: "Empresa",
+      email: "Correo electrónico *",
+      phone: "Teléfono",
+      service: "Servicio de interés",
+      servicePlaceholder: "Seleccione una opción",
+      message: "Cuéntenos sobre el proyecto *",
+    },
     /** Options for the "servicio de interés" select: the six service lines. */
     services: [
       ...services.groups.map((group) => group.title.replace(/\n/g, " ")),
       "Otro",
     ],
     submit: "Enviar solicitud",
-    submitting: "Enviando…",
-    note: "Respondemos en un plazo máximo de 48 horas hábiles.",
+    submitting: "Enviando solicitud…",
     /**
      * Read twice: the browser shows them in its own validation bubble while
      * the visitor types, and the server action returns them under the field
      * when the form is posted anyway. Both have to say the same thing.
      */
     errors: {
-      name: "Indícanos tu nombre.",
-      email: "Indícanos tu correo.",
-      emailInvalid: "Revisa el correo, no parece una dirección válida.",
-      phoneInvalid: "Usa solo números y los signos + ( ) -, con al menos 6 dígitos.",
-      message: "Indícanos tu mensaje.",
-      messageShort: "Cuéntanos un poco más sobre el proyecto.",
-      consent: "Necesitamos tu autorización para tratar estos datos.",
-      turnstile:
-        "No pudimos verificar que no eres un robot. Recarga la casilla e inténtalo de nuevo.",
-      summary: "Revisa los campos marcados para poder enviar tu solicitud.",
+      name: "Indíquenos su nombre.",
+      email: "Indíquenos su correo.",
+      emailInvalid: "Revise el correo: debe tener la forma nombre@empresa.com.",
+      phoneInvalid: "Use solo números y los signos + ( ) -, con al menos 6 dígitos.",
+      message: "Indíquenos su mensaje.",
+      messageShort: "Cuéntenos un poco más sobre el proyecto (al menos 15 caracteres).",
+      consent: "Necesitamos su autorización para tratar estos datos.",
+      turnstile: `No pudimos verificar que no es un robot. Recargue la casilla e inténtelo de nuevo, o escríbanos a atencionalcliente@ppmasac.com o por WhatsApp al ${site.whatsapp.label}.`,
+      summary: "Revise los campos marcados para poder enviar su solicitud.",
     },
     /**
      * Ley 29733 asks for consent that is prior, express and informed, so the
@@ -556,14 +604,14 @@ export const contact = {
 export const privacy = {
   eyebrow: "Legal",
   heading: ["Política", "de privacidad"],
-  lead: "Cómo trata PPMA SAC los datos personales que nos dejas en este sitio web, para qué los usamos y cómo puedes controlarlos en cualquier momento.",
+  lead: "Cómo trata PPMA SAC los datos personales que usted nos deja en este sitio web, para qué los usamos y cómo puede controlarlos en cualquier momento.",
   sections: [
     {
       index: "01",
       slug: "responsable",
-      title: "Quién trata tus datos",
+      title: "Quién trata sus datos",
       body: [
-        "El responsable del tratamiento es Professional Project Manager Administration S.A.C. (PPMA SAC), con RUC 20601984564, empresa domiciliada en el Perú. Puedes escribirnos por cualquier asunto relacionado con tus datos personales a:",
+        "El responsable del tratamiento es Professional Project Manager Administration S.A.C. (PPMA SAC), con RUC 20601984564, empresa domiciliada en el Perú. Puede escribirnos por cualquier asunto relacionado con sus datos personales a:",
       ],
       items: ["Correo: atencionalcliente@ppmasac.com", "Teléfono: +51 981 248 447"],
     },
@@ -572,14 +620,14 @@ export const privacy = {
       slug: "datos",
       title: "Qué datos recogemos",
       body: [
-        "Solo los que escribes en el formulario de contacto. No pedimos ni tratamos datos sensibles, y tampoco compramos bases de datos de terceros.",
+        "Solo los que usted escribe en el formulario de contacto. No pedimos ni tratamos datos sensibles, y tampoco compramos bases de datos de terceros.",
       ],
       items: [
         "Nombre y apellido.",
-        "Empresa, si decides indicarla.",
+        "Empresa, si decide indicarla.",
         "Correo electrónico.",
-        "Teléfono, si decides indicarlo.",
-        "Servicio de interés y el contenido de tu mensaje.",
+        "Teléfono, si decide indicarlo.",
+        "Servicio de interés y el contenido de su mensaje.",
       ],
     },
     {
@@ -587,8 +635,8 @@ export const privacy = {
       slug: "finalidad",
       title: "Para qué los usamos",
       body: [
-        "Usamos tus datos únicamente para atender tu solicitud: entender el requerimiento, contactarte, preparar una propuesta de alcance, plazos y presupuesto, y hacer el seguimiento de esa conversación.",
-        "No los usamos para enviarte publicidad ni los cedemos con fines comerciales. Si en el futuro quisiéramos hacerlo, te pediríamos una autorización aparte.",
+        "Usamos sus datos únicamente para atender su solicitud: entender el requerimiento, comunicarnos con usted, preparar una propuesta de alcance, plazos y presupuesto, y hacer el seguimiento de esa conversación.",
+        "No los usamos para enviarle publicidad ni los cedemos con fines comerciales. Si en el futuro quisiéramos hacerlo, le pediríamos una autorización aparte.",
       ],
     },
     {
@@ -596,8 +644,8 @@ export const privacy = {
       slug: "consentimiento",
       title: "Con qué autorización",
       body: [
-        "La base del tratamiento es tu consentimiento, que otorgas al marcar la casilla del formulario antes de enviarlo. Es libre, previo, expreso e informado, como exige la Ley 29733 de Protección de Datos Personales y su reglamento.",
-        "Puedes retirarlo cuando quieras escribiéndonos al correo indicado, sin que ello afecte la validez del tratamiento realizado hasta ese momento.",
+        "La base del tratamiento es su consentimiento, que usted otorga al marcar la casilla del formulario antes de enviarlo. Es libre, previo, expreso e informado, como exige la Ley 29733 de Protección de Datos Personales y su reglamento.",
+        "Puede retirarlo cuando quiera escribiéndonos al correo indicado, sin que ello afecte la validez del tratamiento realizado hasta ese momento.",
       ],
     },
     {
@@ -605,7 +653,7 @@ export const privacy = {
       slug: "conservacion",
       title: "Cuánto tiempo los conservamos",
       body: [
-        "Guardamos tu solicitud mientras dure la conversación comercial y hasta dos años después del último contacto, plazo en el que podría retomarse el proyecto. Cumplido ese periodo los eliminamos, salvo que una norma nos obligue a conservarlos por más tiempo, como ocurre con la documentación contractual y tributaria.",
+        "Guardamos su solicitud mientras dure la conversación comercial y hasta dos años después del último contacto, plazo en el que podría retomarse el proyecto. Cumplido ese periodo los eliminamos, salvo que una norma nos obligue a conservarlos por más tiempo, como ocurre con la documentación contractual y tributaria.",
       ],
     },
     {
@@ -613,8 +661,8 @@ export const privacy = {
       slug: "destinatarios",
       title: "Quién más los ve",
       body: [
-        "Tu solicitud llega al equipo comercial de PPMA SAC y a nadie más. Los proveedores que hacen posible el servicio —alojamiento del sitio, correo corporativo y la verificación antispam de Cloudflare Turnstile— actúan como encargados de tratamiento, solo procesan los datos por encargo nuestro y están sujetos a deberes de confidencialidad.",
-        "Estos proveedores pueden almacenar la información en servidores ubicados fuera del Perú, lo que constituye un flujo transfronterizo de datos amparado en tu consentimiento y sujeto a las garantías que exige la normativa.",
+        "Su solicitud llega al equipo comercial de PPMA SAC y a nadie más. Los proveedores que hacen posible el servicio —alojamiento del sitio, correo corporativo y la verificación antispam de Cloudflare Turnstile— actúan como encargados de tratamiento, solo procesan los datos por encargo nuestro y están sujetos a deberes de confidencialidad.",
+        "Estos proveedores pueden almacenar la información en servidores ubicados fuera del Perú, lo que constituye un flujo transfronterizo de datos amparado en su consentimiento y sujeto a las garantías que exige la normativa.",
       ],
     },
     {
@@ -628,10 +676,10 @@ export const privacy = {
     {
       index: "08",
       slug: "derechos",
-      title: "Tus derechos",
+      title: "Sus derechos",
       body: [
-        "En cualquier momento puedes ejercer tus derechos de información, acceso, actualización, rectificación, inclusión, supresión, oposición y tratamiento objetivo de tus datos personales.",
-        "Para hacerlo, escríbenos a atencionalcliente@ppmasac.com indicando tu solicitud y adjuntando un documento que acredite tu identidad. Responderemos dentro de los plazos que fija la ley. Si consideras que no atendimos tu pedido, puedes reclamar ante la Autoridad Nacional de Protección de Datos Personales del Ministerio de Justicia y Derechos Humanos.",
+        "En cualquier momento puede ejercer sus derechos de información, acceso, actualización, rectificación, inclusión, supresión, oposición y tratamiento objetivo de sus datos personales.",
+        "Para hacerlo, escríbanos a atencionalcliente@ppmasac.com indicando su solicitud y adjuntando un documento que acredite su identidad. Responderemos dentro de los plazos que fija la ley. Si considera que no atendimos su pedido, puede reclamar ante la Autoridad Nacional de Protección de Datos Personales del Ministerio de Justicia y Derechos Humanos.",
       ],
     },
     {
@@ -639,7 +687,7 @@ export const privacy = {
       slug: "cookies",
       title: "Cookies",
       body: [
-        "Este sitio no utiliza cookies de analítica, publicidad ni seguimiento de terceros: solo las estrictamente necesarias para que las páginas funcionen. Si más adelante incorporamos herramientas de medición, lo anunciaremos aquí y solicitaremos tu consentimiento antes de activarlas.",
+        "Este sitio no utiliza cookies de analítica, publicidad ni seguimiento de terceros: solo las estrictamente necesarias para que las páginas funcionen. Si más adelante incorporamos herramientas de medición, lo anunciaremos aquí y solicitaremos su consentimiento antes de activarlas.",
       ],
     },
     {
@@ -647,16 +695,16 @@ export const privacy = {
       slug: "cambios",
       title: "Cambios en esta política",
       body: [
-        "Podemos actualizar esta política si cambian nuestros servicios o la normativa aplicable. La versión vigente es siempre la publicada en esta página, así que te recomendamos revisarla cada cierto tiempo.",
+        "Podemos actualizar esta política si cambian nuestros servicios o la normativa aplicable. La versión vigente es siempre la publicada en esta página, así que le recomendamos revisarla cada cierto tiempo.",
       ],
     },
   ] satisfies LegalSection[],
 };
 
 export const footer = {
-  /** Wordmark for the dark footer band. Served from `public/logos`. */
+  /** Same transparent mark as the header, flattened to white by the footer CSS. */
   logo: {
-    src: "/logos/ppmasac-white@2x.png",
+    src: "/logos/ppmasac-transparent@2x.png",
     alt: "PPMA SAC",
     width: 1017,
     height: 210,

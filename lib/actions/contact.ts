@@ -6,14 +6,12 @@ import { contact, footer } from "@/content/site";
 import type { ContactFieldName, ContactFormState } from "@/content/types";
 import { sendEnquiry } from "@/lib/mail";
 import { verifyTurnstileToken } from "@/lib/turnstile";
-import { phoneRegExp } from "@/lib/validation";
+import { emailRegExp, phoneRegExp } from "@/lib/validation";
 
 const copy = contact.form.errors;
 
 /** Fields the visitor has to fill in for the enquiry to be actionable. */
 const required = ["name", "email", "message"] as const;
-
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 /** Longest value we keep per field, so a bot cannot post megabytes of text. */
 const maxLength: Record<ContactFieldName, number> = {
@@ -96,7 +94,7 @@ export async function submitEnquiry(
     errors.turnstile = copy.turnstile;
   }
 
-  if (values.email && !emailPattern.test(values.email)) {
+  if (values.email && !emailRegExp.test(values.email)) {
     errors.email = copy.emailInvalid;
   }
 
@@ -129,7 +127,7 @@ export async function submitEnquiry(
   if (!delivered) {
     return {
       status: "error",
-      message: `No pudimos enviar tu solicitud. Inténtalo de nuevo en unos minutos o escríbenos a ${footer.contact.email}.`,
+      message: `No pudimos enviar su solicitud. Inténtelo de nuevo en unos minutos o escríbanos a ${footer.contact.email}.`,
       errors: {},
       values,
       consent,
@@ -138,7 +136,7 @@ export async function submitEnquiry(
 
   return {
     status: "success",
-    message: `Gracias, ${values.name.split(" ")[0]}. Recibimos tu solicitud y te responderemos a ${values.email}.`,
+    message: `Gracias, ${values.name.split(" ")[0]}. Recibimos su solicitud y le responderemos a ${values.email} en un plazo máximo de 48 horas hábiles.`,
     errors: {},
     values: {},
   };
