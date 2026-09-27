@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
-import type { KeyboardEvent as ReactKeyboardEvent, MouseEvent } from "react";
+import type { KeyboardEvent as ReactKeyboardEvent } from "react";
 
 import { Button } from "@/components/ui/Button";
 import { MailIcon, WhatsAppIcon } from "@/components/ui/icons";
@@ -41,24 +41,27 @@ export function MobileMenu({ links, cta, email, whatsapp }: MobileMenuProps) {
       buttonRef.current?.focus();
     };
 
+    // Any link dismisses it, including the header logo outside the panel.
+    const onDocumentClick = (event: MouseEvent) => {
+      if ((event.target as HTMLElement).closest("a")) setIsOpen(false);
+    };
+
     const desktop = window.matchMedia("(min-width: 901px)");
     const onViewportChange = () => {
       if (desktop.matches) setIsOpen(false);
     };
 
     document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("click", onDocumentClick);
     desktop.addEventListener("change", onViewportChange);
 
     return () => {
       root.style.overflow = "";
       document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("click", onDocumentClick);
       desktop.removeEventListener("change", onViewportChange);
     };
   }, [isOpen]);
-
-  const closeOnLink = (event: MouseEvent<HTMLDivElement>) => {
-    if ((event.target as HTMLElement).closest("a")) setIsOpen(false);
-  };
 
   const trapFocus = (event: ReactKeyboardEvent<HTMLElement>) => {
     if (!isOpen || event.key !== "Tab" || !panelRef.current || !buttonRef.current) return;
@@ -98,7 +101,6 @@ export function MobileMenu({ links, cta, email, whatsapp }: MobileMenuProps) {
         id={panelId}
         className={styles.panel}
         data-open={isOpen ? "true" : undefined}
-        onClick={closeOnLink}
       >
         <nav aria-label="Principal">
           <ul className={styles.panelList}>
