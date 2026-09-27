@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/Button";
@@ -7,27 +6,24 @@ import { services } from "@/content/site";
 
 import styles from "./Services.module.css";
 
-/** Summary of the six service lines. The detail lives on `/servicios`. */
+/**
+ * The six service lines, numbered in the same order as `/servicios`, where the
+ * detail of each one lives.
+ */
 export function Services() {
+  const steps = services.groups.flatMap((group) => {
+    const step = services.lifecycle.find((item) => item.slug === group.slug);
+    return step ? [{ ...step, group }] : [];
+  });
+
   return (
     <section
       className={styles.services}
       id="servicios"
       aria-labelledby="servicios-title"
     >
-      <div className={styles.media}>
-        <Image
-          className={styles.mediaImage}
-          src={services.background.src}
-          alt={services.background.alt}
-          fill
-          sizes="100vw"
-        />
-      </div>
-
-      <Container className={styles.inner}>
+      <Container>
         <div className={styles.head} data-reveal>
-          <p className={styles.kicker}>{services.eyebrow}</p>
           <h2 id="servicios-title" className={styles.title}>
             {services.heading.map((line) => (
               <span className={styles.titleLine} key={line}>
@@ -35,26 +31,39 @@ export function Services() {
               </span>
             ))}
           </h2>
-          <span className={styles.accent} aria-hidden="true" />
           <p className={styles.lead}>{services.lead}</p>
         </div>
 
-        <ul className={styles.grid} data-reveal-group>
-          {services.groups.map((group) => (
-            <li key={group.slug}>
-              <Link className={styles.card} href={`/servicios#${group.slug}`}>
-                <div className={styles.cardTop}>
-                  <span className={styles.cardIndex}>{group.index}</span>
-                  <span className={styles.cardArrow} aria-hidden="true">
-                    →
-                  </span>
-                </div>
-                <h3 className={styles.cardTitle}>{group.title}</h3>
-                <p className={styles.cardText}>{group.teaser ?? group.summary}</p>
-              </Link>
+        <ol className={styles.timeline} data-reveal-group>
+          {steps.map((step, index) => (
+            <li className={styles.step} key={step.slug}>
+              <span className={styles.number} aria-hidden="true">
+                {index + 1}
+              </span>
+
+              <div className={styles.body}>
+                <h3 className={styles.stepTitle}>
+                  <Link className={styles.stepLink} href={`/servicios#${step.slug}`}>
+                    {step.group.title.replace(/\n/g, " ")}
+                  </Link>
+                </h3>
+                <p className={styles.stepText}>
+                  {step.group.teaser ?? step.group.summary}
+                </p>
+              </div>
+
+              <ul className={styles.deliverables}>
+                {step.deliverables.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+
+              <span className={styles.arrow} aria-hidden="true">
+                →
+              </span>
             </li>
           ))}
-        </ul>
+        </ol>
 
         <div className={styles.actions}>
           <Button href={services.cta.href} variant="light">

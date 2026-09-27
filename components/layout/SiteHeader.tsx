@@ -28,7 +28,7 @@ export function SiteHeader() {
           />
         </Link>
 
-        <nav className={styles.nav} aria-label="Main">
+        <nav className={styles.nav} aria-label="Principal">
           <ul className={styles.menu}>
             {navLinks.map((link) => (
               <li key={link.href}>

@@ -1,6 +1,3 @@
-import Image from "next/image";
-
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ValueIcon } from "@/components/ui/icons";
 import { about } from "@/content/site";
@@ -8,91 +5,43 @@ import { about } from "@/content/site";
 import styles from "./About.module.css";
 
 export function About() {
-  const [wide, square] = about.gallery;
-
   return (
-    <>
-      <section className={styles.about} id="nosotros" aria-labelledby="nosotros-title">
-        <Container>
-          <div className={styles.intro}>
-            <div className={styles.introCopy} data-reveal>
-              <p className={styles.kicker}>{about.eyebrow}</p>
-              <h2 id="nosotros-title" className={styles.title}>
-                {about.heading.map((line) => (
-                  <span className={styles.titleLine} key={line}>
-                    {line}
-                  </span>
-                ))}
-              </h2>
-              <span className={styles.accent} aria-hidden="true" />
-            </div>
-            <div className={styles.lead} data-reveal>
-              <p>{about.lead}</p>
-              <Button href={about.cta.href} variant="outline">
-                {about.cta.label}
-              </Button>
-            </div>
-          </div>
-
-          <div className={styles.gallery} data-reveal-group>
-            <figure className={styles.figureWide}>
-              <Image
-                className={styles.image}
-                src={wide.src}
-                alt={wide.alt}
-                fill
-                sizes="(max-width: 900px) 100vw, 62vw"
-              />
-            </figure>
-            <figure className={styles.figure}>
-              <Image
-                className={styles.image}
-                src={square.src}
-                alt={square.alt}
-                fill
-                sizes="(max-width: 900px) 100vw, 36vw"
-              />
-            </figure>
-          </div>
-
-          <div className={styles.who} data-reveal>
-            <div className={styles.whoHead}>
-              <span className={styles.sectionIndex} aria-hidden="true">
-                01
+    <section className={styles.about} id="nosotros" aria-labelledby="nosotros-title">
+      <Container>
+        <div className={styles.intro} data-reveal>
+          <h2 id="nosotros-title" className={styles.title}>
+            {about.heading.map((line) => (
+              <span className={styles.titleLine} key={line}>
+                {line}
               </span>
-              <h3 className={styles.subtitle}>{about.subtitle}</h3>
-            </div>
-            <div className={styles.columns}>
-              {about.columns.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
+            ))}
+          </h2>
+          <div className={styles.who}>
+            <h3 className={styles.blockTitle}>{about.subtitle}</h3>
+            <p className={styles.lead}>{about.lead}</p>
           </div>
-
-          <div className={styles.pillars} data-reveal-group>
-            {about.pillars.map((pillar, index) => (
-              <article className={styles.pillar} key={pillar.title}>
-                <span className={styles.pillarIndex} aria-hidden="true">
-                  {String(index + 2).padStart(2, "0")}
-                </span>
-                <h3 className={styles.pillarTitle}>{pillar.title}</h3>
-                <p className={styles.pillarText}>{pillar.body}</p>
-              </article>
+          <div className={styles.bodyColumns}>
+            {about.body.map((paragraph) => (
+              <p className={styles.body} key={paragraph}>
+                {paragraph}
+              </p>
             ))}
           </div>
-        </Container>
-      </section>
+        </div>
 
-      <section className={styles.valuesBand} aria-labelledby="valores-title">
-        <Container>
-          <div className={styles.valuesHead} data-reveal>
-            <span className={styles.valuesIndex} aria-hidden="true">
-              04
-            </span>
-            <h3 className={styles.valuesTitle} id="valores-title">
-              {about.valuesTitle}
-            </h3>
-          </div>
+        <div className={styles.purpose} data-reveal>
+          {about.pillars.map((pillar) => (
+            <div className={styles.pillar} key={pillar.title}>
+              <h3 className={styles.pillarTitle}>{pillar.title}</h3>
+              <p className={styles.pillarText}>{pillar.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.values}>
+          <h3 className={styles.blockTitle} data-reveal>
+            {about.valuesTitle}
+          </h3>
           <ul className={styles.valueList} data-reveal-group>
             {about.values.map((value) => (
               <li className={styles.value} key={value.title}>
@@ -104,8 +53,8 @@ export function About() {
               </li>
             ))}
           </ul>
-        </Container>
-      </section>
-    </>
+        </div>
+      </Container>
+    </section>
   );
 }

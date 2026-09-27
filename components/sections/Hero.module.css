@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: min(100svh, 920px);
+  min-height: min(100svh, 940px);
   padding-bottom: clamp(28px, 3.2vw, 48px);
   background: var(--brand-deep);
   color: #fff;
@@ -17,11 +17,13 @@
 
 .mediaImage {
   object-fit: cover;
-  filter: saturate(0.85) contrast(1.05) brightness(1.02);
+  object-position: center 40%;
+  filter: saturate(0.8) contrast(1.05);
   animation: zoomOut 18s var(--ease) forwards;
 }
 
-/* Soft brand-blue veil: readable type, photo still present. */
+/* The photograph is a sunlit concrete slab, so the veil carries more weight
+   on the left and at the foot, where the copy sits. */
 .media::after {
   content: "";
   position: absolute;
@@ -29,16 +31,16 @@
   background:
     linear-gradient(
       180deg,
-      rgb(var(--brand-deep-rgb) / 0.55) 0%,
-      rgb(var(--brand-deep-rgb) / 0.22) 36%,
-      rgb(var(--brand-deep-rgb) / 0.48) 68%,
-      rgb(var(--brand-deep-rgb) / 0.82) 100%
+      rgb(var(--ink-rgb) / 0.62) 0%,
+      rgb(var(--brand-deep-rgb) / 0.4) 30%,
+      rgb(var(--brand-deep-rgb) / 0.72) 62%,
+      rgb(var(--ink-rgb) / 0.94) 100%
     ),
     linear-gradient(
-      105deg,
-      rgb(var(--brand-rgb) / 0.48) 0%,
-      rgb(96 179 231 / 0.14) 46%,
-      transparent 78%
+      100deg,
+      rgb(var(--brand-rgb) / 0.62) 0%,
+      rgb(var(--brand-rgb) / 0.28) 48%,
+      transparent 80%
     );
 }
 
@@ -58,11 +60,12 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: clamp(48px, 6.5vw, 88px);
-  padding-top: clamp(110px, 15vw, 200px);
+  gap: clamp(40px, 5.5vw, 72px);
+  padding-top: clamp(120px, 14vw, 180px);
 }
 
 .copy {
+  max-width: 62rem;
   animation: riseIn 1s var(--ease) both;
 }
 
@@ -70,28 +73,36 @@
   margin: 0;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(64px, 13.5vw, 172px);
-  line-height: 0.88;
-  letter-spacing: -0.015em;
+  font-size: clamp(44px, 6.6vw, 100px);
+  line-height: 0.94;
+  letter-spacing: -0.005em;
   text-transform: uppercase;
+  text-wrap: balance;
   text-shadow: 0 8px 40px rgb(var(--ink-rgb) / 0.35);
-  white-space: nowrap;
 }
 
 .titleLine {
   display: block;
 }
 
-.overline {
-  margin: 14px 0 0;
+.legalName {
+  margin: clamp(18px, 2vw, 26px) 0 0;
   font-family: var(--font-cond);
-  font-size: clamp(14px, 1.55vw, 20px);
+  font-size: clamp(17px, 1.5vw, 22px);
   font-weight: 600;
   letter-spacing: 0.06em;
   line-height: 1.25;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.94);
-  white-space: nowrap;
+  text-wrap: balance;
+  color: var(--mist);
+}
+
+.lead {
+  margin: 12px 0 0;
+  max-width: 58ch;
+  font-size: var(--text-lead);
+  line-height: 1.6;
+  color: var(--on-dark);
 }
 
 @keyframes riseIn {
@@ -107,7 +118,7 @@
 
 .bottom {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   gap: clamp(20px, 3vw, 40px);
   padding-top: clamp(22px, 2.8vw, 34px);
@@ -115,33 +126,48 @@
   animation: riseIn 1s 0.12s var(--ease) both;
 }
 
-/* The four practice areas, read as one line separated by mist discs. */
-.disciplines {
+.proof {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 10px 18px;
-  font-family: var(--font-cond);
-  font-weight: 600;
-  font-size: clamp(15px, 0.8vw + 8px, 20px);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.92);
+  gap: 16px 0;
+  margin: 0;
 }
 
-.disciplines li {
+/* Label first in the markup so a screen reader reads "term: value"; the
+   column is reversed so the figure still leads visually. */
+.proofItem {
   display: flex;
-  align-items: center;
-  gap: 18px;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 4px;
+  padding-inline: clamp(18px, 2.4vw, 32px);
+  border-left: 1px solid rgba(255, 255, 255, 0.28);
 }
 
-.disciplines li + li::before {
-  content: "";
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--mist);
-  box-shadow: 0 0 0 3px rgb(96 179 231 / 0.18);
+.proofItem:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.proofValue {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 2.8vw, 44px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+}
+
+.proofSuffix {
+  color: var(--mist);
+}
+
+.proofLabel {
+  max-width: 14ch;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--on-dark-soft);
 }
 
 .actions {
@@ -152,45 +178,33 @@
   flex: 0 0 auto;
 }
 
-/* The header wraps onto two rows here, so the hero needs more clearance. */
 @media (max-width: 900px) {
   .inner {
-    padding-top: 160px;
+    padding-top: 120px;
   }
 
-  .overline {
-    white-space: normal;
-    max-width: 28ch;
-  }
-}
-
-@media (max-width: 720px) {
   .bottom {
     flex-direction: column;
     align-items: stretch;
-    gap: 22px;
+    gap: 26px;
   }
 
   .actions {
     justify-content: flex-start;
   }
-
-  /* Wrapping a dot-separated line leaves a dot orphaned at the start of the
-     second row, so narrow screens get a plain two-column list instead. */
-  .disciplines {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px 20px;
-  }
-
-  .disciplines li + li::before {
-    display: none;
-  }
 }
 
-/* The two labels never fit side by side on a phone, so they stack at full
-   width instead of wrapping into two ragged pills. */
+/* Three figures still fit in a row on a phone once the gutters tighten. */
 @media (max-width: 560px) {
+  .proof {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .proofItem {
+    padding-inline: 12px;
+  }
+
   .actions {
     flex-direction: column;
     align-self: stretch;
@@ -198,6 +212,16 @@
 
   .actions > * {
     justify-content: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .proofItem {
+    padding-inline: 10px;
+  }
+
+  .proofLabel {
+    font-size: 13px;
   }
 }
 

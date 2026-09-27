@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState, type FormEvent } from "react";
+import { useActionState, useEffect, useRef, type FormEvent } from "react";
 
 import { contact } from "@/content/site";
 import type { ContactFormState } from "@/content/types";
 import { TurnstileField } from "@/components/ui/TurnstileField";
 import { submitEnquiry } from "@/lib/actions/contact";
 import {
+  emailPattern,
   phonePattern,
   stripPhone,
   validationMessage,
@@ -52,16 +53,28 @@ function inSpanish(messages: ValidationCopy) {
 export function ContactForm() {
   const [state, action, pending] = useActionState(submitEnquiry, empty);
   const { form } = contact;
+  const { labels } = form;
+  const formRef = useRef<HTMLFormElement>(null);
+  const statusRef = useRef<HTMLParagraphElement>(null);
+
+  // After the server answers, keyboard and screen-reader users land on the
+  // first field to fix, or on the message when no single field is to blame.
+  useEffect(() => {
+    if (state.status === "idle") return;
+    const invalid = formRef.current?.querySelector<HTMLElement>('[aria-invalid="true"]');
+    (invalid ?? statusRef.current)?.focus();
+  }, [state]);
 
   return (
     <div className={styles.card}>
       <h3 className={styles.cardTitle}>{form.title}</h3>
+      <p className={styles.requiredNote}>{form.requiredNote}</p>
 
       {/* Remounting after a successful send clears every field. */}
-      <form className={styles.form} action={action} key={state.status}>
+      <form className={styles.form} action={action} key={state.status} ref={formRef}>
         <p className={styles.field}>
           <label className={styles.label} htmlFor="name">
-            Nombre y apellido *
+            {labels.name}
           </label>
           <input
             className={styles.input}
@@ -84,7 +97,7 @@ export function ContactForm() {
 
         <p className={styles.field}>
           <label className={styles.label} htmlFor="company">
-            Empresa
+            {labels.company}
           </label>
           <input
             className={styles.input}
@@ -98,7 +111,7 @@ export function ContactForm() {
 
         <p className={styles.field}>
           <label className={styles.label} htmlFor="email">
-            Correo electrónico *
+            {labels.email}
           </label>
           <input
             className={styles.input}
@@ -107,9 +120,11 @@ export function ContactForm() {
             type="email"
             autoComplete="email"
             required
+            pattern={emailPattern}
             {...inSpanish({
               valueMissing: copy.email,
               typeMismatch: copy.emailInvalid,
+              patternMismatch: copy.emailInvalid,
             })}
             defaultValue={state.values.email}
             aria-invalid={Boolean(state.errors.email)}
@@ -124,7 +139,7 @@ export function ContactForm() {
 
         <p className={styles.field}>
           <label className={styles.label} htmlFor="phone">
-            Teléfono
+            {labels.phone}
           </label>
           <input
             className={styles.input}
@@ -167,7 +182,7 @@ export function ContactForm() {
 
         <p className={styles.fieldWide}>
           <label className={styles.label} htmlFor="service">
-            Servicio de interés
+            {labels.service}
           </label>
           <select
             className={styles.select}
@@ -175,7 +190,7 @@ export function ContactForm() {
             name="service"
             defaultValue={state.values.service ?? ""}
           >
-            <option value="">Selecciona una opción</option>
+            <option value="">{labels.servicePlaceholder}</option>
             {form.services.map((service) => (
               <option key={service} value={service}>
                 {service}
@@ -186,7 +201,7 @@ export function ContactForm() {
 
         <p className={styles.fieldWide}>
           <label className={styles.label} htmlFor="message">
-            Cuéntanos sobre el proyecto *
+            {labels.message}
           </label>
           <textarea
             className={styles.textarea}
@@ -213,13 +228,15 @@ export function ContactForm() {
         </p>
 
         {/* Ley 29733 wants consent given actively, so this never ships ticked. */}
-        <p className={styles.consent}>
+        <p className={styles.consent} data-whatsapp-avoid>
           <input
             className={styles.checkbox}
             id="consent"
             name="consent"
             type="checkbox"
             value="yes"
+            required
+            {...inSpanish({ valueMissing: copy.consent })}
             defaultChecked={state.consent}
             aria-invalid={Boolean(state.errors.consent)}
             aria-describedby={state.errors.consent ? "consent-error" : undefined}
@@ -271,17 +288,16 @@ export function ContactForm() {
           aria-hidden="true"
         />
 
-        <div className={styles.actions}>
+        <div className={styles.actions} data-whatsapp-avoid>
           <button className={styles.submit} type="submit" disabled={pending}>
             {pending ? form.submitting : form.submit}
             <span className={styles.arrow} aria-hidden="true">
               →
             </span>
           </button>
-          <span className={styles.note}>{form.note}</span>
         </div>
 
-        <p aria-live="polite" className={styles.status}>
+        <p aria-live="polite" className={styles.status} ref={statusRef} tabIndex={-1}>
           {state.status !== "idle" && state.message ? (
             <span
               className={state.status === "success" ? styles.success : styles.failure}

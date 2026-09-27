@@ -57,6 +57,24 @@ export function WhatsAppIcon({ className }: IconProps) {
   );
 }
 
+export function ArrowUpIcon({ className }: IconProps) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M12 19V5M6 11l6-6 6 6" />
+    </svg>
+  );
+}
+
 const valueGlyphs: Record<ValueIconName, ReactNode> = {
   handshake: (
     <>
@@ -124,24 +142,6 @@ export function ValueIcon({ name, className }: IconProps & { name: ValueIconName
       focusable="false"
     >
       {valueGlyphs[name]}
-    </svg>
-  );
-}
-
-export function ArrowUpIcon({ className }: IconProps) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path d="M12 19V5M6 11l6-6 6 6" />
     </svg>
   );
 }

@@ -22,6 +22,16 @@ export const phonePattern = "[0-9+\\(\\)\\s.\\-]{6,20}";
 /** The same rule for the server, anchored so it has to match the whole value. */
 export const phoneRegExp = new RegExp(`^(?:${phonePattern})$`);
 
+/**
+ * Something, an @, a domain and a dot followed by at least two characters.
+ * Stricter than the browser's own `type="email"` check, which accepts
+ * `nombre@empresa` without a dot, so both sides reject the same addresses.
+ */
+export const emailPattern = "[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}";
+
+/** The same rule for the server, anchored so it has to match the whole value. */
+export const emailRegExp = new RegExp(`^(?:${emailPattern})$`);
+
 /** Drops every character a phone number may not contain. */
 export function stripPhone(value: string): string {
   return value.replace(/[^0-9+()\s.-]/g, "");

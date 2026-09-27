@@ -16,17 +16,13 @@ export function Clients() {
     >
       <Container>
         <div className={styles.head} data-reveal>
-          <div className={styles.headMain}>
-            <p className={styles.kicker}>{clients.eyebrow}</p>
-            <h2 id="clientes-title" className={styles.title}>
-              {clients.heading.map((line) => (
-                <span className={styles.titleLine} key={line}>
-                  {line}
-                </span>
-              ))}
-            </h2>
-            <span className={styles.accent} aria-hidden="true" />
-          </div>
+          <h2 id="clientes-title" className={styles.title}>
+            {clients.heading.map((line) => (
+              <span className={styles.titleLine} key={line}>
+                {line}
+              </span>
+            ))}
+          </h2>
 
           <div className={styles.summary}>
             <p className={styles.count}>

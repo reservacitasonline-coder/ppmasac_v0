@@ -2,11 +2,16 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { hero } from "@/content/site";
+import { clients, hero } from "@/content/site";
 
 import styles from "./Hero.module.css";
 
 export function Hero() {
+  const proof = [
+    ...hero.proof,
+    { value: String(clients.items.length), label: hero.clientsLabel },
+  ];
+
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
       <div className={styles.media}>
@@ -29,16 +34,24 @@ export function Hero() {
               </span>
             ))}
           </h1>
-
-          <p className={styles.overline}>{hero.overline}</p>
+          <p className={styles.legalName}>{hero.legalName}</p>
+          <p className={styles.lead}>{hero.lead}</p>
         </div>
 
         <div className={styles.bottom}>
-          <ul className={styles.disciplines} aria-label="Áreas de trabajo">
-            {hero.disciplines.map((item) => (
-              <li key={item}>{item}</li>
+          <dl className={styles.proof}>
+            {proof.map((item) => (
+              <div className={styles.proofItem} key={item.label}>
+                <dt className={styles.proofLabel}>{item.label}</dt>
+                <dd className={styles.proofValue}>
+                  {item.value}
+                  {"suffix" in item && item.suffix ? (
+                    <span className={styles.proofSuffix}>{item.suffix}</span>
+                  ) : null}
+                </dd>
+              </div>
             ))}
-          </ul>
+          </dl>
           <div className={styles.actions} data-whatsapp-avoid>
             <Button href={hero.primary.href} variant="light">
               {hero.primary.label}

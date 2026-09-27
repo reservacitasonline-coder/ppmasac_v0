@@ -22,11 +22,12 @@
   max-width: 360px;
 }
 
+/* Flattened to white like the header, so the mark sits on the band instead of
+   inside a white box. */
 .brandLogo {
   width: auto;
-  height: 44px;
-  border-radius: 8px;
-  overflow: hidden;
+  height: 36px;
+  filter: brightness(0) invert(1);
 }
 
 .brandText {

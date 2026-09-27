@@ -5,6 +5,7 @@ import type {
   CompanyValue,
   FaqItem,
   LegalSection,
+  LifecycleStep,
   NavLink,
   Photo,
   Pillar,
@@ -92,50 +93,35 @@ export const navLinks: NavLink[] = [
   { label: "Clientes", href: "/#clientes" },
 ];
 
+/** Label shared by every button that leads to the proposal form. */
+const proposalLabel = "Solicitar propuesta";
+
 export const hero = {
-  overline: "Professional Project Manager Administration SAC",
-  /** One line per rendered row of the `h1`. */
-  title: ["PPMA SAC"],
-  /** Rendered as a dot-separated list under the rule. */
-  disciplines: ["Asesorías", "Consultorías", "Construcción", "Inmobiliaria"],
-  primary: {
-    label: "Solicita una propuesta",
-    href: "#contacto",
-  } satisfies CallToAction,
-  secondary: { label: "Ver servicios", href: "/servicios" } satisfies CallToAction,
+  /** One line per rendered row of the `h1`, which wraps further on phones. */
+  title: ["Ingeniería, gestión", "y obra en un solo equipo"],
+  /** The registered name, kept prominent at the client's request. */
+  legalName: "Professional Project Manager Administration SAC",
+  lead: "Del terreno y el expediente técnico a la obra, el equipamiento y la posventa, para agencias bancarias, oficinas, locales comerciales, clínicas, colegios y proyectos inmobiliarios en el Perú.",
+  /** Verifiable facts only; the client count is appended from `clients`. */
+  proof: [
+    { value: "8", label: "años en el mercado peruano" },
+    { value: "20", suffix: "+", label: "años de experiencia del equipo" },
+  ] satisfies Stat[],
+  clientsLabel: "empresas e instituciones clientes",
+  primary: { label: proposalLabel, href: "#contacto" } satisfies CallToAction,
+  secondary: { label: "Ver servicios", href: "#servicios" } satisfies CallToAction,
   background: {
-    src: unsplash("photo-1503387762-592deb58ef4e", 2000),
-    alt: "Obra en construcción con la ciudad de fondo",
+    src: unsplash("photo-1541888946425-d81bb19240f5", 2000),
+    alt: "Equipo de obra con cascos y chalecos sobre una losa, junto a una zona con acero de refuerzo",
   } satisfies Photo,
 };
 
-export const statement =
-  "Integramos ingeniería, gestión y obra en un solo equipo: del análisis de factibilidad y el expediente técnico a la construcción, el equipamiento y la posventa. Cuidamos alcances, costos, plazos, calidad y seguridad, en armonía con el entorno y con cada grupo de interés.";
-
-export const stats: Stat[] = [
-  { value: "08", label: "Años en el mercado peruano" },
-  { value: "20", suffix: "+", label: "Años de experiencia del equipo" },
-  { value: "06", label: "Líneas de servicio" },
-  { value: "05", label: "Especialidades de ingeniería" },
-];
-
 export const about = {
-  eyebrow: "Nosotros",
   heading: ["Nuestra", "empresa"],
-  lead: "Somos Professional Project Manager Administration (PPMA SAC), un sólido grupo empresarial con 8 años operando ininterrumpidamente en el mercado peruano. Contamos con un staff de profesionales con mas de 20 años laborando en la industria de la construcción, del negocio inmobiliario y servicios generales.",
-  cta: { label: "Contacto", href: "#contacto" } satisfies CallToAction,
-  gallery: [
-    {
-      src: unsplash("photo-1493397212122-2b85dda8106b", 1400),
-      alt: "Fachada de concreto curva de un edificio moderno",
-    },
-    {
-      src: unsplash("photo-1486406146926-c627a92ad1ab", 900),
-      alt: "Torre de vidrio fotografiada desde abajo",
-    },
-  ] satisfies Photo[],
+  lead: "Somos Professional Project Manager Administration (PPMA SAC), un sólido grupo empresarial con 8 años operando ininterrumpidamente en el mercado peruano. Contamos con un staff de profesionales con más de 20 años laborando en la industria de la construcción, del negocio inmobiliario y servicios generales.",
+  /** Also the name of the "about" node in the structured data. */
   subtitle: "Quiénes somos",
-  columns: [
+  body: [
     "Garantizamos el éxito de cada proyecto optimizando costos, plazos y calidad, bajo un firme compromiso con la seguridad y la sostenibilidad ambiental.",
     "Ofrecemos soluciones inmobiliarias integrales que abarcan desde el análisis de factibilidad, compra de terrenos y habilitaciones urbanas, hasta la ingeniería, construcción, gestión comercial y soporte posventa.",
   ],
@@ -191,14 +177,51 @@ export const about = {
 
 export const services = {
   eyebrow: "Servicios",
-  heading: ["Lo que", "hacemos"],
-  lead: "Seis líneas de servicio que cubren el ciclo completo de un proyecto: del diseño y las licencias a la obra, el equipamiento y la venta.",
-  cta: { label: "Ver todos los servicios", href: "/servicios" } satisfies CallToAction,
-  /** Backdrop of the summary section on the home page. */
-  background: {
-    src: unsplash("photo-1541888946425-d81bb19240f5", 2000),
-    alt: "Cuadrilla de obra sobre una losa con acero de refuerzo",
-  } satisfies Photo,
+  heading: ["Un proyecto,", "de principio a fin"],
+  lead: "Seis líneas de servicio que cubren el ciclo completo de un proyecto: del terreno y las licencias a la obra, el equipamiento y la venta.",
+  cta: { label: "Ver el detalle de cada servicio", href: "/servicios" } satisfies CallToAction,
+  /**
+   * Two deliverables per line for the home page. Keyed by `groups[].slug`;
+   * the order comes from `groups`.
+   */
+  lifecycle: [
+    {
+      slug: "habilitaciones-urbanas",
+      deliverables: ["Saneamiento físico y legal", "Topografía y estudios de cabida"],
+    },
+    {
+      slug: "asesoria-y-consultoria",
+      deliverables: [
+        "Expedientes técnicos para aprobación municipal",
+        "Licencias y conformidad de obra",
+      ],
+    },
+    {
+      slug: "proyectos",
+      deliverables: [
+        "Especialidades compatibilizadas en BIM (Revit)",
+        "Presupuesto con precios reales de mercado",
+      ],
+    },
+    {
+      slug: "obras",
+      deliverables: [
+        "Edificaciones, obras viales y estructuras",
+        "Control de calidad de principio a fin",
+      ],
+    },
+    {
+      slug: "implementaciones",
+      deliverables: [
+        "Agencias bancarias, oficinas y locales comerciales",
+        "ACI, CCTV, instalaciones eléctricas y climatización",
+      ],
+    },
+    {
+      slug: "consultoria-comercial",
+      deliverables: ["Estudios de mercado y business plan", "Gestión de ventas y posventa"],
+    },
+  ] satisfies LifecycleStep[],
   /** Cover band of the /servicios page. */
   page: {
     heading: ["Ingeniería, construcción", "y gestión integral"],
@@ -209,9 +232,9 @@ export const services = {
     } satisfies Photo,
     indexTitle: "Líneas de servicio",
     closing: {
-      title: "¿Tienes un proyecto en mente?",
-      body: "Cuéntanos el alcance y te proponemos plazos y presupuesto.",
-      cta: { label: "Contacto", href: "/#contacto" } satisfies CallToAction,
+      title: "¿Tiene un proyecto en mente?",
+      body: "Cuéntenos el alcance y le proponemos plazos y presupuesto.",
+      cta: { label: proposalLabel, href: "/#contacto" } satisfies CallToAction,
     },
   },
   /** Shared by the summary on the home page and the detail page. */
@@ -375,7 +398,6 @@ export const services = {
 };
 
 export const clients = {
-  eyebrow: "Clientes",
   heading: ["Empresas que", "confían en nosotros"],
   countLabel: "empresas e instituciones",
   lead: "Organizaciones de retail, salud, educación, hotelería y el sector público han confiado en nosotros para sus proyectos.",
@@ -383,7 +405,11 @@ export const clients = {
   items: [
     { name: "Cencosud", logo: "/clients/Cencosud-2014.svg" },
     { name: "Auna", logo: "/clients/logotipo_AUNA-01.svg" },
-    { name: "Ministerio del Ambiente del Perú", logo: "/clients/PCM-Ambiente.webp" },
+    {
+      name: "Ministerio del Ambiente del Perú",
+      logo: "/clients/PCM-Ambiente.webp",
+      scale: 1.2,
+    },
     { name: "Universidad San Ignacio de Loyola", logo: "/clients/Usil.jpg" },
     {
       name: "Universidad Nacional Agraria La Molina",
@@ -398,7 +424,11 @@ export const clients = {
       name: "El Pardo DoubleTree by Hilton",
       logo: "/clients/El_pardo.jpg",
     },
-    { name: "Clínica Renacer", logo: "/clients/clinica-renacer-transparente.png" },
+    {
+      name: "Clínica Renacer",
+      logo: "/clients/clinica-renacer-transparente.png",
+      scale: 1.3,
+    },
     {
       name: "Parque del Recuerdo",
       logo: "/clients/parque-recuerdo-trim.png",
@@ -505,36 +535,51 @@ export const testimonial: Testimonial = {
 
 export const contact = {
   /** Rendered as the header button, which exists on every route. */
-  cta: { label: "Contacto", href: "/#contacto" } satisfies CallToAction,
-  eyebrow: "Contacto",
-  heading: ["Conversemos", "de tu proyecto"],
-  lead: "Cuéntanos qué necesitas y un especialista revisará tu requerimiento para proponerte el alcance, los plazos y el presupuesto.",
+  cta: { label: proposalLabel, href: "/#contacto" } satisfies CallToAction,
+  heading: ["Conversemos", "de su proyecto"],
+  lead: "Cuéntenos qué necesita y un especialista revisará su requerimiento para proponerle el alcance, los plazos y el presupuesto.",
+  /** What happens after sending, in order. */
+  nextSteps: [
+    "Un especialista revisa su requerimiento.",
+    "Le respondemos en un plazo máximo de 48 horas hábiles.",
+    "Le proponemos el alcance, los plazos y el presupuesto.",
+  ],
+  nextStepsTitle: "Qué pasa después",
+  directTitle: "¿Prefiere escribirnos directamente?",
   form: {
-    title: "Solicita una propuesta",
+    title: "Solicitud de propuesta",
+    requiredNote: "Los campos marcados con * son obligatorios.",
+    labels: {
+      name: "Nombre y apellido *",
+      company: "Empresa",
+      email: "Correo electrónico *",
+      phone: "Teléfono",
+      service: "Servicio de interés",
+      servicePlaceholder: "Seleccione una opción",
+      message: "Cuéntenos sobre el proyecto *",
+    },
     /** Options for the "servicio de interés" select: the six service lines. */
     services: [
       ...services.groups.map((group) => group.title.replace(/\n/g, " ")),
       "Otro",
     ],
     submit: "Enviar solicitud",
-    submitting: "Enviando…",
-    note: "Respondemos en un plazo máximo de 48 horas hábiles.",
+    submitting: "Enviando solicitud…",
     /**
      * Read twice: the browser shows them in its own validation bubble while
      * the visitor types, and the server action returns them under the field
      * when the form is posted anyway. Both have to say the same thing.
      */
     errors: {
-      name: "Indícanos tu nombre.",
-      email: "Indícanos tu correo.",
-      emailInvalid: "Revisa el correo, no parece una dirección válida.",
-      phoneInvalid: "Usa solo números y los signos + ( ) -, con al menos 6 dígitos.",
-      message: "Indícanos tu mensaje.",
-      messageShort: "Cuéntanos un poco más sobre el proyecto.",
-      consent: "Necesitamos tu autorización para tratar estos datos.",
-      turnstile:
-        "No pudimos verificar que no eres un robot. Recarga la casilla e inténtalo de nuevo.",
-      summary: "Revisa los campos marcados para poder enviar tu solicitud.",
+      name: "Indíquenos su nombre.",
+      email: "Indíquenos su correo.",
+      emailInvalid: "Revise el correo: debe tener la forma nombre@empresa.com.",
+      phoneInvalid: "Use solo números y los signos + ( ) -, con al menos 6 dígitos.",
+      message: "Indíquenos su mensaje.",
+      messageShort: "Cuéntenos un poco más sobre el proyecto (al menos 15 caracteres).",
+      consent: "Necesitamos su autorización para tratar estos datos.",
+      turnstile: `No pudimos verificar que no es un robot. Recargue la casilla e inténtelo de nuevo, o escríbanos a atencionalcliente@ppmasac.com o por WhatsApp al ${site.whatsapp.label}.`,
+      summary: "Revise los campos marcados para poder enviar su solicitud.",
     },
     /**
      * Ley 29733 asks for consent that is prior, express and informed, so the
@@ -654,9 +699,9 @@ export const privacy = {
 };
 
 export const footer = {
-  /** Wordmark for the dark footer band. Served from `public/logos`. */
+  /** Same transparent mark as the header, flattened to white by the footer CSS. */
   logo: {
-    src: "/logos/ppmasac-white@2x.png",
+    src: "/logos/ppmasac-transparent@2x.png",
     alt: "PPMA SAC",
     width: 1017,
     height: 210,
