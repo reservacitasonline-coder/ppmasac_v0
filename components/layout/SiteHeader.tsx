@@ -7,6 +7,7 @@ import { contact, footer, navLinks, site } from "@/content/site";
 import { whatsappHref } from "@/lib/whatsapp";
 
 import { HeaderShell } from "./HeaderShell";
+import { HomeLink } from "./HomeLink";
 import { MobileMenu } from "./MobileMenu";
 import styles from "./SiteHeader.module.css";
 
@@ -20,7 +21,7 @@ export function SiteHeader() {
   return (
     <HeaderShell>
       <Container className={styles.inner}>
-        <Link className={styles.logo} href="/" aria-label={`${site.logo.alt} — inicio`}>
+        <HomeLink className={styles.logo} aria-label={`${site.logo.alt} — inicio`}>
           <Image
             className={styles.logoImage}
             src={site.logo.src}
@@ -29,7 +30,7 @@ export function SiteHeader() {
             height={site.logo.height}
             priority
           />
-        </Link>
+        </HomeLink>
 
         <nav className={styles.nav} aria-label="Principal">
           <ul className={styles.menu}>

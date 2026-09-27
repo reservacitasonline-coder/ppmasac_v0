@@ -88,9 +88,9 @@ export const seo = {
  * `/servicios`.
  */
 export const navLinks: NavLink[] = [
-  { label: "Nosotros", href: "/#nosotros" },
-  { label: "Servicios", href: "/servicios" },
   { label: "Clientes", href: "/#clientes" },
+  { label: "Servicios", href: "/servicios" },
+  { label: "Nosotros", href: "/#nosotros" },
 ];
 
 /** Label shared by every button that leads to the proposal form. */
@@ -702,7 +702,7 @@ export const privacy = {
 };
 
 export const footer = {
-  /** Same transparent mark as the header, flattened to white by the footer CSS. */
+  /** Same full-colour mark as the header, set on a white plate by the footer CSS. */
   logo: {
     src: "/logos/ppmasac-transparent@2x.png",
     alt: "PPMA SAC",
@@ -713,12 +713,8 @@ export const footer = {
   brandLine: "Ingeniería, construcción y gestión de proyectos inmobiliarios en el Perú.",
   company: {
     title: "Empresa",
-    links: [
-      { label: "Nosotros", href: "/#nosotros" },
-      { label: "Servicios", href: "/servicios" },
-      { label: "Clientes", href: "/#clientes" },
-      { label: "Contacto", href: "/#contacto" },
-    ] satisfies NavLink[],
+    /** The header menu, in page order, plus the proposal form that closes it. */
+    links: [...navLinks, { label: proposalLabel, href: "/#contacto" }] satisfies NavLink[],
   },
   /** The service links are derived from `services.groups`. */
   servicesTitle: "Servicios",

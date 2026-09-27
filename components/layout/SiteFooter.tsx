@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { MailIcon, PhoneIcon } from "@/components/ui/icons";
 import { footer, services } from "@/content/site";
+import { cn } from "@/lib/cn";
 
 import styles from "./SiteFooter.module.css";
 
@@ -56,7 +57,7 @@ export function SiteFooter() {
             </ul>
           </nav>
 
-          <div className={styles.column}>
+          <div className={cn(styles.column, styles.contactColumn)}>
             <h2 className={styles.columnTitle}>{footer.contact.title}</h2>
             <ul className={styles.list}>
               <li>
