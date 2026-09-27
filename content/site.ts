@@ -98,16 +98,17 @@ const proposalLabel = "Solicitar propuesta";
 
 export const hero = {
   /** One line per rendered row of the `h1`, which wraps further on phones. */
-  title: ["Ingeniería, gestión", "y obra en un solo equipo"],
+  title: ["Ingeniería, gestión", "y construcción integradas", "en un solo equipo"],
   /** The registered name, kept prominent at the client's request. */
   legalName: "Professional Project Manager Administration SAC",
-  lead: "Del terreno y el expediente técnico a la obra, el equipamiento y la posventa, para agencias bancarias, oficinas, locales comerciales, clínicas, colegios y proyectos inmobiliarios en el Perú.",
-  /** Verifiable facts only; the client count is appended from `clients`. */
+  lead: "Transformamos sus proyectos desde el análisis de factibilidad y expediente técnico hasta la ejecución y posventa, garantizando cumplimiento en costos, plazos, calidad y seguridad.",
+  /** Verifiable facts only. Leading zeros are kept, also while counting up. */
   proof: [
-    { value: "8", label: "años en el mercado peruano" },
-    { value: "20", suffix: "+", label: "años de experiencia del equipo" },
+    { value: "08", label: "Años en el mercado peruano" },
+    { value: "20", suffix: "+", label: "Años de experiencia del equipo" },
+    { value: "06", label: "Líneas de servicio" },
+    { value: "05", label: "Especialidades de ingeniería" },
   ] satisfies Stat[],
-  clientsLabel: "empresas e instituciones clientes",
   primary: { label: proposalLabel, href: "#contacto" } satisfies CallToAction,
   secondary: { label: "Ver servicios", href: "#servicios" } satisfies CallToAction,
   background: {
@@ -119,12 +120,14 @@ export const hero = {
 export const about = {
   heading: ["Nuestra", "empresa"],
   lead: "Somos Professional Project Manager Administration (PPMA SAC), un sólido grupo empresarial con 8 años operando ininterrumpidamente en el mercado peruano. Contamos con un staff de profesionales con más de 20 años laborando en la industria de la construcción, del negocio inmobiliario y servicios generales.",
-  /** Also the name of the "about" node in the structured data. */
+  /** Not shown on the page; names the "about" node in the structured data. */
   subtitle: "Quiénes somos",
-  body: [
+  commitment:
     "Garantizamos el éxito de cada proyecto optimizando costos, plazos y calidad, bajo un firme compromiso con la seguridad y la sostenibilidad ambiental.",
+  scope:
     "Ofrecemos soluciones inmobiliarias integrales que abarcan desde el análisis de factibilidad, compra de terrenos y habilitaciones urbanas, hasta la ingeniería, construcción, gestión comercial y soporte posventa.",
-  ],
+  /** Set in brand blue inside `lead`; skipped if it no longer appears verbatim. */
+  leadName: "Professional Project Manager Administration (PPMA SAC)",
   pillars: [
     {
       title: "Misión",
@@ -135,7 +138,7 @@ export const about = {
       body: "Consolidar nuestro liderazgo en el mercado nacional y expandir nuestra presencia internacional en servicios integrales de infraestructura, respaldados por la innovación, dedicación y excelencia de nuestro equipo.",
     },
   ] satisfies Pillar[],
-  valuesTitle: "Valores",
+  valuesTitle: "Valores corporativos",
   values: [
     {
       title: "Honestidad",
@@ -177,7 +180,7 @@ export const about = {
 
 export const services = {
   eyebrow: "Servicios",
-  heading: ["Un proyecto,", "de principio a fin"],
+  heading: ["Gestión Integral", "en Cada Etapa de su Proyecto"],
   lead: "Seis líneas de servicio que cubren el ciclo completo de un proyecto: del terreno y las licencias a la obra, el equipamiento y la venta.",
   cta: { label: "Ver el detalle de cada servicio", href: "/servicios" } satisfies CallToAction,
   /**
@@ -601,14 +604,14 @@ export const contact = {
 export const privacy = {
   eyebrow: "Legal",
   heading: ["Política", "de privacidad"],
-  lead: "Cómo trata PPMA SAC los datos personales que nos dejas en este sitio web, para qué los usamos y cómo puedes controlarlos en cualquier momento.",
+  lead: "Cómo trata PPMA SAC los datos personales que usted nos deja en este sitio web, para qué los usamos y cómo puede controlarlos en cualquier momento.",
   sections: [
     {
       index: "01",
       slug: "responsable",
-      title: "Quién trata tus datos",
+      title: "Quién trata sus datos",
       body: [
-        "El responsable del tratamiento es Professional Project Manager Administration S.A.C. (PPMA SAC), con RUC 20601984564, empresa domiciliada en el Perú. Puedes escribirnos por cualquier asunto relacionado con tus datos personales a:",
+        "El responsable del tratamiento es Professional Project Manager Administration S.A.C. (PPMA SAC), con RUC 20601984564, empresa domiciliada en el Perú. Puede escribirnos por cualquier asunto relacionado con sus datos personales a:",
       ],
       items: ["Correo: atencionalcliente@ppmasac.com", "Teléfono: +51 981 248 447"],
     },
@@ -617,14 +620,14 @@ export const privacy = {
       slug: "datos",
       title: "Qué datos recogemos",
       body: [
-        "Solo los que escribes en el formulario de contacto. No pedimos ni tratamos datos sensibles, y tampoco compramos bases de datos de terceros.",
+        "Solo los que usted escribe en el formulario de contacto. No pedimos ni tratamos datos sensibles, y tampoco compramos bases de datos de terceros.",
       ],
       items: [
         "Nombre y apellido.",
-        "Empresa, si decides indicarla.",
+        "Empresa, si decide indicarla.",
         "Correo electrónico.",
-        "Teléfono, si decides indicarlo.",
-        "Servicio de interés y el contenido de tu mensaje.",
+        "Teléfono, si decide indicarlo.",
+        "Servicio de interés y el contenido de su mensaje.",
       ],
     },
     {
@@ -632,8 +635,8 @@ export const privacy = {
       slug: "finalidad",
       title: "Para qué los usamos",
       body: [
-        "Usamos tus datos únicamente para atender tu solicitud: entender el requerimiento, contactarte, preparar una propuesta de alcance, plazos y presupuesto, y hacer el seguimiento de esa conversación.",
-        "No los usamos para enviarte publicidad ni los cedemos con fines comerciales. Si en el futuro quisiéramos hacerlo, te pediríamos una autorización aparte.",
+        "Usamos sus datos únicamente para atender su solicitud: entender el requerimiento, comunicarnos con usted, preparar una propuesta de alcance, plazos y presupuesto, y hacer el seguimiento de esa conversación.",
+        "No los usamos para enviarle publicidad ni los cedemos con fines comerciales. Si en el futuro quisiéramos hacerlo, le pediríamos una autorización aparte.",
       ],
     },
     {
@@ -641,8 +644,8 @@ export const privacy = {
       slug: "consentimiento",
       title: "Con qué autorización",
       body: [
-        "La base del tratamiento es tu consentimiento, que otorgas al marcar la casilla del formulario antes de enviarlo. Es libre, previo, expreso e informado, como exige la Ley 29733 de Protección de Datos Personales y su reglamento.",
-        "Puedes retirarlo cuando quieras escribiéndonos al correo indicado, sin que ello afecte la validez del tratamiento realizado hasta ese momento.",
+        "La base del tratamiento es su consentimiento, que usted otorga al marcar la casilla del formulario antes de enviarlo. Es libre, previo, expreso e informado, como exige la Ley 29733 de Protección de Datos Personales y su reglamento.",
+        "Puede retirarlo cuando quiera escribiéndonos al correo indicado, sin que ello afecte la validez del tratamiento realizado hasta ese momento.",
       ],
     },
     {
@@ -650,7 +653,7 @@ export const privacy = {
       slug: "conservacion",
       title: "Cuánto tiempo los conservamos",
       body: [
-        "Guardamos tu solicitud mientras dure la conversación comercial y hasta dos años después del último contacto, plazo en el que podría retomarse el proyecto. Cumplido ese periodo los eliminamos, salvo que una norma nos obligue a conservarlos por más tiempo, como ocurre con la documentación contractual y tributaria.",
+        "Guardamos su solicitud mientras dure la conversación comercial y hasta dos años después del último contacto, plazo en el que podría retomarse el proyecto. Cumplido ese periodo los eliminamos, salvo que una norma nos obligue a conservarlos por más tiempo, como ocurre con la documentación contractual y tributaria.",
       ],
     },
     {
@@ -658,8 +661,8 @@ export const privacy = {
       slug: "destinatarios",
       title: "Quién más los ve",
       body: [
-        "Tu solicitud llega al equipo comercial de PPMA SAC y a nadie más. Los proveedores que hacen posible el servicio —alojamiento del sitio, correo corporativo y la verificación antispam de Cloudflare Turnstile— actúan como encargados de tratamiento, solo procesan los datos por encargo nuestro y están sujetos a deberes de confidencialidad.",
-        "Estos proveedores pueden almacenar la información en servidores ubicados fuera del Perú, lo que constituye un flujo transfronterizo de datos amparado en tu consentimiento y sujeto a las garantías que exige la normativa.",
+        "Su solicitud llega al equipo comercial de PPMA SAC y a nadie más. Los proveedores que hacen posible el servicio —alojamiento del sitio, correo corporativo y la verificación antispam de Cloudflare Turnstile— actúan como encargados de tratamiento, solo procesan los datos por encargo nuestro y están sujetos a deberes de confidencialidad.",
+        "Estos proveedores pueden almacenar la información en servidores ubicados fuera del Perú, lo que constituye un flujo transfronterizo de datos amparado en su consentimiento y sujeto a las garantías que exige la normativa.",
       ],
     },
     {
@@ -673,10 +676,10 @@ export const privacy = {
     {
       index: "08",
       slug: "derechos",
-      title: "Tus derechos",
+      title: "Sus derechos",
       body: [
-        "En cualquier momento puedes ejercer tus derechos de información, acceso, actualización, rectificación, inclusión, supresión, oposición y tratamiento objetivo de tus datos personales.",
-        "Para hacerlo, escríbenos a atencionalcliente@ppmasac.com indicando tu solicitud y adjuntando un documento que acredite tu identidad. Responderemos dentro de los plazos que fija la ley. Si consideras que no atendimos tu pedido, puedes reclamar ante la Autoridad Nacional de Protección de Datos Personales del Ministerio de Justicia y Derechos Humanos.",
+        "En cualquier momento puede ejercer sus derechos de información, acceso, actualización, rectificación, inclusión, supresión, oposición y tratamiento objetivo de sus datos personales.",
+        "Para hacerlo, escríbanos a atencionalcliente@ppmasac.com indicando su solicitud y adjuntando un documento que acredite su identidad. Responderemos dentro de los plazos que fija la ley. Si considera que no atendimos su pedido, puede reclamar ante la Autoridad Nacional de Protección de Datos Personales del Ministerio de Justicia y Derechos Humanos.",
       ],
     },
     {
@@ -684,7 +687,7 @@ export const privacy = {
       slug: "cookies",
       title: "Cookies",
       body: [
-        "Este sitio no utiliza cookies de analítica, publicidad ni seguimiento de terceros: solo las estrictamente necesarias para que las páginas funcionen. Si más adelante incorporamos herramientas de medición, lo anunciaremos aquí y solicitaremos tu consentimiento antes de activarlas.",
+        "Este sitio no utiliza cookies de analítica, publicidad ni seguimiento de terceros: solo las estrictamente necesarias para que las páginas funcionen. Si más adelante incorporamos herramientas de medición, lo anunciaremos aquí y solicitaremos su consentimiento antes de activarlas.",
       ],
     },
     {
@@ -692,7 +695,7 @@ export const privacy = {
       slug: "cambios",
       title: "Cambios en esta política",
       body: [
-        "Podemos actualizar esta política si cambian nuestros servicios o la normativa aplicable. La versión vigente es siempre la publicada en esta página, así que te recomendamos revisarla cada cierto tiempo.",
+        "Podemos actualizar esta política si cambian nuestros servicios o la normativa aplicable. La versión vigente es siempre la publicada en esta página, así que le recomendamos revisarla cada cierto tiempo.",
       ],
     },
   ] satisfies LegalSection[],

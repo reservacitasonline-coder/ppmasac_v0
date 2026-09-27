@@ -23,7 +23,7 @@ export function Services() {
       aria-labelledby="servicios-title"
     >
       <Container>
-        <div className={styles.head} data-reveal>
+        <div data-reveal>
           <h2 id="servicios-title" className={styles.title}>
             {services.heading.map((line) => (
               <span className={styles.titleLine} key={line}>

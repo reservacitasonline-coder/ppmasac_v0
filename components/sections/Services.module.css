@@ -4,17 +4,16 @@
   color: #fff;
 }
 
-.head {
-  max-width: 44rem;
-}
-
 .title {
   composes: sectionTitle from "../../styles/typography.module.css";
   color: #fff;
 }
 
+/* On phones the long second line wraps; balance keeps it from leaving an
+   orphan word. */
 .titleLine {
   display: block;
+  text-wrap: balance;
 }
 
 .lead {

@@ -99,87 +99,258 @@
   gap: 18px;
 }
 
-/* Below this width the menu drops onto its own row and spans the header. */
+/* --- mobile menu --- */
+
+.mobileMenu {
+  display: none;
+}
+
+.menuToggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line-light);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  transition:
+    background 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+
+.menuToggle:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.menuToggle:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* One bar drawn by the element, two by its pseudo-elements; open, the middle
+   one fades and the outer two cross into an X. */
+.menuToggleBars,
+.menuToggleBars::before,
+.menuToggleBars::after {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: currentColor;
+  transition:
+    transform 0.3s var(--ease),
+    background 0.2s var(--ease);
+}
+
+.menuToggleBars {
+  position: relative;
+}
+
+.menuToggleBars::before,
+.menuToggleBars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.menuToggleBars::before {
+  transform: translateY(-6px);
+}
+
+.menuToggleBars::after {
+  transform: translateY(6px);
+}
+
+.menuToggle[aria-expanded="true"] .menuToggleBars {
+  background: transparent;
+}
+
+.menuToggle[aria-expanded="true"] .menuToggleBars::before {
+  background: #fff;
+  transform: rotate(45deg);
+}
+
+.menuToggle[aria-expanded="true"] .menuToggleBars::after {
+  background: #fff;
+  transform: rotate(-45deg);
+}
+
+/* Hangs off the bottom of the header rather than being fixed to the viewport:
+   the scrolled bar's backdrop-filter would re-anchor a fixed child anyway. */
+.panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  height: calc(100dvh - var(--header-bar, 69px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px var(--gutter) calc(28px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line-light);
+  background: var(--brand-deep);
+  /* The bar shrinks the header button; the panel's own button is full size. */
+  --btn-pad: 17px 24px;
+  --btn-size: 13px;
+  --btn-track: 0.12em;
+  --btn-arrow: inline-block;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.3s var(--ease),
+    visibility 0s linear 0.3s;
+}
+
+.panel[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.panelList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.panelLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line-light);
+  font-family: var(--font-display);
+  font-size: clamp(32px, 8.5vw, 44px);
+  line-height: 1;
+  text-transform: uppercase;
+  color: #fff;
+  transition: color 0.3s var(--ease);
+}
+
+.panelArrow {
+  font-family: var(--font-body);
+  font-size: 20px;
+  color: var(--mist);
+  transition: transform 0.3s var(--ease);
+}
+
+.panelLink:hover,
+.panelLink:focus-visible {
+  color: var(--mist);
+}
+
+.panelLink:hover .panelArrow,
+.panelLink:focus-visible .panelArrow {
+  transform: translateX(4px);
+}
+
+.panelLink:focus-visible,
+.panelContactLink:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.panelFooter {
+  display: grid;
+  gap: 22px;
+}
+
+.panelCta {
+  display: grid;
+}
+
+.panelCta > * {
+  justify-content: center;
+}
+
+.panelContact {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.panelContactLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  font-size: 16px;
+  color: var(--on-dark);
+  overflow-wrap: anywhere;
+}
+
+.panelContactIcon {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  color: var(--mist);
+}
+
+/* Below this width the inline menu gives way to the menu button. */
 @media (max-width: 900px) {
+  .header {
+    --header-bar: 69px;
+    padding-block: 12px;
+  }
+
+  /* Open, the bar turns solid so it reads as the top of the panel, and rises
+     above the floating WhatsApp button, which the panel repeats. */
+  .header:has(.panel[data-open="true"]) {
+    z-index: 40;
+    border-bottom-color: transparent;
+    background: var(--brand-deep);
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
   .inner {
-    grid-template-columns: auto auto;
-    row-gap: 14px;
-  }
-
-  .logo {
-    grid-area: 1 / 1;
-  }
-
-  .actions {
-    grid-area: 1 / 2;
+    grid-template-columns: auto minmax(0, 1fr);
   }
 
   .nav {
-    grid-area: 2 / 1 / 3 / -1;
-    justify-self: center;
-    max-width: 100%;
-  }
-
-  /* Wrapping keeps every entry reachable on the narrowest phones, unlike a
-     horizontal scroll that hides the last one. */
-  .menu {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .menuLink {
-    padding: 12px 16px;
-    font-size: 13px;
-  }
-
-  /* Once the page scrolls, the bar keeps only the logo and the proposal
-     button, so the fixed header stops eating a second row of a phone screen.
-     The same links sit in the footer and return at the top of the page. */
-  .headerScrolled .nav {
     display: none;
   }
 
-  /* Sharing the row with the logo, the white pill was the loudest thing in the
-     bar. These are read by the button through its sizing fallbacks. */
   .actions {
+    gap: 10px;
+    /* Sharing the row with the logo, the white pill was the loudest thing in
+       the bar. These are read by the button through its sizing fallbacks. */
     --btn-pad: 11px 17px;
     --btn-size: 11.5px;
     --btn-track: 0.1em;
   }
+
+  .mobileMenu {
+    display: block;
+  }
 }
 
+/* On phones the bar keeps only the logo and the menu button: the hero opens
+   with the same call to action, and the panel carries it at full size. */
 @media (max-width: 560px) {
-  .menuLink {
-    padding: 12px 12px;
-    letter-spacing: 0.05em;
-  }
-
-  .actions {
-    --btn-pad: 10px 15px;
-    --btn-size: 11px;
-    /* The arrow costs a whole character of width and says nothing the label
-       does not already say. */
-    --btn-arrow: none;
+  .barCta {
+    display: none;
   }
 }
 
-@media (max-width: 380px) {
-  .inner {
-    column-gap: 12px;
-  }
-
-  .logoImage {
-    height: 22px;
-  }
-
-  .menuLink {
-    padding: 12px 8px;
-    font-size: 12px;
-    letter-spacing: 0.04em;
-  }
-
-  .actions {
-    --btn-pad: 10px 12px;
-    --btn-track: 0.04em;
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .menuToggleBars,
+  .menuToggleBars::before,
+  .menuToggleBars::after {
+    transition: none;
   }
 }

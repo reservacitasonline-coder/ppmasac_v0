@@ -1,8 +1,26 @@
 import { Container } from "@/components/ui/Container";
-import { ValueIcon } from "@/components/ui/icons";
+import { LayersIcon, ShieldCheckIcon, ValueIcon } from "@/components/ui/icons";
 import { about } from "@/content/site";
 
 import styles from "./About.module.css";
+
+function Lead() {
+  const at = about.lead.indexOf(about.leadName);
+  if (at === -1) return <>{about.lead}</>;
+
+  return (
+    <>
+      {about.lead.slice(0, at)}
+      <strong className={styles.name}>{about.leadName.replace("PPMA SAC", "PPMA\u00a0SAC")}</strong>
+      {about.lead.slice(at + about.leadName.length)}
+    </>
+  );
+}
+
+const points = [
+  { icon: ShieldCheckIcon, text: about.commitment },
+  { icon: LayersIcon, text: about.scope },
+];
 
 export function About() {
   return (
@@ -16,16 +34,20 @@ export function About() {
               </span>
             ))}
           </h2>
-          <div className={styles.who}>
-            <h3 className={styles.blockTitle}>{about.subtitle}</h3>
-            <p className={styles.lead}>{about.lead}</p>
-          </div>
-          <div className={styles.bodyColumns}>
-            {about.body.map((paragraph) => (
-              <p className={styles.body} key={paragraph}>
-                {paragraph}
-              </p>
-            ))}
+          <div className={styles.introGrid}>
+            <p className={styles.lead}>
+              <Lead />
+            </p>
+            <ul className={styles.points}>
+              {points.map(({ icon: Icon, text }) => (
+                <li className={styles.point} key={text}>
+                  <span className={styles.pointIcon}>
+                    <Icon />
+                  </span>
+                  <p className={styles.pointText}>{text}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
@@ -39,7 +61,7 @@ export function About() {
         </div>
 
         <div className={styles.values}>
-          <h3 className={styles.blockTitle} data-reveal>
+          <h3 className={`${styles.subTitle} ${styles.valuesTitle}`} data-reveal>
             {about.valuesTitle}
           </h3>
           <ul className={styles.valueList} data-reveal-group>

@@ -80,13 +80,10 @@ html {
   scroll-margin-top: calc(-1 * var(--section-pad-top, var(--section-y)));
 }
 
-/* On narrow viewports the scrolled header drops its menu row, so anchors only
-   need to clear the single logo-and-button row. At the top of the page the
-   menu row is still there, which is what covers have to clear. */
+/* On narrow viewports the header is a single row: the menu lives in a panel. */
 @media (max-width: 900px) {
   :root {
     --header-offset: 84px;
-    --header-clearance: 140px;
   }
 }
 

@@ -1,22 +1,15 @@
 .about {
   padding: var(--section-y) 0;
+  overflow-x: clip;
   background: color-mix(in srgb, var(--mist) 16%, #fff);
   color: var(--ink);
 }
 
 /* --- intro --- */
 
-.intro {
-  --intro-columns: minmax(0, 5fr) minmax(0, 7fr);
-  --intro-gap: clamp(28px, 5vw, 80px);
-  display: grid;
-  grid-template-columns: var(--intro-columns);
-  gap: 0 var(--intro-gap);
-  align-items: start;
-}
-
 .title {
   composes: sectionTitle from "../../styles/typography.module.css";
+  margin-bottom: clamp(28px, 3.5vw, 48px);
   color: var(--ink);
 }
 
@@ -24,37 +17,121 @@
   display: block;
 }
 
-/* Aligns "Quiénes somos" with the cap line of the section heading beside it. */
-.who {
-  padding-top: clamp(4px, 0.6vw, 10px);
+/* A faint drafting grid sits behind the block, fading out from its centre:
+   the one decorative note, and it belongs to an engineering firm. */
+.intro {
+  position: relative;
+  isolation: isolate;
+}
+
+.intro::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -48px -6vw -64px 34%;
+  background-image:
+    linear-gradient(rgb(var(--brand-rgb) / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--brand-rgb) / 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 60% 70% at 60% 50%, #000 30%, transparent 75%);
+  pointer-events: none;
+}
+
+/* One rule opens the block and both columns start on it: who PPMA is on the
+   left, what it guarantees and offers on the right. */
+.introGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 32px clamp(32px, 5vw, 80px);
+  padding-top: clamp(28px, 3vw, 40px);
+  border-top: 1px solid rgb(var(--brand-rgb) / 0.2);
 }
 
 .lead {
   margin: 0;
-  font-size: var(--text-statement);
+  font-size: var(--text-lead);
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.75;
+  text-wrap: pretty;
   color: var(--ink);
 }
 
-/* Spans the whole intro on the same two tracks, so the shorter commitment sits
-   under the heading and the longer scope paragraph under the lead. */
-.bodyColumns {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: var(--intro-columns);
-  gap: 20px var(--intro-gap);
-  margin-top: clamp(32px, 4vw, 56px);
-  padding-top: clamp(22px, 2.6vw, 32px);
-  border-top: 1px solid rgb(var(--brand-rgb) / 0.2);
+.name {
+  font-weight: 700;
+  color: var(--brand);
 }
 
-.body {
+/* The two commitments share one raised white card; the rule between them
+   and the icon tiles carry the value cards' language up the section. */
+.points {
   margin: 0;
-  font-size: var(--text-body);
-  line-height: 1.7;
+  padding: clamp(8px, 1vw, 12px) clamp(22px, 2.4vw, 32px);
+  list-style: none;
+  border: 1px solid rgb(var(--brand-rgb) / 0.12);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgb(var(--brand-rgb) / 0.05),
+    0 24px 48px -32px rgb(var(--brand-rgb) / 0.45);
+}
+
+.point {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 18px;
+  padding-block: clamp(20px, 2.2vw, 28px);
+}
+
+.point + .point {
+  border-top: 1px solid rgb(var(--brand-rgb) / 0.12);
+}
+
+.pointIcon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgb(var(--brand-rgb) / 0.16);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--mist) 14%, #fff);
+  color: var(--brand);
+  transition:
+    background 0.3s var(--ease),
+    border-color 0.3s var(--ease),
+    color 0.3s var(--ease);
+}
+
+.pointIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.point:hover .pointIcon {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: #fff;
+}
+
+.pointText {
+  margin: 0;
+  font-size: var(--text-lead);
+  line-height: 1.65;
   text-wrap: pretty;
   color: var(--muted);
+}
+
+/* Shared by the block headings (Misión, Visión, Valores corporativos) so they
+   read as one family under "Nuestra empresa". */
+.subTitle {
+  margin: 0 0 clamp(16px, 1.8vw, 24px);
+  font-family: var(--font-display);
+  font-size: clamp(28px, 1.4vw + 16px, 40px);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--ink);
 }
 
 /* --- mission and vision --- */
@@ -86,12 +163,8 @@
 }
 
 .pillarTitle {
+  composes: subTitle;
   margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(30px, 1.6vw + 18px, 44px);
-  font-weight: 400;
-  line-height: 1;
-  text-transform: uppercase;
   color: #fff;
 }
 
@@ -104,47 +177,48 @@
   color: var(--on-dark);
 }
 
-.blockTitle {
-  margin: 0 0 16px;
-  font-family: var(--font-cond);
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--brand);
-}
-
 /* --- values --- */
 
+/* The heading takes the first cell of the grid, so seven values and their
+   title fill two even rows of four instead of leaving a short last row. The
+   list is laid over the same tracks through subgrid. */
 .values {
+  --card-pad: clamp(20px, 2vw, 28px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 20px);
   margin-top: clamp(48px, 6vw, 88px);
 }
 
-.values .blockTitle {
-  margin-bottom: clamp(20px, 2.4vw, 32px);
+.valuesTitle {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+  padding: var(--card-pad) 12px 0 0;
 }
 
-/* Four across; the odd seventh card leaves a centred row of three rather
-   than a lone card at the start of the line. */
 .valueList {
-  --gap: clamp(12px, 1.6vw, 20px);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--gap);
+  grid-column: 1 / -1;
+  grid-row: 1 / span 2;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+.value:first-child {
+  grid-column-start: 2;
+}
+
 .value {
-  flex: 0 1 calc((100% - 3 * var(--gap)) / 4);
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   grid-template-rows: auto 1fr;
   align-items: center;
   column-gap: 16px;
-  padding: clamp(20px, 2vw, 28px);
+  padding: var(--card-pad);
   border: 1px solid rgb(var(--brand-rgb) / 0.12);
   border-radius: var(--radius);
   background: #fff;
@@ -210,20 +284,23 @@
 }
 
 @media (max-width: 900px) {
-  .value {
-    flex-basis: calc((100% - var(--gap)) / 2);
+  .values {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .valueList {
+    grid-row: 1 / span 4;
   }
 }
 
 @media (max-width: 720px) {
-  .intro,
-  .bodyColumns,
+  .introGrid,
   .purpose {
     grid-template-columns: 1fr;
   }
 
-  .intro {
-    row-gap: 24px;
+  .intro::before {
+    inset: -32px -10vw 40% 10%;
   }
 
   .pillar {
@@ -240,7 +317,42 @@
 }
 
 @media (max-width: 520px) {
-  .value {
-    flex-basis: 100%;
+  .values {
+    display: block;
+  }
+
+  .valuesTitle {
+    margin-bottom: 20px;
+    padding: 0;
+  }
+
+  .valueList {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 12px;
+  }
+
+  .value:first-child {
+    grid-column-start: auto;
+  }
+
+  .point {
+    gap: 14px;
+  }
+
+  .pointIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .pointIcon svg {
+    width: 21px;
+    height: 21px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pointIcon {
+    transition: none;
   }
 }

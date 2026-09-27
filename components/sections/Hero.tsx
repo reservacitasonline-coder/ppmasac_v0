@@ -2,16 +2,12 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { clients, hero } from "@/content/site";
+import { CountUp } from "@/components/ui/CountUp";
+import { hero } from "@/content/site";
 
 import styles from "./Hero.module.css";
 
 export function Hero() {
-  const proof = [
-    ...hero.proof,
-    { value: String(clients.items.length), label: hero.clientsLabel },
-  ];
-
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
       <div className={styles.media}>
@@ -40,11 +36,11 @@ export function Hero() {
 
         <div className={styles.bottom}>
           <dl className={styles.proof}>
-            {proof.map((item) => (
+            {hero.proof.map((item) => (
               <div className={styles.proofItem} key={item.label}>
                 <dt className={styles.proofLabel}>{item.label}</dt>
                 <dd className={styles.proofValue}>
-                  {item.value}
+                  <CountUp value={item.value} />
                   {"suffix" in item && item.suffix ? (
                     <span className={styles.proofSuffix}>{item.suffix}</span>
                   ) : null}
