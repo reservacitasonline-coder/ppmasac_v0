@@ -22,12 +22,29 @@
   max-width: 360px;
 }
 
-/* Flattened to white like the header, so the mark sits on the band instead of
-   inside a white box. */
+/* The full-colour mark needs a light ground; on the ink band it sits on a
+   white plate. */
+.brandPlate {
+  display: inline-flex;
+  padding: 14px 20px;
+  background: #fff;
+  border-radius: var(--radius);
+  transition: transform 0.3s var(--ease);
+}
+
+.brandPlate:hover {
+  transform: translateY(-2px);
+}
+
+.brandPlate:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 4px;
+}
+
 .brandLogo {
+  display: block;
   width: auto;
-  height: 36px;
-  filter: brightness(0) invert(1);
+  height: 34px;
 }
 
 .brandText {

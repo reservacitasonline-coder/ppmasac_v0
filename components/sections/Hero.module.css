@@ -19,7 +19,9 @@
   object-fit: cover;
   object-position: center 40%;
   filter: saturate(0.8) contrast(1.05);
-  animation: zoomOut 18s var(--ease) forwards;
+  /* Slow enough to read as breathing, not as movement competing with the copy. */
+  animation: breathe 22s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
 /* The photograph is a sunlit concrete slab, so the veil carries more weight
@@ -44,9 +46,9 @@
     );
 }
 
-@keyframes zoomOut {
+@keyframes breathe {
   from {
-    transform: scale(1.08);
+    transform: scale(1.1);
   }
   to {
     transform: scale(1);

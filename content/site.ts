@@ -98,7 +98,7 @@ const proposalLabel = "Solicitar propuesta";
 
 export const hero = {
   /** One line per rendered row of the `h1`, which wraps further on phones. */
-  title: ["Ingeniería, gestión", "y construcción integradas", "en un solo equipo"],
+  title: ["Ingeniería, construcción", "y gestión integral"],
   /** The registered name, kept prominent at the client's request. */
   legalName: "Professional Project Manager Administration SAC",
   lead: "Transformamos sus proyectos desde el análisis de factibilidad y expediente técnico hasta la ejecución y posventa, garantizando cumplimiento en costos, plazos, calidad y seguridad.",
@@ -227,7 +227,7 @@ export const services = {
   ] satisfies LifecycleStep[],
   /** Cover band of the /servicios page. */
   page: {
-    heading: ["Ingeniería, construcción", "y gestión integral"],
+    heading: ["Ingeniería, gestión y construcción", "integradas en un solo equipo"],
     lead: "Acompañamos el proyecto de principio a fin, con un staff de profesionales con más de 20 años en la industria de la construcción.",
     background: {
       src: unsplash("photo-1493397212122-2b85dda8106b", 2000),

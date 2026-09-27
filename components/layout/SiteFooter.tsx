@@ -13,7 +13,7 @@ export function SiteFooter() {
       <div className={styles.top}>
         <Container className={styles.columns}>
           <div className={styles.brand}>
-            <Link href="/" aria-label={`${footer.logo.alt} — inicio`}>
+            <Link className={styles.brandPlate} href="/" aria-label={`${footer.logo.alt} — inicio`}>
               <Image
                 className={styles.brandLogo}
                 src={footer.logo.src}
