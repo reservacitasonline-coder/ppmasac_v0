@@ -402,7 +402,7 @@ export const services = {
 
 export const clients = {
   heading: ["Empresas que", "confían en nosotros"],
-  countLabel: "empresas e instituciones",
+  countLabel: "Empresas e Instituciones",
   lead: "Organizaciones de retail, salud, educación, hotelería y el sector público han confiado en nosotros para sus proyectos.",
   /** Logos live in `public/clients`; the name is used as alt text. */
   items: [

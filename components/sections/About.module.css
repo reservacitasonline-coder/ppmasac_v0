@@ -51,7 +51,6 @@
 .lead {
   margin: 0;
   font-size: var(--text-lead);
-  font-weight: 500;
   line-height: 1.75;
   text-wrap: pretty;
   color: var(--ink);
@@ -172,7 +171,6 @@
   max-width: 46ch;
   margin: 0;
   font-size: clamp(17px, 0.5vw + 12px, 21px);
-  font-weight: 500;
   line-height: 1.55;
   color: var(--on-dark);
 }
