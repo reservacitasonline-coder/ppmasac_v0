@@ -1,8 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { CSSProperties } from "react";
 
 import { Container } from "@/components/ui/Container";
-import { CountUp } from "@/components/ui/CountUp";
 import { clients } from "@/content/site";
 
 import styles from "./Clients.module.css";
@@ -23,29 +23,27 @@ export function Clients() {
               </span>
             ))}
           </h2>
-
-          <div className={styles.summary}>
-            <p className={styles.count}>
-              <span className={styles.countValue}>
-                <CountUp value={String(clients.items.length)} />
-              </span>
-              <span className={styles.countLabel}>{clients.countLabel}</span>
-            </p>
-            <p className={styles.lead}>{clients.lead}</p>
-          </div>
+          <p className={styles.lead}>
+            <strong className={styles.count}>
+              {clients.items.length} {clients.countLabel}
+            </strong>{" "}
+            {clients.lead}
+          </p>
         </div>
 
-        <ul className={styles.grid} data-reveal-group>
+        <ul className={styles.wall} data-reveal-group>
           {clients.items.map((client) => (
             <li className={styles.item} key={client.name}>
-              {/* Fixed-height frame so logos of very different proportions
-                  read at a comparable optical size. */}
+              {/* Every logo gets the same visual area whatever its
+                  proportions, so a square mark and a long wordmark read at
+                  a comparable size. */}
               <span
                 className={styles.frame}
                 style={
-                  client.scale
-                    ? ({ "--logo-scale": client.scale } as CSSProperties)
-                    : undefined
+                  {
+                    "--ratio": client.width / client.height,
+                    "--logo-scale": "scale" in client ? client.scale : 1,
+                  } as CSSProperties
                 }
               >
                 <Image
@@ -53,11 +51,20 @@ export function Clients() {
                   src={client.logo}
                   alt={client.name}
                   fill
-                  sizes="200px"
+                  sizes="220px"
                 />
               </span>
             </li>
           ))}
+          <li className={styles.cta}>
+            <p className={styles.ctaTitle}>{clients.cta.title}</p>
+            <Link className={styles.ctaLink} href={clients.cta.href}>
+              {clients.cta.label}
+              <span className={styles.ctaArrow} aria-hidden="true">
+                →
+              </span>
+            </Link>
+          </li>
         </ul>
       </Container>
     </section>

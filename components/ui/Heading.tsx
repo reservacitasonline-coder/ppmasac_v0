@@ -11,7 +11,7 @@ interface HeadingProps {
   className?: string;
 }
 
-/** Section heading in the poster display face. */
+/** Section heading in the display face. */
 export function Heading({
   lines,
   tone = "onLight",

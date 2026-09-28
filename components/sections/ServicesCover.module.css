@@ -47,11 +47,8 @@
   color: var(--on-dark-soft);
 }
 
-/* Uppercase Spanish accents (Ó, Í) need more room than the shared 0.95 or
-   they touch the line above. */
 .title {
   composes: sectionTitle from "../../styles/typography.module.css";
-  line-height: 1.04;
   color: #fff;
 }
 

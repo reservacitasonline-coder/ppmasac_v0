@@ -178,7 +178,7 @@ export function aboutSchema(): JsonLdGraph {
     "@type": "AboutPage",
     "@id": `${site.url}/#nosotros`,
     name: about.subtitle,
-    description: about.lead,
+    description: about.lead.join(" "),
     inLanguage: "es-PE",
     isPartOf: { "@id": WEBSITE_ID },
     mainEntity: { "@id": ORGANISATION_ID },

@@ -74,13 +74,10 @@
 .title {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(38px, 4.2vw + 22px, 88px);
-  /* Spanish capitals carry accents (Í, Ó) above the cap height; any tighter
-     and they touch the line above. */
-  line-height: 1.04;
-  letter-spacing: -0.005em;
-  text-transform: uppercase;
+  font-weight: 700;
+  font-size: clamp(34px, 3.7vw + 19px, 78px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
   text-wrap: balance;
   text-shadow: 0 8px 40px rgb(var(--ink-rgb) / 0.35);
 }
@@ -90,7 +87,7 @@
 }
 
 .legalName {
-  margin: clamp(18px, 2vw, 26px) 0 0;
+  margin: 0 0 clamp(12px, 1.4vw, 18px);
   font-family: var(--font-cond);
   font-size: clamp(17px, 1.5vw, 22px);
   font-weight: 600;
@@ -102,7 +99,7 @@
 }
 
 .lead {
-  margin: 12px 0 0;
+  margin: clamp(18px, 2vw, 26px) 0 0;
   max-width: 58ch;
   font-size: var(--text-lead);
   line-height: 1.6;
@@ -120,21 +117,14 @@
   }
 }
 
-.bottom {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
-  gap: 26px clamp(20px, 3vw, 40px);
-  padding-top: clamp(22px, 2.8vw, 34px);
-  border-top: 1px solid rgba(255, 255, 255, 0.28);
-  animation: riseIn 1s 0.12s var(--ease) both;
-}
-
 .proof {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px 0;
+  gap: 22px 0;
   margin: 0;
+  padding-top: clamp(22px, 2.8vw, 34px);
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  animation: riseIn 1s 0.12s var(--ease) both;
 }
 
 /* Label first in the markup so a screen reader reads "term: value"; the
@@ -143,7 +133,7 @@
   display: flex;
   flex-direction: column-reverse;
   justify-content: flex-end;
-  gap: 4px;
+  gap: 8px;
   padding-inline: clamp(18px, 2.4vw, 32px);
   border-left: 1px solid rgba(255, 255, 255, 0.28);
 }
@@ -157,7 +147,9 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(32px, 2.8vw, 44px);
+  font-weight: 600;
   line-height: 1;
+  letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
   color: #fff;
 }
@@ -167,20 +159,22 @@
 }
 
 .proofLabel {
-  max-width: 16ch;
-  text-wrap: balance;
-  font-size: 14px;
+  font-size: clamp(14px, 0.3vw + 10px, 15px);
   font-weight: 500;
   line-height: 1.35;
   color: var(--on-dark-soft);
 }
 
+.proofLabelLine {
+  display: block;
+  white-space: nowrap;
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
   gap: 12px;
-  flex: 0 0 auto;
+  margin-top: clamp(26px, 2.8vw, 36px);
 }
 
 /* Laptop screens are wide but short; the proof row must stay above the fold. */
@@ -188,18 +182,6 @@
   .inner {
     gap: 40px;
     padding-top: 140px;
-  }
-}
-
-/* Below this width four figures and two buttons no longer share a row, so the
-   figures become an even strip and the buttons drop beneath it. */
-@media (max-width: 1200px) {
-  .bottom {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .actions {
-    justify-content: flex-start;
   }
 }
 
@@ -251,7 +233,7 @@
 @media (prefers-reduced-motion: reduce) {
   .mediaImage,
   .copy,
-  .bottom {
+  .proof {
     animation: none;
   }
 }

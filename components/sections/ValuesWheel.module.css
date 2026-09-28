@@ -1,0 +1,278 @@
+/* Desktop: the wheel sits near the top of a fixed-height stage, centred on
+   `--cy`, and each label is placed beside its slice from the `--x` / `--y`
+   the component computes (in wheel radii), so the text follows the curve of
+   the ring. The value at the foot takes the room left under the wheel. */
+.stage {
+  --wheel: clamp(320px, 26vw + 90px, 460px);
+  --r: calc(var(--wheel) / 2);
+  --cy: calc(var(--r) + 12px);
+  --gap: clamp(20px, 2.2vw, 36px);
+  position: relative;
+  height: calc(var(--wheel) + 100px);
+}
+
+.wheel {
+  position: absolute;
+  top: var(--cy);
+  left: 50%;
+  width: var(--wheel);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 24px 32px rgb(var(--ink-rgb) / 0.45));
+}
+
+.ring {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.halo {
+  fill: none;
+  stroke: rgb(96 179 231 / 0.45);
+  stroke-width: 0.6;
+}
+
+.hub {
+  fill: rgb(var(--ink-rgb) / 0.35);
+  stroke: rgb(96 179 231 / 0.35);
+  stroke-width: 0.6;
+}
+
+/* The brand stroke cuts the gaps between slices out of the panel colour. */
+.slice path:first-child {
+  stroke: var(--brand);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+
+.band {
+  fill: rgb(var(--ink-rgb) / 0.3);
+}
+
+.slice {
+  transform-box: view-box;
+  transform-origin: center;
+  transition:
+    transform 0.45s var(--ease),
+    opacity 0.35s var(--ease);
+}
+
+.slice[data-active] {
+  transform: translate(var(--dx), var(--dy));
+}
+
+.icon {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 11.5%;
+  aspect-ratio: 1;
+  color: #fff;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition:
+    transform 0.45s var(--ease),
+    opacity 0.35s var(--ease);
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.icon[data-active] {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.labels {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.label {
+  position: absolute;
+  top: calc(var(--cy) + var(--y) * var(--r));
+  width: min(270px, calc(50% - var(--x) * var(--r) - var(--gap)));
+  transform: translateY(-50%);
+  transition:
+    opacity 0.35s var(--ease),
+    transform 0.6s var(--ease);
+}
+
+.label[data-side="right"] {
+  left: calc(50% + var(--x) * var(--r) + var(--gap));
+}
+
+.label[data-side="left"] {
+  right: calc(50% + var(--x) * var(--r) + var(--gap));
+  text-align: right;
+}
+
+.label[data-side="bottom"] {
+  top: calc(var(--cy) + var(--r) + 20px);
+  left: 50%;
+  width: 300px;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.stage[data-has-active] .slice:not([data-active]),
+.stage[data-has-active] .icon:not([data-active]) {
+  opacity: 0.4;
+}
+
+.stage[data-has-active] .label:not([data-active]) {
+  opacity: 0.45;
+}
+
+.chip {
+  display: none;
+}
+
+.name {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 0.5vw + 12px, 23px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  color: var(--name);
+}
+
+.text {
+  margin: 0;
+  font-size: clamp(16px, 0.25vw + 13px, 17px);
+  line-height: 1.5;
+  text-wrap: pretty;
+  color: var(--on-dark-soft);
+}
+
+/* --- entrance: the slices sweep in one after another, then their text --- */
+
+:global(.reveal-ready) .stage:not(:global(.is-revealed)) .slice {
+  opacity: 0;
+  transform: rotate(-24deg) scale(0.86);
+}
+
+:global(.reveal-ready) .stage:not(:global(.is-revealed)) .icon {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.6);
+}
+
+:global(.reveal-ready) .stage:not(:global(.is-revealed)) .label {
+  opacity: 0;
+}
+
+:global(.reveal-ready) .stage:not(:global(.is-revealed)) .label[data-side="right"] {
+  transform: translate(-14px, -50%);
+}
+
+:global(.reveal-ready) .stage:not(:global(.is-revealed)) .label[data-side="left"] {
+  transform: translate(14px, -50%);
+}
+
+:global(.reveal-ready) .stage:not(:global(.is-revealed)) .label[data-side="bottom"] {
+  transform: translate(-50%, 12px);
+}
+
+.stage:global(.is-revealing) .slice {
+  transition-duration: 0.8s;
+  transition-delay: calc(var(--i) * 70ms);
+}
+
+.stage:global(.is-revealing) .icon,
+.stage:global(.is-revealing) .label {
+  transition-duration: 0.7s;
+  transition-delay: calc(var(--i) * 70ms + 200ms);
+}
+
+/* Tablet and phone: the wheel on top, the values as a list beneath it, each
+   keyed to its slice by a chip in the same blue. */
+@media (max-width: 1023px) {
+  .stage {
+    --wheel: min(340px, 78vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(32px, 6vw, 48px);
+    height: auto;
+  }
+
+  .wheel {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+  }
+
+  .labels {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 32px;
+    width: 100%;
+  }
+
+  .label,
+  .label[data-side="left"],
+  .label[data-side="right"],
+  .label[data-side="bottom"] {
+    position: static;
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    align-content: start;
+    column-gap: 14px;
+    align-items: center;
+    width: auto;
+    text-align: left;
+    transform: none;
+  }
+
+  :global(.reveal-ready) .stage:not(:global(.is-revealed)) .label[data-side] {
+    transform: translateY(12px);
+  }
+
+  .chip {
+    display: grid;
+    grid-row: span 2;
+    align-self: start;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--tone);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.28);
+    color: #fff;
+  }
+
+  .chip svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .name {
+    margin-bottom: 4px;
+  }
+
+  .text {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .labels {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slice,
+  .icon,
+  .label {
+    transition: none;
+  }
+}
