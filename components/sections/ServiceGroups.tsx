@@ -94,17 +94,19 @@ export function ServiceGroups() {
 
                 <div className={styles.body} data-reveal-group>
                   <figure className={styles.figure}>
-                    <Image
-                      className={styles.image}
-                      src={group.photo.src}
-                      alt={group.photo.alt}
-                      fill
-                      sizes={
-                        dense
-                          ? "(max-width: 900px) 100vw, 32vw"
-                          : "(max-width: 900px) 100vw, 40vw"
-                      }
-                    />
+                    <span className={styles.frame}>
+                      <Image
+                        className={styles.image}
+                        src={group.photo.src}
+                        alt={group.photo.alt}
+                        fill
+                        sizes={
+                          dense
+                            ? "(max-width: 900px) 100vw, 32vw"
+                            : "(max-width: 900px) 100vw, 40vw"
+                        }
+                      />
+                    </span>
                   </figure>
 
                   <div className={styles.copy}>
@@ -136,9 +138,6 @@ export function ServiceGroups() {
                           );
                         })}
                       </ul>
-                    ) : null}
-                    {group.note ? (
-                      <p className={styles.note}>{group.note}</p>
                     ) : null}
                   </div>
                 </div>

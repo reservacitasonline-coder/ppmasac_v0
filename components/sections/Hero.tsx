@@ -23,6 +23,7 @@ export function Hero() {
 
       <Container className={styles.inner}>
         <div className={styles.copy}>
+          <p className={styles.legalName}>{hero.legalName}</p>
           <h1 id="hero-title" className={styles.title}>
             {hero.title.map((line) => (
               <span key={line} className={styles.titleLine}>
@@ -30,24 +31,7 @@ export function Hero() {
               </span>
             ))}
           </h1>
-          <p className={styles.legalName}>{hero.legalName}</p>
           <p className={styles.lead}>{hero.lead}</p>
-        </div>
-
-        <div className={styles.bottom}>
-          <dl className={styles.proof}>
-            {hero.proof.map((item) => (
-              <div className={styles.proofItem} key={item.label}>
-                <dt className={styles.proofLabel}>{item.label}</dt>
-                <dd className={styles.proofValue}>
-                  <CountUp value={item.value} />
-                  {"suffix" in item && item.suffix ? (
-                    <span className={styles.proofSuffix}>{item.suffix}</span>
-                  ) : null}
-                </dd>
-              </div>
-            ))}
-          </dl>
           <div className={styles.actions} data-whatsapp-avoid>
             <Button href={hero.primary.href} variant="light">
               {hero.primary.label}
@@ -57,6 +41,23 @@ export function Hero() {
             </Button>
           </div>
         </div>
+
+        <dl className={styles.proof}>
+          {hero.proof.map((item) => (
+            <div className={styles.proofItem} key={item.label.join(" ")}>
+              <dt className={styles.proofLabel}>
+                <span className={styles.proofLabelLine}>{item.label[0]}</span>{" "}
+                <span className={styles.proofLabelLine}>{item.label[1]}</span>
+              </dt>
+              <dd className={styles.proofValue}>
+                <CountUp value={item.value} />
+                {"suffix" in item && item.suffix ? (
+                  <span className={styles.proofSuffix}>{item.suffix}</span>
+                ) : null}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </Container>
     </section>
   );

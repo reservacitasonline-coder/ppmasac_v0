@@ -1,25 +1,26 @@
 import { Container } from "@/components/ui/Container";
-import { LayersIcon, ShieldCheckIcon, ValueIcon } from "@/components/ui/icons";
+import { LayersIcon, ShieldCheckIcon } from "@/components/ui/icons";
 import { about } from "@/content/site";
 
 import styles from "./About.module.css";
+import { ValuesWheel } from "./ValuesWheel";
 
-function Lead() {
-  const at = about.lead.indexOf(about.leadName);
-  if (at === -1) return <>{about.lead}</>;
+function Lead({ text }: { text: string }) {
+  const at = text.indexOf(about.leadName);
+  if (at === -1) return <>{text}</>;
 
   return (
     <>
-      {about.lead.slice(0, at)}
+      {text.slice(0, at)}
       <strong className={styles.name}>{about.leadName.replace("PPMA SAC", "PPMA\u00a0SAC")}</strong>
-      {about.lead.slice(at + about.leadName.length)}
+      {text.slice(at + about.leadName.length)}
     </>
   );
 }
 
 const points = [
-  { icon: ShieldCheckIcon, text: about.commitment },
-  { icon: LayersIcon, text: about.scope },
+  { icon: ShieldCheckIcon, title: about.commitmentTitle, text: about.commitment },
+  { icon: LayersIcon, title: about.scopeTitle, text: about.scope },
 ];
 
 export function About() {
@@ -34,16 +35,21 @@ export function About() {
               </span>
             ))}
           </h2>
-          <div className={styles.introGrid}>
-            <p className={styles.lead}>
-              <Lead />
-            </p>
+          <div className={styles.introBody}>
+            {about.lead.map((text) => (
+              <p className={styles.lead} key={text}>
+                <Lead text={text} />
+              </p>
+            ))}
             <ul className={styles.points}>
-              {points.map(({ icon: Icon, text }) => (
-                <li className={styles.point} key={text}>
-                  <span className={styles.pointIcon}>
-                    <Icon />
-                  </span>
+              {points.map(({ icon: Icon, title, text }) => (
+                <li className={styles.point} key={title}>
+                  <h3 className={styles.pointTitle}>
+                    <span className={styles.pointIcon}>
+                      <Icon />
+                    </span>
+                    {title}
+                  </h3>
                   <p className={styles.pointText}>{text}</p>
                 </li>
               ))}
@@ -64,17 +70,7 @@ export function About() {
           <h3 className={`${styles.subTitle} ${styles.valuesTitle}`} data-reveal>
             {about.valuesTitle}
           </h3>
-          <ul className={styles.valueList} data-reveal-group>
-            {about.values.map((value) => (
-              <li className={styles.value} key={value.title}>
-                <span className={styles.valueIcon}>
-                  <ValueIcon name={value.icon} />
-                </span>
-                <h4 className={styles.valueTitle}>{value.title}</h4>
-                <p className={styles.valueText}>{value.description}</p>
-              </li>
-            ))}
-          </ul>
+          <ValuesWheel values={about.values} />
         </div>
       </Container>
     </section>

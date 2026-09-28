@@ -63,7 +63,7 @@ export const seo = {
   /** Registered details, used by the structured data in `lib/seo.ts`. */
   legalName: "Professional Project Manager Administration S.A.C.",
   ruc: "20601984564",
-  /** Eight uninterrupted years in the market, per the About section. */
+  /** Eight years in the market, per the "08" in the hero's proof row. */
   foundedIn: "2018",
   /** What the company is an authority on, in schema.org terms. */
   expertise: [
@@ -104,10 +104,10 @@ export const hero = {
   lead: "Transformamos sus proyectos desde el análisis de factibilidad y expediente técnico hasta la ejecución y posventa, garantizando cumplimiento en costos, plazos, calidad y seguridad.",
   /** Verifiable facts only. Leading zeros are kept, also while counting up. */
   proof: [
-    { value: "08", label: "Años en el mercado peruano" },
-    { value: "20", suffix: "+", label: "Años de experiencia del equipo" },
-    { value: "06", label: "Líneas de servicio" },
-    { value: "05", label: "Especialidades de ingeniería" },
+    { value: "08", label: ["Años en el", "mercado peruano"] },
+    { value: "20", suffix: "+", label: ["Años de experiencia", "del equipo"] },
+    { value: "06", label: ["Líneas de", "servicio"] },
+    { value: "05", label: ["Especialidades", "de ingeniería"] },
   ] satisfies Stat[],
   primary: { label: proposalLabel, href: "#contacto" } satisfies CallToAction,
   secondary: { label: "Ver servicios", href: "#servicios" } satisfies CallToAction,
@@ -119,14 +119,19 @@ export const hero = {
 
 export const about = {
   heading: ["Nuestra", "empresa"],
-  lead: "Somos Professional Project Manager Administration (PPMA SAC), un sólido grupo empresarial con 8 años operando ininterrumpidamente en el mercado peruano. Contamos con un staff de profesionales con más de 20 años laborando en la industria de la construcción, del negocio inmobiliario y servicios generales.",
+  lead: [
+    "En Professional Project Manager Administration (PPMA SAC) transformamos visiones en realidades rentables y sostenibles. Somos un grupo empresarial líder en el mercado peruano, respaldado por un equipo con más de 20 años de experiencia en los sectores de construcción, inmobiliario y servicios generales.",
+    "Asumimos la dirección completa de cada proyecto, desde la factibilidad y adquisición de terrenos hasta la ingeniería, construcción y soporte posventa. Bajo un firme compromiso con la seguridad y la sostenibilidad, garantizamos el éxito de su inversión optimizando costos, plazos y calidad.",
+  ],
   /** Not shown on the page; names the "about" node in the structured data. */
   subtitle: "Quiénes somos",
+  commitmentTitle: "Nuestro compromiso",
+  scopeTitle: "Soluciones integrales",
   commitment:
     "Garantizamos el éxito de cada proyecto optimizando costos, plazos y calidad, bajo un firme compromiso con la seguridad y la sostenibilidad ambiental.",
   scope:
     "Ofrecemos soluciones inmobiliarias integrales que abarcan desde el análisis de factibilidad, compra de terrenos y habilitaciones urbanas, hasta la ingeniería, construcción, gestión comercial y soporte posventa.",
-  /** Set in brand blue inside `lead`; skipped if it no longer appears verbatim. */
+  /** Set in brand blue inside the `lead` paragraphs; skipped where it does not appear verbatim. */
   leadName: "Professional Project Manager Administration (PPMA SAC)",
   pillars: [
     {
@@ -282,7 +287,7 @@ export const services = {
         "Implementación comercial para centros comerciales y locatarios de retail.",
         "Mantenimiento integral y servicios generales para centros comerciales.",
         "Instalación de acabados de alta calidad para residencias, departamentos y áreas comunes (cocinas, baños, terrazas, parrillas y jardines).",
-        "Ingeniería e instalaciones especializadas: Circuito Cerrado de Televisión (CCTV), agua contra incendio (ACI), cableado estructurado, voz y datos, sistemas eléctricos, sanitarios, aire acondicionado y subestaciones.",
+        "Ingeniería e instalaciones especializadas tales como Circuito Cerrado de Televisión (CCTV), Agua Contra Incendio (ACI), cableado estructurado, voz y datos, sistemas eléctricos, sanitarios, aire acondicionado y subestaciones.",
         "Sistemas de iluminación integral para polideportivos, gimnasios y terrazas.",
       ],
     },
@@ -324,7 +329,6 @@ export const services = {
           ],
         },
       ],
-      note: "Desarrollamos sus proyectos desde el origen. Nos encargamos de la búsqueda de terrenos, saneamiento legal, licencias y habilitación urbana, garantizando la construcción de infraestructura especializada y obras civiles de alta calidad.",
     },
     {
       index: "04",
@@ -402,42 +406,78 @@ export const services = {
 
 export const clients = {
   heading: ["Empresas que", "confían en nosotros"],
-  countLabel: "Empresas e Instituciones",
-  lead: "Organizaciones de retail, salud, educación, hotelería y el sector público han confiado en nosotros para sus proyectos.",
+  /** Follows the bold client count, e.g. "11 empresas e instituciones". */
+  countLabel: "empresas e instituciones",
+  lead: "de retail, salud, educación, hotelería y el sector público han confiado en nosotros para sus proyectos.",
+  /** Fills the last tile of the logo wall. */
+  cta: {
+    title: "Su proyecto puede ser el siguiente",
+    label: proposalLabel,
+    href: "#contacto",
+  },
   /** Logos live in `public/clients`; the name is used as alt text. */
   items: [
-    { name: "Cencosud", logo: "/clients/Cencosud-2014.svg" },
-    { name: "Auna", logo: "/clients/logotipo_AUNA-01.svg" },
+    { name: "Cencosud", logo: "/clients/Cencosud-2014.svg", width: 600, height: 328 },
+    { name: "Auna", logo: "/clients/logotipo_AUNA-01.svg", width: 361, height: 81 },
     {
       name: "Ministerio del Ambiente del Perú",
       logo: "/clients/PCM-Ambiente.webp",
-      scale: 1.2,
+      width: 1000,
+      height: 209,
     },
-    { name: "Universidad San Ignacio de Loyola", logo: "/clients/Usil.jpg" },
+    {
+      name: "Universidad San Ignacio de Loyola",
+      logo: "/clients/Usil.jpg",
+      width: 930,
+      height: 927,
+      scale: 0.9,
+    },
     {
       name: "Universidad Nacional Agraria La Molina",
       logo: "/clients/UNALM-Texto-1024x296.png",
+      width: 1024,
+      height: 296,
     },
-    { name: "Markham College", logo: "/clients/weblogo80sAsset-5@3x.png" },
+    {
+      name: "Markham College",
+      logo: "/clients/weblogo80sAsset-5@3x.png",
+      width: 937,
+      height: 185,
+    },
     {
       name: "Plaza Norte",
       logo: "/clients/plaza-norte-seeklogo.png",
+      width: 1179,
+      height: 2000,
     },
     {
       name: "El Pardo DoubleTree by Hilton",
       logo: "/clients/El_pardo.jpg",
+      width: 400,
+      height: 400,
+      scale: 0.9,
     },
     {
       name: "Clínica Renacer",
       logo: "/clients/clinica-renacer-transparente.png",
-      scale: 1.3,
+      width: 255,
+      height: 146,
+      scale: 1.45,
     },
     {
       name: "Parque del Recuerdo",
       logo: "/clients/parque-recuerdo-trim.png",
-      scale: 1.15,
+      width: 285,
+      height: 150,
+      scale: 1.3,
     },
-    { name: "Gerpal", logo: "/clients/gerpal_sac_logo.jpeg" },
+    {
+      name: "Gerpal",
+      logo: "/clients/gerpal_sac_logo.jpeg",
+      width: 200,
+      height: 200,
+      scale: 0.9,
+    },
   ] satisfies Client[],
 };
 

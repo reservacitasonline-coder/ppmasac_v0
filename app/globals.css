@@ -36,9 +36,10 @@
   --line-dark: rgb(var(--brand-rgb) / 0.45);
 
   /* type stacks — the first entry is injected by next/font */
-  --font-display: var(--font-anton), "Arial Narrow", sans-serif;
-  --font-cond: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
-  --font-body: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-red-hat-display), system-ui, -apple-system, sans-serif;
+  --font-body: var(--font-red-hat-text), system-ui, -apple-system, sans-serif;
+  /* Uppercase labels and kickers share the text cut. */
+  --font-cond: var(--font-body);
 
   /* geometry & motion */
   --radius: 14px;

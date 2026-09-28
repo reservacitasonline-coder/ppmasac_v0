@@ -1,30 +1,17 @@
-import { Anton, Barlow_Condensed, Inter } from "next/font/google";
+import { Red_Hat_Display, Red_Hat_Text } from "next/font/google";
 
-/** Poster-scale display type used for the wordmark and section headings. */
-export const fontDisplay = Anton({
-  weight: "400",
+/** Display cut, tuned for large sizes: section headings and figures. */
+export const fontDisplay = Red_Hat_Display({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-anton",
+  variable: "--font-red-hat-display",
 });
 
-/** Condensed type used for uppercase statements, questions and quotes. */
-export const fontCondensed = Barlow_Condensed({
-  weight: ["500", "600", "700"],
+/** Text cut, tuned for small sizes: body copy, labels and interface text. */
+export const fontBody = Red_Hat_Text({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-barlow-condensed",
+  variable: "--font-red-hat-text",
 });
 
-/** Body copy, labels and interface text. */
-export const fontBody = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-});
-
-export const fontVariables = [
-  fontDisplay.variable,
-  fontCondensed.variable,
-  fontBody.variable,
-].join(" ");
+export const fontVariables = [fontDisplay.variable, fontBody.variable].join(" ");

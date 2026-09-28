@@ -230,9 +230,10 @@
   padding: 20px 0;
   border-bottom: 1px solid var(--line-light);
   font-family: var(--font-display);
-  font-size: clamp(32px, 8.5vw, 44px);
-  line-height: 1;
-  text-transform: uppercase;
+  font-size: clamp(28px, 7.5vw, 38px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: #fff;
   transition: color 0.3s var(--ease);
 }

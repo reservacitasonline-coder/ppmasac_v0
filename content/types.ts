@@ -82,9 +82,12 @@ export interface Client {
   /** Doubles as the image's alt text. */
   name: string;
   logo: string;
+  /** Intrinsic size of the artwork; only the ratio matters for layout. */
+  width: number;
+  height: number;
   /**
    * Optical correction for logos that sit small inside their own artwork.
-   * `1` fills the standard frame; higher values grow into the tile padding.
+   * `1` keeps the shared visual area; higher values grow past it.
    */
   scale?: number;
 }
@@ -93,7 +96,8 @@ export interface Stat {
   value: string;
   /** Rendered in a muted colour next to the value, e.g. the "+" in "150+". */
   suffix?: string;
-  label: string;
+  /** Always rendered as these two lines, so every figure in a row lines up. */
+  label: readonly [string, string];
 }
 
 /**
@@ -122,8 +126,6 @@ export interface ServiceGroup {
   itemsLabel?: string;
   /** Bullets grouped under sub-headings, for lines too broad for one list. */
   categories?: ServiceCategory[];
-  /** Closing paragraph set apart from the summary. */
-  note?: string;
 }
 
 export interface ServiceCategory {

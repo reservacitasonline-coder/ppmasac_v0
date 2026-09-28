@@ -3,11 +3,10 @@
 .display {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(34px, 4.6vw, 60px);
-  line-height: 0.98;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
+  font-weight: 700;
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
 }
 
 .displayOnDark {
@@ -24,14 +23,14 @@
 .displayCard {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(22px, 2.2vw, 28px);
-  line-height: 1.05;
-  text-transform: uppercase;
+  font-weight: 700;
+  font-size: clamp(20px, 1.9vw, 25px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   color: #fff;
 }
 
-/* Uppercase condensed copy: statements, questions, quotes. */
+/* Uppercase copy: statements, questions, quotes. */
 .condensed {
   font-family: var(--font-cond);
   font-weight: 600;
@@ -74,9 +73,8 @@
 .sectionTitle {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(40px, 5.8vw, 72px);
-  line-height: 0.95;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
+  font-weight: 700;
+  font-size: clamp(35px, 5.1vw, 63px);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
 }
