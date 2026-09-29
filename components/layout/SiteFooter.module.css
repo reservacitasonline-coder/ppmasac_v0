@@ -14,19 +14,26 @@
   padding-block: clamp(40px, 5vw, 72px);
 }
 
+/* The column is as wide as the longer line of the company name; the plate
+   and the description take that width without widening it (`width: 0` plus
+   `min-width: 100%`), so the logo ends where the name does. */
 .brand {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
-  max-width: 360px;
+  width: fit-content;
+  max-width: 100%;
 }
 
 /* The full-colour mark needs a light ground; on the ink band it sits on a
    white plate. */
 .brandPlate {
-  display: inline-flex;
-  padding: 14px 20px;
+  display: block;
+  box-sizing: border-box;
+  width: 0;
+  min-width: 100%;
+  padding: 16px 24px;
   background: #fff;
   border-radius: var(--radius);
   transition: transform 0.3s var(--ease);
@@ -43,8 +50,8 @@
 
 .brandLogo {
   display: block;
-  width: auto;
-  height: 34px;
+  width: 100%;
+  height: auto;
 }
 
 .brandText {
@@ -56,7 +63,6 @@
 .brandName {
   display: block;
   margin-bottom: 8px;
-  max-width: 30ch;
   color: #fff;
   font-family: var(--font-cond);
   font-weight: 600;
@@ -64,6 +70,17 @@
   line-height: 1.45;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.brandNameLine {
+  display: block;
+  white-space: nowrap;
+}
+
+.brandLine {
+  display: block;
+  width: 0;
+  min-width: 100%;
 }
 
 .column {

@@ -14,6 +14,8 @@ const INNER = 46;
 const BAND = 58;
 /** Where the icons sit, as a share of the wheel's width from its centre. */
 const ICON_RADIUS = ((BAND + OUTER) / 2 / 200) * 100;
+/** Where the texts are anchored, in wheel radii from its centre. */
+const LABEL_RADIUS = 1.02;
 
 const toRad = (degrees: number) => (degrees * Math.PI) / 180;
 
@@ -65,25 +67,23 @@ export function ValuesWheel({ values }: { values: readonly CompanyValue[] }) {
     return { value, index, from, to: from + step, mid, ...tones(mid) };
   });
 
-  // A slice centred at the foot gets its text right under it; the rest split
-  // into two columns, read top to bottom on either side.
-  const atFoot = (s: (typeof slices)[number]) => Math.abs(s.mid - 180) < 1;
-  const right = slices.filter((s) => s.mid > 0.5 && s.mid < 179.5);
-  const left = slices
-    .filter((s) => !right.includes(s) && !atFoot(s))
-    .sort((a, b) => b.mid - a.mid);
-
+  // A slice centred at the foot gets its text right under it. The rest sit
+  // just outside the rim along their slice's own angle, so each text lands
+  // beside its icon; `c` leans the block away from the wheel's centre, up for
+  // the top slices and down for the lower ones, to keep it clear of the ring.
   type Side = "left" | "right" | "bottom";
-  const place = new Map<number, { side: Side; x: number; y: number }>();
-  slices.filter(atFoot).forEach((s) => place.set(s.index, { side: "bottom", x: 0, y: 0 }));
-  for (const [side, column] of [
-    ["right", right],
-    ["left", left],
-  ] as const) {
-    column.forEach((s, k) => {
-      const y = column.length > 1 ? -0.72 + (1.44 * k) / (column.length - 1) : 0;
-      const x = Math.sqrt(Math.max(0, 1.06 ** 2 - y ** 2));
-      place.set(s.index, { side, x, y });
+  const place = new Map<number, { side: Side; x: number; y: number; c: number }>();
+  for (const s of slices) {
+    if (Math.abs(s.mid - 180) < 1) {
+      place.set(s.index, { side: "bottom", x: 0, y: 0, c: 0 });
+      continue;
+    }
+    const a = toRad(s.mid);
+    place.set(s.index, {
+      side: s.mid < 180 ? "right" : "left",
+      x: Math.abs(Math.sin(a)) * LABEL_RADIUS,
+      y: -Math.cos(a) * LABEL_RADIUS,
+      c: Math.cos(a),
     });
   }
 
@@ -155,6 +155,7 @@ export function ValuesWheel({ values }: { values: readonly CompanyValue[] }) {
                   "--i": s.index,
                   "--x": spot.x.toFixed(3),
                   "--y": spot.y.toFixed(3),
+                  "--c": spot.c.toFixed(3),
                   "--tone": s.fill,
                   "--name": s.name,
                 } as CSSProperties

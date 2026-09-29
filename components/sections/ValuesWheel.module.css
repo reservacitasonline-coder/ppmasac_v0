@@ -1,14 +1,15 @@
-/* Desktop: the wheel sits near the top of a fixed-height stage, centred on
-   `--cy`, and each label is placed beside its slice from the `--x` / `--y`
-   the component computes (in wheel radii), so the text follows the curve of
-   the ring. The value at the foot takes the room left under the wheel. */
+/* Desktop: the wheel sits in a fixed-height stage, centred on `--cy`, and
+   each label is placed beside its slice from the `--x` / `--y` the component
+   computes (in wheel radii), so the text follows the curve of the ring. The
+   room above the wheel holds the texts of the two top slices; the value at
+   the foot takes the room left under it. */
 .stage {
   --wheel: clamp(320px, 26vw + 90px, 460px);
   --r: calc(var(--wheel) / 2);
-  --cy: calc(var(--r) + 12px);
+  --cy: calc(var(--r) + 64px);
   --gap: clamp(20px, 2.2vw, 36px);
   position: relative;
-  height: calc(var(--wheel) + 100px);
+  height: calc(var(--wheel) + 152px);
 }
 
 .wheel {
@@ -93,10 +94,11 @@
 }
 
 .label {
+  --ty: calc(-50% - var(--c) * 45%);
   position: absolute;
   top: calc(var(--cy) + var(--y) * var(--r));
   width: min(270px, calc(50% - var(--x) * var(--r) - var(--gap)));
-  transform: translateY(-50%);
+  transform: translateY(var(--ty));
   transition:
     opacity 0.35s var(--ease),
     transform 0.6s var(--ease);
@@ -168,11 +170,11 @@
 }
 
 :global(.reveal-ready) .stage:not(:global(.is-revealed)) .label[data-side="right"] {
-  transform: translate(-14px, -50%);
+  transform: translate(-14px, var(--ty));
 }
 
 :global(.reveal-ready) .stage:not(:global(.is-revealed)) .label[data-side="left"] {
-  transform: translate(14px, -50%);
+  transform: translate(14px, var(--ty));
 }
 
 :global(.reveal-ready) .stage:not(:global(.is-revealed)) .label[data-side="bottom"] {

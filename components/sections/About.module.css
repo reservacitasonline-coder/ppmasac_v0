@@ -43,7 +43,8 @@
   font-size: clamp(18px, 0.4vw + 16px, 22px);
   line-height: 1.6;
   letter-spacing: -0.005em;
-  text-wrap: pretty;
+  text-align: justify;
+  hyphens: auto;
   color: var(--ink);
 }
 
@@ -56,61 +57,8 @@
   color: var(--brand);
 }
 
-.points {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px clamp(28px, 3.5vw, 56px);
-  margin: clamp(32px, 3.6vw, 48px) 0 0;
-  padding: clamp(28px, 3vw, 36px) 0 0;
-  list-style: none;
-  border-top: 1px solid rgb(var(--brand-rgb) / 0.2);
-}
-
-.point {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.pointTitle {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(18px, 0.5vw + 12px, 21px);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-}
-
-.pointIcon {
-  display: grid;
-  flex-shrink: 0;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: var(--brand);
-  color: #fff;
-}
-
-.pointIcon svg {
-  width: 20px;
-  height: 20px;
-}
-
-.pointText {
-  margin: 0;
-  font-size: var(--text-body);
-  line-height: 1.65;
-  text-wrap: pretty;
-  color: var(--muted);
-}
-
-/* Shared by the block headings (Misión, Visión, Valores corporativos) so they
-   read as one family under "Nuestra empresa". */
+/* Shared by the block headings (Visión, Valores corporativos) so they read
+   as one family under "Nuestra empresa". */
 .subTitle {
   margin: 0 0 clamp(16px, 1.8vw, 24px);
   font-family: var(--font-display);
@@ -122,13 +70,15 @@
   color: var(--ink);
 }
 
-/* --- mission and vision --- */
+/* --- vision --- */
 
-/* Brand blue, so the two statements read as their own block. */
+/* Brand blue, so the statements read as their own block; each one takes an
+   equal share of the width. */
 .purpose {
   --pillar-gap: clamp(28px, 4.5vw, 72px);
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
   margin-top: clamp(48px, 6vw, 88px);
   padding: clamp(32px, 4.5vw, 64px);
   border-radius: var(--radius-lg);
@@ -149,6 +99,21 @@
   border-left: 1px solid var(--line-light);
 }
 
+/* A statement on its own splits like the intro: heading left, text right. */
+@media (min-width: 721px) {
+  .pillar:only-child {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: baseline;
+    column-gap: var(--pillar-gap);
+    padding-right: 0;
+  }
+
+  .pillar:only-child .pillarText {
+    max-width: none;
+  }
+}
+
 .pillarTitle {
   composes: subTitle;
   margin: 0;
@@ -160,6 +125,9 @@
   margin: 0;
   font-size: clamp(17px, 0.5vw + 12px, 21px);
   line-height: 1.55;
+  text-align: justify;
+  /* Hyphenation keeps justified lines from opening wide gaps on phones. */
+  hyphens: auto;
   color: var(--on-dark);
 }
 
@@ -195,7 +163,7 @@
 
 @media (max-width: 720px) {
   .purpose {
-    grid-template-columns: 1fr;
+    grid-auto-flow: row;
   }
 
   .pillar {
@@ -208,11 +176,5 @@
     padding-left: 0;
     border-top: 1px solid var(--line-light);
     border-left: 0;
-  }
-}
-
-@media (max-width: 560px) {
-  .points {
-    grid-template-columns: minmax(0, 1fr);
   }
 }

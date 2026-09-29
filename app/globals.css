@@ -45,7 +45,7 @@
   --radius: 14px;
   --radius-lg: 22px;
   --gutter: clamp(18px, 4vw, 56px);
-  --content-max: 1280px;
+  --content-max: 1360px;
   /* Clearance for the fixed header when jumping to an anchor. */
   --header-offset: 108px;
   /* Room a page cover leaves for the header before any scroll. */
@@ -58,6 +58,16 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+/* Past the 1440px design width the whole page scales with the viewport
+   (`tan(atan2())` turns the width ratio into a plain number), so a large
+   monitor or a TV shows the laptop composition, larger, with no empty sides.
+   Browsers without `zoom` keep the centred 1440px layout. */
+@media (min-width: 1441px) {
+  html {
+    zoom: tan(atan2(100vw, 1440px));
+  }
 }
 
 html {

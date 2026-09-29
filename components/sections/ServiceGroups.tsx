@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -29,6 +30,15 @@ function Emphasis({ text }: { text: string }) {
   );
 }
 
+/** The detail of a tile; each line break in the text starts a paragraph. */
+function TileText({ text }: { text: string }) {
+  return text.split("\n").map((paragraph) => (
+    <p className={styles.tileText} key={paragraph}>
+      <Emphasis text={paragraph} />
+    </p>
+  ));
+}
+
 /** Sets the "Lead:" of a categorised bullet in bold. */
 function CategoryItem({ text }: { text: string }) {
   const { lead, detail } = splitLead(text);
@@ -41,6 +51,14 @@ function CategoryItem({ text }: { text: string }) {
   );
 }
 
+/** Rows of the category grid: per category, a heading row plus its tile rows. */
+function categoryRows(categories: readonly { items: readonly string[] }[]) {
+  const rows = categories
+    .map((category) => `auto repeat(${Math.ceil(category.items.length / 2)}, 1fr)`)
+    .join(" ");
+  return { "--rows": rows } as CSSProperties;
+}
+
 /** The six service lines in full, one band each. */
 export function ServiceGroups() {
   const { closing } = services.page;
@@ -51,7 +69,6 @@ export function ServiceGroups() {
         {services.groups.map((group) => {
           const items = group.items ?? [];
           const tiled = group.layout === "tiles";
-          const timeline = group.layout === "timeline";
           const panel = group.layout === "panel";
           // A lone "Lead:" among plain bullets stays inline rather than
           // becoming the only heading in the list.
@@ -64,8 +81,7 @@ export function ServiceGroups() {
               className={cn(
                 styles.group,
                 dense && styles.dense,
-                (tiled || panel) && styles.tiled,
-                timeline && styles.sequenced,
+                (tiled || panel || group.categories) && styles.tiled,
               )}
               id={group.slug}
               key={group.slug}
@@ -122,23 +138,6 @@ export function ServiceGroups() {
                         ))}
                       </ul>
                     ) : null}
-                    {timeline ? (
-                      <ul className={styles.timeline}>
-                        {items.map((item) => {
-                          const { lead, detail } = splitLead(item);
-                          return (
-                            <li className={styles.step} key={item}>
-                              {lead ? (
-                                <h3 className={styles.stepTitle}>{lead}</h3>
-                              ) : null}
-                              <p className={styles.stepText}>
-                                <Emphasis text={detail} />
-                              </p>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    ) : null}
                   </div>
                 </div>
 
@@ -151,9 +150,7 @@ export function ServiceGroups() {
                           {lead ? (
                             <h3 className={styles.tileTitle}>{lead}</h3>
                           ) : null}
-                          <p className={styles.tileText}>
-                            <Emphasis text={detail} />
-                          </p>
+                          <TileText text={detail} />
                         </li>
                       );
                     })}
@@ -162,26 +159,23 @@ export function ServiceGroups() {
 
                 {panel ? (
                   <div
-                    className={cn(
-                      styles.panel,
-                      !group.itemsLabel && styles.panelBare,
-                    )}
+                    className={styles.panel}
                     data-reveal
+                    style={{ "--cols": group.columns ?? 3 } as CSSProperties}
                   >
                     {group.itemsLabel ? (
-                      <p className={styles.panelLabel}>{group.itemsLabel}</p>
+                      <h3 className={styles.panelLabel}>{group.itemsLabel}</h3>
                     ) : null}
-                    <ul className={styles.panelItems}>
+                    <ul className={styles.panelTiles}>
                       {items.map((item) => {
                         const { lead, detail } = splitLead(item);
+                        const TileTitle = group.itemsLabel ? "h4" : "h3";
                         return (
-                          <li className={styles.panelItem} key={item}>
+                          <li className={styles.tile} key={item}>
                             {allLeads ? (
                               <>
-                                <h3 className={styles.tileTitle}>{lead}</h3>
-                                <p className={styles.tileText}>
-                                  <Emphasis text={detail} />
-                                </p>
+                                <TileTitle className={styles.tileTitle}>{lead}</TileTitle>
+                                <TileText text={detail} />
                               </>
                             ) : (
                               <p className={styles.panelPlain}>
@@ -196,7 +190,11 @@ export function ServiceGroups() {
                 ) : null}
 
                 {group.categories ? (
-                  <div className={styles.categories} data-reveal-group>
+                  <div
+                    className={styles.categories}
+                    data-reveal
+                    style={categoryRows(group.categories)}
+                  >
                     {group.categories.map((category, index) => (
                       <div className={styles.category} key={category.title}>
                         <h3 className={styles.categoryTitle}>
@@ -205,12 +203,18 @@ export function ServiceGroups() {
                           </span>
                           {category.title}
                         </h3>
-                        <ul className={styles.categoryItems}>
-                          {category.items.map((item) => (
-                            <li className={styles.item} key={item}>
-                              <CategoryItem text={item} />
-                            </li>
-                          ))}
+                        <ul className={styles.categoryTiles}>
+                          {category.items.map((item) => {
+                            const { lead, detail } = splitLead(item);
+                            return (
+                              <li className={styles.tile} key={item}>
+                                {lead ? (
+                                  <h4 className={styles.tileTitle}>{lead}</h4>
+                                ) : null}
+                                <TileText text={detail} />
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
                     ))}

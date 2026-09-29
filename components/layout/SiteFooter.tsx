@@ -8,6 +8,16 @@ import { cn } from "@/lib/cn";
 
 import styles from "./SiteFooter.module.css";
 
+/** Breaks a name into two lines at the space nearest its middle. */
+function twoLines(text: string) {
+  const middle = text.length / 2;
+  let split = -1;
+  for (let at = text.indexOf(" "); at !== -1; at = text.indexOf(" ", at + 1)) {
+    if (split === -1 || Math.abs(at - middle) < Math.abs(split - middle)) split = at;
+  }
+  return split === -1 ? [text] : [text.slice(0, split), text.slice(split + 1)];
+}
+
 export function SiteFooter() {
   return (
     <footer className={styles.footer}>
@@ -25,9 +35,13 @@ export function SiteFooter() {
             </Link>
             <p className={styles.brandText}>
               <span className={styles.brandName}>
-                {footer.brandName.replace(/ SAC$/, "\u00A0SAC")}
+                {twoLines(footer.brandName).map((line) => (
+                  <span className={styles.brandNameLine} key={line}>
+                    {line}
+                  </span>
+                ))}
               </span>
-              {footer.brandLine}
+              <span className={styles.brandLine}>{footer.brandLine}</span>
             </p>
           </div>
 
