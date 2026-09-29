@@ -1,5 +1,4 @@
 import { Container } from "@/components/ui/Container";
-import { LayersIcon, ShieldCheckIcon } from "@/components/ui/icons";
 import { about } from "@/content/site";
 
 import styles from "./About.module.css";
@@ -17,12 +16,6 @@ function Lead({ text }: { text: string }) {
     </>
   );
 }
-
-const points = [
-  { icon: ShieldCheckIcon, title: about.commitmentTitle, text: about.commitment },
-  { icon: LayersIcon, title: about.scopeTitle, text: about.scope },
-];
-
 export function About() {
   return (
     <section className={styles.about} id="nosotros" aria-labelledby="nosotros-title">
@@ -41,19 +34,6 @@ export function About() {
                 <Lead text={text} />
               </p>
             ))}
-            <ul className={styles.points}>
-              {points.map(({ icon: Icon, title, text }) => (
-                <li className={styles.point} key={title}>
-                  <h3 className={styles.pointTitle}>
-                    <span className={styles.pointIcon}>
-                      <Icon />
-                    </span>
-                    {title}
-                  </h3>
-                  <p className={styles.pointText}>{text}</p>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
 

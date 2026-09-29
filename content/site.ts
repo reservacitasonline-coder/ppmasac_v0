@@ -67,12 +67,12 @@ export const seo = {
   foundedIn: "2018",
   /** What the company is an authority on, in schema.org terms. */
   expertise: [
-    "Gerencia de proyectos de construcción",
-    "Supervisión de obra",
-    "Expedientes técnicos",
-    "Habilitaciones urbanas",
+    "Gerencia de Proyectos de Construcción",
+    "Supervisión de Obra",
+    "Expedientes Técnicos",
+    "Habilitaciones Urbanas",
     "Building Information Modeling",
-    "Consultoría inmobiliaria",
+    "Consultoría Inmobiliaria",
   ],
   /** Pages the /servicios cover and its search result share. */
   services: {
@@ -98,7 +98,7 @@ const proposalLabel = "Solicitar propuesta";
 
 export const hero = {
   /** One line per rendered row of the `h1`, which wraps further on phones. */
-  title: ["Ingeniería, construcción", "y gestión integral"],
+  title: ["Ingeniería, Construcción", "y Gestión Integral"],
   /** The registered name, kept prominent at the client's request. */
   legalName: "Professional Project Manager Administration SAC",
   lead: "Transformamos sus proyectos desde el análisis de factibilidad y expediente técnico hasta la ejecución y posventa, garantizando cumplimiento en costos, plazos, calidad y seguridad.",
@@ -118,19 +118,13 @@ export const hero = {
 };
 
 export const about = {
-  heading: ["Nuestra", "empresa"],
+  heading: ["Nuestra", "Empresa"],
   lead: [
     "En Professional Project Manager Administration (PPMA SAC) transformamos visiones en realidades rentables y sostenibles. Somos un grupo empresarial líder en el mercado peruano, respaldado por un equipo con más de 20 años de experiencia en los sectores de construcción, inmobiliario y servicios generales.",
     "Asumimos la dirección completa de cada proyecto, desde la factibilidad y adquisición de terrenos hasta la ingeniería, construcción y soporte posventa. Bajo un firme compromiso con la seguridad y la sostenibilidad, garantizamos el éxito de su inversión optimizando costos, plazos y calidad.",
   ],
   /** Not shown on the page; names the "about" node in the structured data. */
   subtitle: "Quiénes somos",
-  commitmentTitle: "Nuestro compromiso",
-  scopeTitle: "Soluciones integrales",
-  commitment:
-    "Garantizamos el éxito de cada proyecto optimizando costos, plazos y calidad, bajo un firme compromiso con la seguridad y la sostenibilidad ambiental.",
-  scope:
-    "Ofrecemos soluciones inmobiliarias integrales que abarcan desde el análisis de factibilidad, compra de terrenos y habilitaciones urbanas, hasta la ingeniería, construcción, gestión comercial y soporte posventa.",
   /** Set in brand blue inside the `lead` paragraphs; skipped where it does not appear verbatim. */
   leadName: "Professional Project Manager Administration (PPMA SAC)",
   pillars: [
@@ -143,7 +137,7 @@ export const about = {
       body: "Consolidar nuestro liderazgo en el mercado nacional y expandir nuestra presencia internacional en servicios integrales de infraestructura, respaldados por la innovación, dedicación y excelencia de nuestro equipo.",
     },
   ] satisfies Pillar[],
-  valuesTitle: "Valores corporativos",
+  valuesTitle: "Valores Corporativos",
   values: [
     {
       title: "Honestidad",
@@ -232,7 +226,7 @@ export const services = {
   ] satisfies LifecycleStep[],
   /** Cover band of the /servicios page. */
   page: {
-    heading: ["Ingeniería, gestión y construcción", "integradas en un solo equipo"],
+    heading: ["Ingeniería, Gestión y Construcción", "Integradas en un solo equipo"],
     lead: "Acompañamos el proyecto de principio a fin, con un staff de profesionales con más de 20 años en la industria de la construcción.",
     background: {
       src: unsplash("photo-1493397212122-2b85dda8106b", 2000),
@@ -263,7 +257,7 @@ export const services = {
       items: [
         "Diseño Arquitectónico Integral: Desarrollamos proyectos residenciales (unifamiliares, multifamiliares, campo y playa), así como complejos comerciales, de usos mixtos, educativos, deportivos y de salud (clínicas y hospitales).",
         "Planificación Vial y Urbanística: Diseñamos entornos urbanos e infraestructura vial eficientes, optimizando el uso del suelo y la conectividad.",
-        "Gerenciamiento y Optimización Técnica: Dirección integral del proyecto mediante modelado y compatibilización avanzada en 2D, 3D y tecnología Revit (Building Information Modeling - BIM), respaldada por un riguroso análisis de precios unitarios según los costos reales del mercado.",
+        "Gerenciamiento y Optimización Técnica: Dirección integral del proyecto mediante modelado y compatibilización avanzada en 2D, 3D y tecnología Revit (Building Information Modeling - BIM), respaldada por un riguroso análisis de precios unitarios según los costos reales del mercado.\nGestionamos de manera integral y supervisamos cada etapa del proyecto, asegurando calidad, productividad y cumplimiento de plazos. Optimizamos procesos, costos y recursos para generar ahorros y maximizar la rentabilidad de su inversión.",
         "Ingenierías y Especialidades: Cobertura total en diseño de Arquitectura, Estructuras, Instalaciones Sanitarias (IISS), Eléctricas (IIEE), Mecánicas y asesoría especializada en seguridad para normativas INDECI.",
       ],
     },
@@ -279,7 +273,7 @@ export const services = {
         src: unsplash("photo-1431576901776-e539bd916ba2", 1200),
         alt: "Torres de oficinas de vidrio vistas desde la calle",
       },
-      layout: "panel",
+      layout: "tiles",
       items: [
         "Construcción, acondicionamiento y equipamiento integral de agencias bancarias.",
         "Construcción y habilitación de salas de ventas y departamentos piloto.",
@@ -333,7 +327,7 @@ export const services = {
     {
       index: "04",
       slug: "habilitaciones-urbanas",
-      title: "Habilitaciones urbanas",
+      title: "Habilitaciones Urbanas",
       summary:
         "Acompañamos el desarrollo de sus proyectos desde la identificación del terreno hasta la ejecución de infraestructura especializada. Nos encargamos de la búsqueda, saneamiento legal, topografía y gestión de licencias, asegurando la habilitación urbana integral y la construcción de obras civiles con altos estándares de calidad.",
       teaser:
@@ -359,7 +353,7 @@ export const services = {
     {
       index: "05",
       slug: "asesoria-y-consultoria",
-      title: "Asesoría y consultoría\nconstructiva",
+      title: "Asesoría y Consultoría\nConstructiva",
       summary:
         "Ofrecemos un servicio integral en licencias, expedientes técnicos, presupuestos, gerenciamiento de proyectos y supervisión de obra, estructurado en las siguientes especialidades:",
       teaser:
@@ -368,7 +362,8 @@ export const services = {
         src: unsplash("photo-1504307651254-35680f356dfd", 1200),
         alt: "Equipo de obra revisando el avance en campo",
       },
-      layout: "timeline",
+      layout: "panel",
+      columns: 2,
       items: [
         "Gestión normativa: Tramitación y seguimiento de licencias municipales (distritales y provinciales), conformidad de obra y uso de vías.",
         "Ingeniería y diseño: Desarrollo de expedientes técnicos para aprobación municipal, modelado de proyectos BIM y perfiles de inversión pública o privada.",
@@ -380,7 +375,7 @@ export const services = {
     {
       index: "06",
       slug: "consultoria-comercial",
-      title: "Consultoría comercial",
+      title: "Consultoría Comercial",
       summary:
         "Ofrecemos un servicio integral de consultoría comercial diseñado para maximizar la rentabilidad y asegurar el éxito de cada proyecto inmobiliario. Acompañamos a nuestros clientes en todo el ciclo comercial, desde el análisis estratégico de mercado y la viabilidad financiera, hasta la ejecución de estrategias de marketing, la gestión de eventos sectoriales, el control de ventas y el servicio posventa.",
       teaser:
@@ -390,6 +385,7 @@ export const services = {
         alt: "Rascacielos vistos desde abajo",
       },
       layout: "panel",
+      columns: 2,
       itemsLabel: "Nuestras soluciones especializadas incluyen:",
       items: [
         "Estudios de mercado: Evaluación situacional de cada proyecto según su fase de ejecución.",
@@ -750,7 +746,7 @@ export const footer = {
     height: 210,
   },
   brandName: "Professional Project Manager Administration SAC",
-  brandLine: "Ingeniería, construcción y gestión de proyectos inmobiliarios en el Perú.",
+  brandLine: "Ingeniería, Construcción y Gestión de Proyectos Inmobiliarios en el Perú.",
   company: {
     title: "Empresa",
     /** The header menu, in page order, plus the proposal form that closes it. */

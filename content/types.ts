@@ -117,13 +117,14 @@ export interface ServiceGroup {
   items?: string[];
   /**
    * How "Lead: detail" `items` are set: `tiles` as a two-column grid below the
-   * photo, `timeline` as a connected bullet sequence beside it, `panel` as a
-   * two-column list in a titled panel below it. `*text*` in the detail is set
-   * in italics.
+   * photo, `panel` as a grid of equal tiles below it, under an optional
+   * heading. `*text*` in the detail is set in italics.
    */
-  layout?: "tiles" | "timeline" | "panel";
+  layout?: "tiles" | "panel";
   /** Heading of the `panel` layout. */
   itemsLabel?: string;
+  /** Tiles per row in the `panel` layout; three when left out. */
+  columns?: 2 | 3;
   /** Bullets grouped under sub-headings, for lines too broad for one list. */
   categories?: ServiceCategory[];
 }
