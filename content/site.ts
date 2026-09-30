@@ -244,7 +244,7 @@ export const services = {
     {
       index: "01",
       slug: "proyectos",
-      title: "Proyectos y\nGerenciamiento",
+      title: "Proyectos y Gerenciamiento",
       summary:
         "Transformamos sus ideas en proyectos viables, eficientes y listos para construir. Nuestro servicio abarca desde el diseño de infraestructura urbana, comercial y de salud, hasta la gestión técnica avanzada y el análisis de costos reales del mercado para asegurar el éxito de su inversión.",
       teaser:
@@ -275,14 +275,14 @@ export const services = {
       },
       layout: "tiles",
       items: [
-        "Construcción, acondicionamiento y equipamiento integral de agencias bancarias.",
-        "Construcción y habilitación de salas de ventas y departamentos piloto.",
-        "Diseño, implementación y remodelación de oficinas corporativas.",
-        "Implementación comercial para centros comerciales y locatarios de retail.",
-        "Mantenimiento integral y servicios generales para centros comerciales.",
-        "Instalación de acabados de alta calidad para residencias, departamentos y áreas comunes (cocinas, baños, terrazas, parrillas y jardines).",
-        "Ingeniería e instalaciones especializadas tales como Circuito Cerrado de Televisión (CCTV), Agua Contra Incendio (ACI), cableado estructurado, voz y datos, sistemas eléctricos, sanitarios, aire acondicionado y subestaciones.",
-        "Sistemas de iluminación integral para polideportivos, gimnasios y terrazas.",
+        "Agencias bancarias: Construcción, acondicionamiento y equipamiento integral de agencias bancarias.",
+        "Salas de ventas y pilotos: Construcción y habilitación de salas de ventas y departamentos piloto.",
+        "Oficinas corporativas: Diseño, implementación y remodelación de oficinas corporativas.",
+        "Locales comerciales y retail: Implementación comercial para centros comerciales y locatarios de retail.",
+        "Mantenimiento y servicios generales: Mantenimiento integral y servicios generales para centros comerciales.",
+        "Acabados de alta calidad: Instalación de acabados de alta calidad para residencias, departamentos y áreas comunes (cocinas, baños, terrazas, parrillas y jardines).",
+        "Instalaciones especializadas: Ingeniería e instalaciones tales como Circuito Cerrado de Televisión (CCTV), Agua Contra Incendio (ACI), cableado estructurado, voz y datos, sistemas eléctricos, sanitarios, aire acondicionado y subestaciones.",
+        "Iluminación integral: Sistemas de iluminación para polideportivos, gimnasios y terrazas.",
       ],
     },
     {
@@ -353,11 +353,11 @@ export const services = {
     {
       index: "05",
       slug: "asesoria-y-consultoria",
-      title: "Asesoría y Consultoría\nConstructiva",
+      title: "Asesoría y Consultoría Constructiva",
       summary:
-        "Ofrecemos un servicio integral en licencias, expedientes técnicos, presupuestos, gerenciamiento de proyectos y supervisión de obra, estructurado en las siguientes especialidades:",
+        "Gestionamos de manera integral el ciclo de vida técnico y legal de sus proyectos de ingeniería y construcción. Integramos la gestión de licencias, la ingeniería de detalle (expedientes técnicos), la estimación de costos y presupuestos, el gerenciamiento integral y la supervisión de obra, garantizando viabilidad técnica, cumplimiento normativo y eficiencia económica. Desglosamos nuestras capacidades en las siguientes áreas de especialización:",
       teaser:
-        "Ofrecemos un servicio integral en licencias, expedientes técnicos, presupuestos, gerenciamiento de proyectos y supervisión de obra.",
+        "Gestionamos de manera integral el ciclo de vida técnico y legal de sus proyectos de ingeniería y construcción.",
       photo: {
         src: unsplash("photo-1504307651254-35680f356dfd", 1200),
         alt: "Equipo de obra revisando el avance en campo",

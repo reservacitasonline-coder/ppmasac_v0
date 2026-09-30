@@ -7,7 +7,7 @@
 }
 
 .group {
-  --section-pad-top: clamp(56px, 7vw, 104px);
+  --section-pad-top: clamp(28px, 3.5vw, 52px);
   padding: var(--section-pad-top) 0;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .head {
-  max-width: 28ch;
+  max-width: 45ch;
 }
 
 .index {
@@ -43,6 +43,7 @@
 
 .titleLine {
   display: block;
+  white-space: nowrap;
 }
 
 /* Titles with a hand-placed break keep each line whole; the narrow head
@@ -158,7 +159,7 @@
   margin-bottom: clamp(4px, 0.6vw, 8px);
 }
 
-.category + .category .categoryTitle {
+.category+.category .categoryTitle {
   margin-top: clamp(20px, 2.4vw, 32px);
 }
 
@@ -205,7 +206,7 @@
 .tiles {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-rows: 1fr;
+  grid-auto-rows: auto;
   gap: clamp(12px, 1.4vw, 18px);
   margin: clamp(32px, 4vw, 56px) 0 0;
   padding: 0;
@@ -214,8 +215,8 @@
 
 .tile {
   position: relative;
-  padding: clamp(18px, 1.8vw, 24px) clamp(18px, 2vw, 26px) clamp(18px, 1.8vw, 24px)
-    calc(clamp(18px, 2vw, 26px) + 22px);
+  padding: clamp(14px, 1.4vw, 18px) clamp(16px, 1.8vw, 24px) clamp(14px, 1.4vw, 18px)
+    calc(clamp(16px, 1.8vw, 24px) + 22px);
   border-radius: 16px;
   background: #fff;
   box-shadow: 0 1px 2px rgb(var(--brand-rgb) / 0.06), 0 12px 32px -18px rgb(var(--brand-rgb) / 0.28);
@@ -229,11 +230,11 @@
 /* Same brand disc as the plain lists, with a soft halo to sit on the tile.
    It hangs off the first line, title or text, so it centres on that line
    whatever its size. */
-.tile > :first-child {
+.tile> :first-child {
   position: relative;
 }
 
-.tile > :first-child::before {
+.tile> :first-child::before {
   content: "";
   position: absolute;
   top: calc(0.5lh - 4px);
@@ -263,7 +264,7 @@
   color: var(--ink);
 }
 
-.tileText + .tileText {
+.tileText+.tileText {
   margin-top: 0.6em;
 }
 
@@ -351,7 +352,7 @@
 /* --- closing call to action --- */
 
 .closing {
-  padding: clamp(52px, 6vw, 88px) 0;
+  padding: clamp(26px, 3vw, 44px) 0;
   background: var(--brand-deep);
   color: #fff;
 }
@@ -383,6 +384,7 @@
 }
 
 @media (max-width: 900px) {
+
   .body,
   .dense .body {
     grid-template-columns: 1fr;
