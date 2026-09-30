@@ -150,6 +150,7 @@
   font-size: clamp(16px, 0.25vw + 13px, 17px);
   line-height: 1.5;
   text-wrap: pretty;
+  text-align: left !important;
   color: var(--on-dark-soft);
 }
 
