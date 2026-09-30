@@ -101,7 +101,7 @@ export const hero = {
   title: ["Ingeniería, Construcción", "y Gestión Integral"],
   /** The registered name, kept prominent at the client's request. */
   legalName: "Professional Project Manager Administration SAC",
-  lead: "Transformamos sus proyectos desde el análisis de factibilidad y expediente técnico hasta la ejecución y posventa, garantizando cumplimiento en costos, plazos, calidad y seguridad.",
+  lead: "Transformamos sus Proyectos desde el Análisis de Factibilidad y Expediente Técnico hasta la Ejecución y Posventa, garantizando cumplimiento en costos, plazos, calidad y seguridad.",
   /** Verifiable facts only. Leading zeros are kept, also while counting up. */
   proof: [
     { value: "08", label: ["Años en el", "mercado peruano"] },
@@ -180,7 +180,7 @@ export const about = {
 export const services = {
   eyebrow: "Servicios",
   heading: ["Gestión Integral", "en Cada Etapa de su Proyecto"],
-  lead: "Seis líneas de servicio que cubren el ciclo completo de un proyecto: Del terreno y las licencias a la obra, el equipamiento y la venta.",
+  lead: "Seis líneas de servicio que cubren el ciclo completo de un proyecto: Del Terreno y Licencias, a la Obra, el Equipamiento y la Venta.",
   cta: { label: "Ver el detalle de cada servicio", href: "/servicios" } satisfies CallToAction,
   /**
    * Two deliverables per line for the home page. Keyed by `groups[].slug`;
