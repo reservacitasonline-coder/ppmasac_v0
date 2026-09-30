@@ -304,7 +304,8 @@
 .item,
 .tileText,
 .panelPlain {
-  text-align: left;
+  text-align: justify;
+  text-justify: inter-word;
   text-wrap: pretty;
   hyphens: none;
   -webkit-hyphens: none;
