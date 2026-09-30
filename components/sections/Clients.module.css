@@ -3,6 +3,7 @@
   padding: var(--section-y) 0;
   background: color-mix(in srgb, var(--mist) 16%, #fff);
   color: var(--ink);
+  overflow-x: clip;
 }
 
 .head {

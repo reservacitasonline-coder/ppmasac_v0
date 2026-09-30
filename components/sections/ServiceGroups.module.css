@@ -3,6 +3,7 @@
      reading, and body copy loses contrast against it. */
   background: color-mix(in srgb, var(--mist) 16%, #fff);
   color: var(--ink);
+  overflow-x: clip;
 }
 
 .group {

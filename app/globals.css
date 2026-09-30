@@ -75,6 +75,8 @@ html {
   /* Keeps anchor targets from landing underneath the fixed header. */
   scroll-padding-top: var(--header-offset);
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 /* Belt and braces: `scroll-padding` covers fragment navigation, while
@@ -107,7 +109,8 @@ body {
   line-height: 1.65;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 img,
