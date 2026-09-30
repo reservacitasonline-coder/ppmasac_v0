@@ -304,8 +304,9 @@
 .item,
 .tileText,
 .panelPlain {
-  text-align: justify;
-  hyphens: auto;
+  text-align: left;
+  text-wrap: pretty;
+  hyphens: none;
 }
 
 /* --- dense catalogue (any line with many bullets) --- */

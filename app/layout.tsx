@@ -65,7 +65,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="es-PE" className={fontVariables} data-scroll-behavior="smooth">
+    <html lang="es" className={fontVariables} data-scroll-behavior="smooth">
       <body id="top">
         <JsonLd graph={[organisationSchema(), websiteSchema()]} />
         <a className="skipLink" href="#main">
