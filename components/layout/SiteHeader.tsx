@@ -8,6 +8,7 @@ import { whatsappHref } from "@/lib/whatsapp";
 
 import { HeaderShell } from "./HeaderShell";
 import { HomeLink } from "./HomeLink";
+import { MenuLink } from "./MenuLink";
 import { MobileMenu } from "./MobileMenu";
 import styles from "./SiteHeader.module.css";
 
@@ -36,9 +37,9 @@ export function SiteHeader() {
           <ul className={styles.menu}>
             {navLinks.map((link) => (
               <li key={link.href}>
-                <Link className={styles.menuLink} href={link.href}>
+                <MenuLink className={styles.menuLink} href={link.href}>
                   {link.label}
-                </Link>
+                </MenuLink>
               </li>
             ))}
           </ul>

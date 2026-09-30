@@ -106,7 +106,18 @@ export function MobileMenu({ links, cta, email, whatsapp }: MobileMenuProps) {
           <ul className={styles.panelList}>
             {links.map((link) => (
               <li key={link.href}>
-                <Link className={styles.panelLink} href={link.href}>
+                <Link
+                  className={styles.panelLink}
+                  href={link.href}
+                  onClick={() => {
+                    if (
+                      typeof window !== "undefined" &&
+                      window.location.pathname === link.href
+                    ) {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                  }}
+                >
                   {link.label}
                   <span className={styles.panelArrow} aria-hidden="true">
                     →

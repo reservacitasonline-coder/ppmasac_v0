@@ -110,7 +110,7 @@ export const hero = {
     { value: "05", label: ["Especialidades", "de ingeniería"] },
   ] satisfies Stat[],
   primary: { label: proposalLabel, href: "#contacto" } satisfies CallToAction,
-  secondary: { label: "Ver servicios", href: "#servicios" } satisfies CallToAction,
+  secondary: { label: "Ver servicios", href: "/servicios" } satisfies CallToAction,
   background: {
     src: unsplash("photo-1541888946425-d81bb19240f5", 2000),
     alt: "Equipo de obra con cascos y chalecos sobre una losa, junto a una zona con acero de refuerzo",
