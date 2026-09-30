@@ -180,7 +180,7 @@ export const about = {
 export const services = {
   eyebrow: "Servicios",
   heading: ["Gestión Integral", "en Cada Etapa de su Proyecto"],
-  lead: "Seis líneas de servicio que cubren el ciclo completo de un proyecto: del terreno y las licencias a la obra, el equipamiento y la venta.",
+  lead: "Seis líneas de servicio que cubren el ciclo completo de un proyecto: Del\u00a0terreno y las licencias a la obra, el equipamiento y la venta.",
   cta: { label: "Ver el detalle de cada servicio", href: "/servicios" } satisfies CallToAction,
   /**
    * Two deliverables per line for the home page. Keyed by `groups[].slug`;
