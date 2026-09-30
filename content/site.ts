@@ -49,7 +49,7 @@ export const seo = {
   /** Shown as the tab and result title of the home page. */
   title: "PPMA SAC · Ingeniería, construcción y gestión de proyectos",
   description:
-    "Ingeniería, construcción, supervisión y gestión de proyectos inmobiliarios en el Perú. Expedientes técnicos, obras, implementaciones y habilitaciones urbanas.",
+    "Ingeniería, Construcción, Supervisión y Gestión de Proyectos Inmobiliarios en el Perú. Expedientes Técnicos, Obras, Implementaciones y Habilitaciones Urbanas.",
   keywords: [
     "constructora en Perú",
     "gerencia de proyectos de construcción",
@@ -76,9 +76,9 @@ export const seo = {
   ],
   /** Pages the /servicios cover and its search result share. */
   services: {
-    title: "Servicios de ingeniería y construcción",
+    title: "Servicios de Ingeniería y Construcción",
     description:
-      "Seis líneas de servicio: proyectos y gerenciamiento, implementaciones, obras, habilitaciones urbanas, asesoría constructiva y consultoría comercial inmobiliaria.",
+      "Seis líneas de servicio: Proyectos y Gerenciamiento, Implementaciones, Obras, Habilitaciones Urbanas, Asesoría Constructiva y Consultoría Comercial Inmobiliaria.",
   },
 } as const;
 
@@ -141,32 +141,32 @@ export const about = {
   values: [
     {
       title: "Honestidad",
-      description: "Transparencia e integridad ética.",
+      description: "Transparencia e Integridad Ética.",
       icon: "handshake",
     },
     {
       title: "Compromiso",
-      description: "Entregas en tiempo, costo y calidad pactados.",
+      description: "Entregas en Tiempo, Costo y Calidad pactados.",
       icon: "clipboard",
     },
     {
       title: "Liderazgo",
-      description: "Visión constructiva y determinación técnica.",
+      description: "Visión Constructiva y Determinación Técnica.",
       icon: "compass",
     },
     {
       title: "Diferenciación",
-      description: "Valor único a través de la innovación.",
+      description: "Valor único a través de la Innovación.",
       icon: "lightbulb",
     },
     {
       title: "Orientación al cliente",
-      description: "Superar expectativas y necesidades.",
+      description: "Superar Expectativas y Necesidades.",
       icon: "user",
     },
     {
       title: "Calidad",
-      description: "Excelencia técnica y rigor constructivo.",
+      description: "Excelencia técnica y Rigor Constructivo.",
       icon: "award",
     },
     {
@@ -221,7 +221,7 @@ export const services = {
     },
     {
       slug: "consultoria-comercial",
-      deliverables: ["Estudios de mercado y business plan", "Gestión de ventas y posventa"],
+      deliverables: ["Estudios de mercado y Business Plan", "Gestión de ventas y posventa"],
     },
   ] satisfies LifecycleStep[],
   /** Cover band of the /servicios page. */

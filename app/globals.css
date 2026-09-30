@@ -122,8 +122,11 @@ p, span, li, h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-  text-align: left;
+  text-align: justify;
+  text-justify: inter-word;
   text-wrap: pretty;
+  hyphens: none;
+  -webkit-hyphens: none;
 }
 
 img,
