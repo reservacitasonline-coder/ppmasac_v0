@@ -59,6 +59,7 @@ export function organisationSchema(): JsonLdGraph {
     },
     knowsAbout: seo.expertise,
     knowsLanguage: "es-PE",
+    sameAs: footer.social.links.map((link) => link.href),
     logo: {
       "@type": "ImageObject",
       url: absolute(site.logo.src),
