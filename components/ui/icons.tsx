@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import type { ValueIconName } from "@/content/types";
+import type { SocialNetwork, ValueIconName } from "@/content/types";
 
 interface IconProps {
   className?: string;
@@ -130,6 +130,31 @@ const valueGlyphs: Record<ValueIconName, ReactNode> = {
 
 export function ValueIcon({ name, className }: IconProps & { name: ValueIconName }) {
   return <GlyphIcon className={className}>{valueGlyphs[name]}</GlyphIcon>;
+}
+
+const socialGlyphs: Record<SocialNetwork, ReactNode> = {
+  facebook: <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z" />,
+  instagram: (
+    <>
+      <rect x="2" y="2" width="20" height="20" rx="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z" />
+      <path d="M17.5 6.5h.01" />
+    </>
+  ),
+  tiktok: (
+    <path d="M21 7.92v4.03a9.95 9.95 0 0 1-5-1.95v4.5a6.5 6.5 0 1 1-8-6.33v4.33a2.5 2.5 0 1 0 4 2V3h4.08A6 6 0 0 0 21 7.92Z" />
+  ),
+  linkedin: (
+    <>
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
+    </>
+  ),
+};
+
+export function SocialIcon({ network, className }: IconProps & { network: SocialNetwork }) {
+  return <GlyphIcon className={className}>{socialGlyphs[network]}</GlyphIcon>;
 }
 
 export function ShieldCheckIcon({ className }: IconProps) {

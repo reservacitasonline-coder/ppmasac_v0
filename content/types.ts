@@ -15,6 +15,14 @@ export interface NavLink {
   href: string;
 }
 
+export type SocialNetwork = "facebook" | "instagram" | "tiktok" | "linkedin";
+
+export interface SocialLink {
+  network: SocialNetwork;
+  label: string;
+  href: string;
+}
+
 export interface CallToAction {
   label: string;
   href: string;

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Container } from "@/components/ui/Container";
-import { MailIcon, PhoneIcon } from "@/components/ui/icons";
+import { MailIcon, PhoneIcon, SocialIcon } from "@/components/ui/icons";
 import { footer, services } from "@/content/site";
 import { cn } from "@/lib/cn";
 
@@ -43,6 +43,22 @@ export function SiteFooter() {
               </span>
               <span className={styles.brandLine}>{footer.brandLine}</span>
             </p>
+            <ul className={styles.social} aria-label={footer.social.title}>
+              {footer.social.links.map((link) => (
+                <li key={link.network}>
+                  <a
+                    className={styles.socialLink}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${footer.logo.alt} en ${link.label}`}
+                    title={link.label}
+                  >
+                    <SocialIcon className={styles.socialIcon} network={link.network} />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <nav className={styles.column} aria-label={footer.company.title}>

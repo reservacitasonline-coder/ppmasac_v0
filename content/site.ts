@@ -11,6 +11,7 @@ import type {
   Pillar,
   ProcessStep,
   ServiceGroup,
+  SocialLink,
   Stat,
   Testimonial,
 } from "./types";
@@ -758,6 +759,16 @@ export const footer = {
     title: "Contacto",
     email: "atencionalcliente@ppmasac.com",
     phone: { label: "+51 981 248 447", href: "tel:+51981248447" },
+  },
+  /** Also listed as `sameAs` in the organisation schema. */
+  social: {
+    title: "Síguenos",
+    links: [
+      { network: "facebook", label: "Facebook", href: "https://www.facebook.com/ppmasac/" },
+      { network: "instagram", label: "Instagram", href: "https://www.instagram.com/ppmasac/" },
+      { network: "tiktok", label: "TikTok", href: "https://www.tiktok.com/@ppmasac" },
+      { network: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/company/ppmasac/" },
+    ] satisfies SocialLink[],
   },
   legal: `© ${new Date().getFullYear()} PPMA SAC. Todos los derechos reservados.`,
   /** The only legal document the site publishes, required by the form. */
